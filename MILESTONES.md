@@ -11,5 +11,10 @@
 - Ran `python validate.py --compare`; all scoring, import-separation, output-contract, and shared-path checks passed.
 - Completed final handoff documentation in `PROGRESS.md` and `scoring/`, including explicit primary, constraint, and ablation targets.
 
+### [2026-06-02 06:06] - core_claim
+- Re-ran `python validate.py --compare`; all checks passed and the checked-in scores still support the core claim on the compact suite.
+- Checked the paper appendix's Google Drive artifact for the original benchmark instances. The URL redirected to Google Drive download infrastructure but returned HTTP 404, so the compact generated suite remains the available reproducible benchmark.
+- Made the GD/OGD baseline runner self-contained under `baseline/` instead of importing the proposed-method solver.
+
 ## Stop Justification
 - Completed at milestone `core_claim`.

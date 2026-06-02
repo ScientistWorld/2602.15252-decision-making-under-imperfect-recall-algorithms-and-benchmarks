@@ -35,8 +35,10 @@ The core claim is supported on this compact suite: every scored regret-matching 
 ## Issues Encountered
 
 - The original paper benchmark files were not present in the workspace. The reproduction therefore uses generated compact instances that preserve the same problem formalism and benchmark families.
+- The appendix Google Drive artifact for original benchmark instances was checked on 2026-06-02 via the paper's file ID; the verified download URL redirected successfully but returned HTTP 404, so the original 61 instances were not available for this package.
 - Local login-node Python initially lacked NumPy, so validation of the end-to-end method was done through the scheduler/container path where `environment/setup.sh` installs NumPy. NumPy is now declared in setup.
 - A previous baseline packaging issue was fixed before wrap-up: `scripts/baseline.sh` now calls `baseline/run_baseline.py`, and that entrypoint writes evaluator-compatible artifacts.
+- The GD/OGD baseline runner is self-contained in `baseline/` and no longer imports the proposed-method solver.
 
 ## Deviations from Paper
 

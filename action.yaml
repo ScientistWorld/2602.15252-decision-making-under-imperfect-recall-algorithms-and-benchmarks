@@ -2,4 +2,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Packaged fresh-clone scripts: no external artifacts needed, download.sh is lightweight, and script paths are repo-relative."
+notes: "Verified core_claim with validate.py --compare, documented inaccessible original Drive artifact, and made the GD/OGD baseline self-contained."

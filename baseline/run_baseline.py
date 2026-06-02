@@ -8,7 +8,7 @@ import sys
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from data.tree_games import TreeGame, write_default_suite
-from method.solve import solve_game
+from baseline.pgd import solve_pgd_game
 
 
 def main() -> None:
@@ -46,7 +46,7 @@ def main() -> None:
         }
         for alg in algorithms:
             runs = [
-                solve_game(game, alg, args.iterations, args.seed + s, args.eta, args.target_gap)
+                solve_pgd_game(game, alg, args.iterations, args.seed + s, args.eta, args.target_gap)
                 for s in range(args.runs)
             ]
             runs_by_gap = sorted(range(len(runs)), key=lambda i: runs[i]["final_kkt_gap"])
