@@ -6,7 +6,7 @@ The gym studies scalable strategy optimization for tabular sequential decision p
 
 ## Approach Family
 
-Future work should remain within the paper's optimization problem: local or structured optimization over products of action simplices for imperfect-recall tree-form decision problems. Acceptable directions include improved first-order updates, regret-matching variants, predictive or adaptive local updates, better initialization, hybrid local-search schedules, and faster tree-based gradient or KKT-gap computation.
+Future work should remain within the paper's optimization problem: local or structured optimization over products of action simplices for imperfect-recall tree-form decision problems. Acceptable directions include improved first-order updates, predictive or adaptive local updates, better initialization, hybrid local-search schedules, and faster tree-based gradient or KKT-gap computation.
 
 ## What Must Stay Comparable
 
