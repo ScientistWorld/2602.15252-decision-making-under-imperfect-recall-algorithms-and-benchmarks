@@ -3,7 +3,7 @@
     "first_order_optimizer_aggregate": {
       "description": "Aggregate comparison from Table 1 over the paper's 61 imperfect-recall benchmark instances. Wall-clock time is not scored; convergence is measured by reach rate and iteration-rank style aggregates.",
       "weight": 1.0,
-      "primary_metric": "convergence_avg_rank",
+      "primary_metric": "value_percent_best",
       "metrics": {
         "value_percent_best": {
           "higher_is_better": true,
