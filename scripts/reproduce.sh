@@ -8,7 +8,7 @@
 # Assumes:
 #   - Container is built (environment/container.sif)
 #   - Data and models are downloaded (via scripts/download.sh)
-#   - Working directory is /home/user
+#   - Working directory can be the repository root or any other directory
 #
 # This is the "gold standard" reproduction — 
 # You do not need to run this, but keep this in good shape
@@ -16,6 +16,7 @@
 
 set -e
 
-cd /home/user
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
 
 bash scripts/method.sh

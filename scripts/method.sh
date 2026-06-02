@@ -8,7 +8,8 @@
 
 set -e
 
-cd /home/user
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
 
 python method/solve.py \
   --generate-instances \

@@ -12,16 +12,14 @@
 # Estimated total download size: 0 GB
 # Estimated disk usage after extraction: <1 MB
 #
-# This paper uses generated tree-form benchmark instances only; there are no
-# external datasets, model weights, or package downloads in this script.
+# This paper uses first-party synthetic tree-form benchmark instances tracked in
+# data/instances. There are no external datasets, model weights, or package
+# downloads in this script.
 
 set -e
 
-cd /home/user
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
 
-mkdir -p data/instances
-python - <<'PY'
-from data.tree_games import write_default_suite
-write_default_suite("data/instances")
-print("Generated bundled synthetic tree-form benchmark instances.")
-PY
+mkdir -p data/downloads
+echo "No external artifacts to download; tracked synthetic instances are in data/instances."
