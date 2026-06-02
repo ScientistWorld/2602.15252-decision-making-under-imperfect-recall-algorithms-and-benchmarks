@@ -1,0 +1,8783 @@
+{
+  "name": "subgroup_detection_large",
+  "root": 758,
+  "infoset_actions": [
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ],
+    [
+      "flag",
+      "continue"
+    ]
+  ],
+  "nodes": [
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        5,
+        6
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        8,
+        9
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        7,
+        10
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        4,
+        11
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        14,
+        15
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        17,
+        18
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        16,
+        19
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        13,
+        20
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        12,
+        21
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        3,
+        22
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        26,
+        27
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        29,
+        30
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        28,
+        31
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        25,
+        32
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        35,
+        36
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        38,
+        39
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        37,
+        40
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        34,
+        41
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        33,
+        42
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        24,
+        43
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        23,
+        44
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        2,
+        45
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        50,
+        51
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        53,
+        54
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        52,
+        55
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        49,
+        56
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        59,
+        60
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        62,
+        63
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        61,
+        64
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        58,
+        65
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        57,
+        66
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        48,
+        67
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        71,
+        72
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        74,
+        75
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        73,
+        76
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        70,
+        77
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        80,
+        81
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        83,
+        84
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        82,
+        85
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        79,
+        86
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        78,
+        87
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        69,
+        88
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        68,
+        89
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        47,
+        90
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        46,
+        91
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        1,
+        92
+      ],
+      "infoset": 2,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        98,
+        99
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        101,
+        102
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        100,
+        103
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        97,
+        104
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        107,
+        108
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        110,
+        111
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        109,
+        112
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        106,
+        113
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        105,
+        114
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        96,
+        115
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        119,
+        120
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        122,
+        123
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        121,
+        124
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        118,
+        125
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        128,
+        129
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        131,
+        132
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        130,
+        133
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        127,
+        134
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        126,
+        135
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        117,
+        136
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        116,
+        137
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        95,
+        138
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        143,
+        144
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        146,
+        147
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        145,
+        148
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        142,
+        149
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        152,
+        153
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        155,
+        156
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        154,
+        157
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        151,
+        158
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        150,
+        159
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        141,
+        160
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        164,
+        165
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        167,
+        168
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        166,
+        169
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        163,
+        170
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        173,
+        174
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        176,
+        177
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        175,
+        178
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        172,
+        179
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        171,
+        180
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        162,
+        181
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        161,
+        182
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        140,
+        183
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        139,
+        184
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        94,
+        185
+      ],
+      "infoset": 3,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        93,
+        186
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        0,
+        187
+      ],
+      "infoset": 0,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        194,
+        195
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        197,
+        198
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        196,
+        199
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        193,
+        200
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        203,
+        204
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        206,
+        207
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        205,
+        208
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        202,
+        209
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        201,
+        210
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        192,
+        211
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        215,
+        216
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        218,
+        219
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        217,
+        220
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        214,
+        221
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        224,
+        225
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        227,
+        228
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        226,
+        229
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        223,
+        230
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        222,
+        231
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        213,
+        232
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        212,
+        233
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        191,
+        234
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        239,
+        240
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        242,
+        243
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        241,
+        244
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        238,
+        245
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        248,
+        249
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        251,
+        252
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        250,
+        253
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        247,
+        254
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        246,
+        255
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        237,
+        256
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        260,
+        261
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        263,
+        264
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        262,
+        265
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        259,
+        266
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        269,
+        270
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        272,
+        273
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        271,
+        274
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        268,
+        275
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        267,
+        276
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        258,
+        277
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        257,
+        278
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        236,
+        279
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        235,
+        280
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        190,
+        281
+      ],
+      "infoset": 2,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        287,
+        288
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        290,
+        291
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        289,
+        292
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        286,
+        293
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        296,
+        297
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        299,
+        300
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        298,
+        301
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        295,
+        302
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        294,
+        303
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        285,
+        304
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        308,
+        309
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        311,
+        312
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        310,
+        313
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        307,
+        314
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        317,
+        318
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        320,
+        321
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        319,
+        322
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        316,
+        323
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        315,
+        324
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        306,
+        325
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        305,
+        326
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        284,
+        327
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        332,
+        333
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        335,
+        336
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        334,
+        337
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        331,
+        338
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        341,
+        342
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        344,
+        345
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        343,
+        346
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        340,
+        347
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        339,
+        348
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        330,
+        349
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        353,
+        354
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        356,
+        357
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        355,
+        358
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        352,
+        359
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        362,
+        363
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 12.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -1.5
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        365,
+        366
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        364,
+        367
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        361,
+        368
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        360,
+        369
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        351,
+        370
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        350,
+        371
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        329,
+        372
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        328,
+        373
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        283,
+        374
+      ],
+      "infoset": 3,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        282,
+        375
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        189,
+        376
+      ],
+      "infoset": 1,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        188,
+        377
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.31999999999999995,
+        0.68
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        384,
+        385
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        387,
+        388
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        386,
+        389
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        383,
+        390
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        393,
+        394
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        396,
+        397
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        395,
+        398
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        392,
+        399
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        391,
+        400
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        382,
+        401
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        405,
+        406
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        408,
+        409
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        407,
+        410
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        404,
+        411
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        414,
+        415
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        417,
+        418
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        416,
+        419
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        413,
+        420
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        412,
+        421
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        403,
+        422
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        402,
+        423
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        381,
+        424
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        429,
+        430
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        432,
+        433
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        431,
+        434
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        428,
+        435
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        438,
+        439
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        441,
+        442
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        440,
+        443
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        437,
+        444
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        436,
+        445
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        427,
+        446
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        450,
+        451
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        453,
+        454
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        452,
+        455
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        449,
+        456
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        459,
+        460
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        462,
+        463
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        461,
+        464
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        458,
+        465
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        457,
+        466
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        448,
+        467
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        447,
+        468
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        426,
+        469
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        425,
+        470
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        380,
+        471
+      ],
+      "infoset": 2,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        477,
+        478
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        480,
+        481
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        479,
+        482
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        476,
+        483
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        486,
+        487
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        489,
+        490
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        488,
+        491
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        485,
+        492
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        484,
+        493
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        475,
+        494
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        498,
+        499
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        501,
+        502
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        500,
+        503
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        497,
+        504
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        507,
+        508
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        510,
+        511
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        509,
+        512
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        506,
+        513
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        505,
+        514
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        496,
+        515
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        495,
+        516
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        474,
+        517
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        522,
+        523
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        525,
+        526
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        524,
+        527
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        521,
+        528
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        531,
+        532
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        534,
+        535
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        533,
+        536
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        530,
+        537
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        529,
+        538
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        520,
+        539
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        543,
+        544
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        546,
+        547
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        545,
+        548
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        542,
+        549
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        552,
+        553
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        555,
+        556
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        554,
+        557
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        551,
+        558
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        550,
+        559
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        541,
+        560
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        540,
+        561
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        519,
+        562
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        518,
+        563
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        473,
+        564
+      ],
+      "infoset": 3,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        472,
+        565
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        379,
+        566
+      ],
+      "infoset": 0,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        573,
+        574
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        576,
+        577
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        575,
+        578
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        572,
+        579
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        582,
+        583
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        585,
+        586
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        584,
+        587
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        581,
+        588
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        580,
+        589
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        571,
+        590
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        594,
+        595
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        597,
+        598
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        596,
+        599
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        593,
+        600
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        603,
+        604
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        606,
+        607
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        605,
+        608
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        602,
+        609
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        601,
+        610
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        592,
+        611
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        591,
+        612
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        570,
+        613
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        618,
+        619
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        621,
+        622
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        620,
+        623
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        617,
+        624
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        627,
+        628
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        630,
+        631
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        629,
+        632
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        626,
+        633
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        625,
+        634
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        616,
+        635
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        639,
+        640
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        642,
+        643
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        641,
+        644
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        638,
+        645
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        648,
+        649
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        651,
+        652
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        650,
+        653
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        647,
+        654
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        646,
+        655
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        637,
+        656
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        636,
+        657
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        615,
+        658
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        614,
+        659
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        569,
+        660
+      ],
+      "infoset": 2,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        666,
+        667
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        669,
+        670
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        668,
+        671
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        665,
+        672
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        675,
+        676
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        678,
+        679
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        677,
+        680
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        674,
+        681
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        673,
+        682
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        664,
+        683
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        687,
+        688
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        690,
+        691
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        689,
+        692
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        686,
+        693
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        696,
+        697
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        699,
+        700
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        698,
+        701
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        695,
+        702
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        694,
+        703
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        685,
+        704
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        684,
+        705
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        663,
+        706
+      ],
+      "infoset": 4,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        711,
+        712
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        714,
+        715
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        713,
+        716
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        710,
+        717
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        720,
+        721
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        723,
+        724
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        722,
+        725
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        719,
+        726
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        718,
+        727
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        709,
+        728
+      ],
+      "infoset": 6,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        732,
+        733
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        735,
+        736
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        734,
+        737
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        731,
+        738
+      ],
+      "infoset": 8,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        741,
+        742
+      ],
+      "infoset": 10,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": -2.5
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        744,
+        745
+      ],
+      "infoset": 11,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        743,
+        746
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        740,
+        747
+      ],
+      "infoset": 9,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        739,
+        748
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        730,
+        749
+      ],
+      "infoset": 7,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        729,
+        750
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        708,
+        751
+      ],
+      "infoset": 5,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        707,
+        752
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        662,
+        753
+      ],
+      "infoset": 3,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        661,
+        754
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "flag",
+        "continue"
+      ],
+      "children": [
+        568,
+        755
+      ],
+      "infoset": 1,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "low_signal",
+        "high_signal"
+      ],
+      "children": [
+        567,
+        756
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.68,
+        0.31999999999999995
+      ],
+      "payoff": null
+    },
+    {
+      "kind": "chance",
+      "actions": [
+        "positive",
+        "negative"
+      ],
+      "children": [
+        378,
+        757
+      ],
+      "infoset": null,
+      "chance_probs": [
+        0.18,
+        0.8200000000000001
+      ],
+      "payoff": null
+    }
+  ]
+}

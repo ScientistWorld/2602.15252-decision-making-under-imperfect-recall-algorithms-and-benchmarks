@@ -4,52 +4,52 @@
       "results": {
         "ams": {
           "value_percent_best": 0.0,
-          "value_avg_rank": 6.6,
-          "convergence_percent_reached": 0.0,
+          "value_avg_rank": 7,
+          "convergence_percent_reached": 37.5,
           "convergence_percent_best": 0.0,
-          "convergence_avg_rank": 6
+          "convergence_avg_rank": 5.875
         },
         "gd": {
-          "value_percent_best": 60.0,
-          "value_avg_rank": 2.4,
-          "convergence_percent_reached": 60.0,
+          "value_percent_best": 62.5,
+          "value_avg_rank": 2.875,
+          "convergence_percent_reached": 75.0,
           "convergence_percent_best": 0.0,
-          "convergence_avg_rank": 5
+          "convergence_avg_rank": 5.25
         },
         "ogd": {
-          "value_percent_best": 60.0,
-          "value_avg_rank": 3.2,
-          "convergence_percent_reached": 60.0,
+          "value_percent_best": 62.5,
+          "value_avg_rank": 3.5,
+          "convergence_percent_reached": 75.0,
           "convergence_percent_best": 0.0,
-          "convergence_avg_rank": 5.8
+          "convergence_avg_rank": 6.125
         },
         "prm": {
-          "value_percent_best": 60.0,
-          "value_avg_rank": 5.2,
+          "value_percent_best": 87.5,
+          "value_avg_rank": 4.125,
           "convergence_percent_reached": 100.0,
-          "convergence_percent_best": 40.0,
-          "convergence_avg_rank": 2.4
+          "convergence_percent_best": 62.5,
+          "convergence_avg_rank": 2.25
         },
         "prm_plus": {
-          "value_percent_best": 100.0,
-          "value_avg_rank": 4,
+          "value_percent_best": 87.5,
+          "value_avg_rank": 4.375,
           "convergence_percent_reached": 100.0,
-          "convergence_percent_best": 40.0,
-          "convergence_avg_rank": 3
+          "convergence_percent_best": 25.0,
+          "convergence_avg_rank": 3.375
         },
         "rm": {
-          "value_percent_best": 60.0,
-          "value_avg_rank": 3.6,
+          "value_percent_best": 75.0,
+          "value_avg_rank": 2.875,
           "convergence_percent_reached": 100.0,
-          "convergence_percent_best": 80.0,
-          "convergence_avg_rank": 2.2
+          "convergence_percent_best": 37.5,
+          "convergence_avg_rank": 2.625
         },
         "rm_plus": {
-          "value_percent_best": 80.0,
-          "value_avg_rank": 3,
-          "convergence_percent_reached": 80.0,
-          "convergence_percent_best": 80.0,
-          "convergence_avg_rank": 3.6
+          "value_percent_best": 75.0,
+          "value_avg_rank": 3.25,
+          "convergence_percent_reached": 100.0,
+          "convergence_percent_best": 62.5,
+          "convergence_avg_rank": 2.5
         }
       }
     }
