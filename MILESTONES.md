@@ -23,4 +23,4 @@
 - Validation passed with `python validate.py --compare`; `scoring/scores.json` contains the expanded-suite results.
 
 ## Stop Justification
-- Completed at milestone `core_claim_plus`; remaining gaps are coverage gaps against the unavailable full 61-instance paper benchmark, not method or packaging blockers.
+- Completed at milestone `core_claim_plus`.

@@ -1,0 +1,141 @@
+{
+  "paper": {
+    "arxiv_id": "2602.15252",
+    "title": "Decision Making under Imperfect Recall: Algorithms and Benchmarks",
+    "date": "",
+    "topics": [
+      "paper-type-metric-method",
+      "domain-theory",
+      "area-game-theory",
+      "category-optimization",
+      "method-regret-matching",
+      "secondary-domain-ai-ml",
+      "secondary-area-multi-agent-systems",
+      "secondary-category-agent",
+      "secondary-method-decision-theory",
+      "selection-category-scientific-optimization"
+    ]
+  },
+  "reproduction": {
+    "milestone": "core_claim_plus",
+    "status": "done",
+    "error": null,
+    "scaffold": "codex",
+    "model": "gpt-5.5",
+    "profile": "gpt-5.5-medium",
+    "effort": "medium",
+    "gpu_hours_used": 0.0,
+    "current_iteration_gpu_budget": 30,
+    "current_iteration_gpu_hours_used": 0.0,
+    "total_gpu_hours_used": 0.0,
+    "current_iteration_cpu_hours_used": 0.689,
+    "total_cpu_hours_used": 0.689,
+    "gpu_budget": 30,
+    "duration_sec": 3404.1,
+    "cost_usd": null,
+    "input_tokens": 5038791,
+    "output_tokens": 31029,
+    "cached_input_tokens": 4680448,
+    "cache_creation_tokens": null,
+    "reasoning_tokens": 0,
+    "total_input_tokens": 5038791,
+    "num_turns": 131,
+    "duration_api_ms": null,
+    "num_runs": 1,
+    "iteration_count": 0,
+    "workflow": "standard",
+    "workflow_step": 0,
+    "total_gpu_jobs": 2,
+    "time_breakdown": {
+      "working": 745.9802751541138,
+      "building": 0.08103251457214355,
+      "installing": 0.8516464233398438,
+      "waiting": 2555.0194296836853
+    }
+  },
+  "agents": [
+    {
+      "scaffold": "codex",
+      "model": "gpt-5.5",
+      "profile": "gpt-5.5-medium",
+      "effort": "medium",
+      "role": "reproducer",
+      "is_iteration": false,
+      "iteration": 1,
+      "workflow": "standard",
+      "workflow_step": 0,
+      "started_at": 1780372637.1733196,
+      "finished_at": 1780376041.2849393,
+      "duration_sec": 3404.1,
+      "blocked_sec": 0.0,
+      "status": "done",
+      "error": null,
+      "milestone": "core_claim_plus",
+      "gpu_budget": 30,
+      "gpu_hours_used": 0.0,
+      "total_gpu_hours_used": 0.0,
+      "cpu_hours_used": 0.689,
+      "time_breakdown": {
+        "working": 745.9802751541138,
+        "building": 0.08103251457214355,
+        "installing": 0.8516464233398438,
+        "waiting": 2555.0194296836853
+      },
+      "cost_usd": null,
+      "input_tokens": 5038791,
+      "output_tokens": 31029,
+      "cached_input_tokens": 4680448,
+      "cache_creation_tokens": null,
+      "reasoning_tokens": 0,
+      "total_input_tokens": 5038791,
+      "num_turns": 131,
+      "duration_api_ms": null,
+      "tool_uses": {
+        "shell": 98,
+        "file_edit": 33
+      },
+      "gpu_jobs": [
+        {
+          "run_id": "29695a0b-7dd",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "0dd29269",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 2420.1,
+          "submitted_at": 1780373503.6560714,
+          "started_at": 1780373525.880551,
+          "completed_at": 1780375945.9854252
+        },
+        {
+          "run_id": "6064235d-e52",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "5004b159",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 60.1,
+          "submitted_at": 1780373156.9066777,
+          "started_at": 1780373218.5447319,
+          "completed_at": 1780373278.6017568
+        }
+      ],
+      "progress_log": "### [2026-06-02 04:04] - none\n- Read the paper summary and identified the core algorithmic target: local optimization of tree-form imperfect-recall decision problems over products of simplices.\n- Implemented the method code for projected gradient, optimistic gradient, regret matching, predictive regret matching, plus variants, and AMS-style adaptive updates.\n- Added generated imperfect-recall benchmark instances, a method runner, an evaluator, and paper Table 1 aggregate reference metrics.\n- Prepared a scheduler smoke job to verify the implementation end-to-end inside the reproducible container.\n\n### [2026-06-02 04:09] - core_claim\n- The scheduled CPU job completed successfully and wrote `results/optimization_results.json` plus `scoring/scores.json`.\n- Validation passed with `python validate.py --compare`.\n- On the compact five-instance suite, RM-family methods reached the KKT threshold on 80-100% of instances, while GD/OGD reached it on 60%, supporting the paper's central first-order convergence claim at reduced scale.\n- Expanded the generated suite with subgroup-detection-style instances and a larger random instance for the next run.\n\n### [2026-06-02 04:52] - core_claim_plus\n- The expanded CPU job completed successfully on 8 generated instances: absentminded driver, 2 simulation instances, 2 subgroup-detection-style instances, and 3 random instances.\n- The run used the paper-scale 6000-iteration limit and 12 random starts on the compact suite.\n- RM, RM+, PRM, and PRM+ reached the KKT threshold on 100% of expanded-suite instances, while GD and OGD reached it on 75%.\n- Validation passed with `python validate.py --compare`; `scoring/scores.json` contains the expanded-suite results."
+    }
+  ],
+  "components": {
+    "has_container": true,
+    "has_method_code": true,
+    "has_evaluation": true,
+    "has_download_script": true,
+    "has_reproduce_script": true,
+    "has_method_script": true,
+    "has_baseline": true,
+    "has_reference": true,
+    "has_data": true
+  }
+}
