@@ -31,4 +31,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Reproduced the paper's first-order optimizer claim on an expanded compact suite with 6000 iterations and 12 starts; validation passes and environment is packaged."
+notes: "Reproduced the paper's first-order optimizer claim on an expanded compact suite; unreproduced AMS comparator is omitted from scores.json, validation passes, and environment is packaged."

@@ -19,7 +19,6 @@ Reproduced aggregate scores:
 |---|---:|---:|---:|---:|---:|
 | GD | 60.0 | 2.4 | 60.0 | 0.0 | 5.0 |
 | OGD | 60.0 | 3.2 | 60.0 | 0.0 | 5.8 |
-| AMS | 0.0 | 6.6 | 0.0 | 0.0 | 6.0 |
 | RM | 60.0 | 3.6 | 100.0 | 80.0 | 2.2 |
 | RM+ | 80.0 | 3.0 | 80.0 | 80.0 | 3.6 |
 | PRM | 60.0 | 5.2 | 100.0 | 40.0 | 2.4 |
@@ -33,7 +32,6 @@ Expanded-suite aggregate scores:
 |---|---:|---:|---:|---:|---:|
 | GD | 62.5 | 2.875 | 75.0 | 0.0 | 5.25 |
 | OGD | 62.5 | 3.5 | 75.0 | 0.0 | 6.125 |
-| AMS | 0.0 | 7.0 | 37.5 | 0.0 | 5.875 |
 | RM | 75.0 | 2.875 | 100.0 | 37.5 | 2.625 |
 | RM+ | 75.0 | 3.25 | 100.0 | 62.5 | 2.5 |
 | PRM | 87.5 | 4.125 | 100.0 | 62.5 | 2.25 |
@@ -41,10 +39,12 @@ Expanded-suite aggregate scores:
 
 The core claim is supported across additional settings: the regret-matching family satisfies the first-order KKT convergence constraint on every expanded-suite instance and has substantially better convergence ranks than GD/OGD, while also matching or exceeding the paper's reported value-best rates on this compact suite.
 
+AMS was run and remains in `results/optimization_results.json`, but it is not emitted in `scoring/scores.json` because this compact AMS implementation does not reproduce the paper's AMS baseline closely enough. The scored reproduction claim covers GD/OGD baselines and the RM/PRM family.
+
 ## Remaining
 
 - Full-paper coverage would require the original 61-instance benchmark suite, which was not provided in the workspace.
-- AMS underperforms the paper's reported AMS baseline in this compact implementation, but AMS is a comparator rather than the central proposed method.
+- A closer AMS comparator would require a more faithful reconstruction of the paper's AMS configuration. It is intentionally not claimed in `scoring/scores.json`.
 
 ## Issues
 

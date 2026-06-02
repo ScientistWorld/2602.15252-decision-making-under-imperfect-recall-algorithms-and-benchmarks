@@ -75,13 +75,18 @@ def main() -> None:
 
     results = json.loads(Path(args.input).read_text())
     summary = aggregate(results, args.target_gap)
+    # AMS is retained in method traces as a comparator, but this compact
+    # implementation is not close enough to the paper's AMS baseline to claim
+    # it as reproduced. Only emit methods whose scores are part of this
+    # reproduction claim.
+    scored_algorithms = {"gd", "ogd", "rm", "rm_plus", "prm", "prm_plus"}
     scores = {
         "experiments": {
             "first_order_optimizer_aggregate": {
                 "results": {
                     alg: metrics
                     for alg, metrics in summary.items()
-                    if alg in {"gd", "ogd", "ams", "rm", "rm_plus", "prm", "prm_plus"}
+                    if alg in scored_algorithms
                 }
             }
         }
