@@ -1,4 +1,5 @@
-action: done
+action: submit
 gpus: 0
 test: false
-notes: "Artifact-based 4-instance train/test split; 70 train metric values, 70 test metric values; train/test non-identical with comparable utility/convergence ranges; raw iteration mean retained diagnostic-only due small-split hardness outlier."
+milestone: core_claim
+notes: "Regenerate top-level scores with full reference metric set and validate core-claim reproduction."

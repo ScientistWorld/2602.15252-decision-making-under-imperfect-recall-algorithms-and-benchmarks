@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from statistics import mean
 
@@ -9,6 +10,19 @@ from statistics import mean
 def rank(values: dict[str, float], higher: bool) -> dict[str, int]:
     ordered = sorted(values, key=values.get, reverse=higher)
     return {name: i + 1 for i, name in enumerate(ordered)}
+
+
+def algorithm_runs(algorithm_data: dict) -> list[dict]:
+    runs = algorithm_data.get("runs")
+    if runs:
+        return runs
+    if "selected_run" in algorithm_data:
+        return [algorithm_data["selected_run"]]
+    raise ValueError("algorithm entry has neither selected_run nor runs")
+
+
+def safe_gap(gap: float) -> float:
+    return max(float(gap), 1e-16)
 
 
 def aggregate(results: dict, target_gap: float) -> dict:
@@ -24,11 +38,18 @@ def aggregate(results: dict, target_gap: float) -> dict:
     reached_count = {alg: 0 for alg in algorithms}
     conv_best_count = {alg: 0 for alg in algorithms}
     conv_ranks = {alg: [] for alg in algorithms}
-    final_gaps = {alg: [] for alg in algorithms}
-    iter_to_gap = {alg: [] for alg in algorithms}
+    value_gaps = {alg: [] for alg in algorithms}
+    final_log10_gaps = {alg: [] for alg in algorithms}
+    selected_iter_costs = {alg: [] for alg in algorithms}
+    selected_log10_iter_costs = {alg: [] for alg in algorithms}
+    restart_reached = {alg: 0 for alg in algorithms}
+    restart_total = {alg: 0 for alg in algorithms}
 
     for inst in results["instances"].values():
-        selected = {alg: data["selected_run"] for alg, data in inst["algorithms"].items()}
+        selected = {
+            alg: data["selected_run"]
+            for alg, data in inst["algorithms"].items()
+        }
         values = {alg: run["final_value"] for alg, run in selected.items()}
         gaps = {alg: run["final_kkt_gap"] for alg, run in selected.items()}
         conv_iters = {
@@ -44,8 +65,19 @@ def aggregate(results: dict, target_gap: float) -> dict:
                 conv_best_count[alg] += 1
             if gaps.get(alg, float("inf")) <= target_gap:
                 reached_count[alg] += 1
-            final_gaps[alg].append(gaps[alg])
-            iter_to_gap[alg].append(conv_iters[alg])
+            value_gaps[alg].append(max_value - values[alg])
+            final_log10_gaps[alg].append(math.log10(safe_gap(gaps[alg])))
+            if conv_iters[alg] == float("inf"):
+                iter_cost = selected[alg].get("iterations_run", 0) + 1
+            else:
+                iter_cost = conv_iters[alg]
+            selected_iter_costs[alg].append(iter_cost)
+            selected_log10_iter_costs[alg].append(math.log10(max(float(iter_cost), 1.0)))
+
+            runs = algorithm_runs(inst["algorithms"][alg])
+            restart_total[alg] += len(runs)
+            restart_reached[alg] += sum(1 for run in runs if run["final_kkt_gap"] <= target_gap)
+
         vrank = rank(values, higher=True)
         crank = rank({alg: -conv_iters[alg] for alg in algorithms}, higher=True)
         for alg in algorithms:
@@ -55,13 +87,17 @@ def aggregate(results: dict, target_gap: float) -> dict:
     n = len(results["instances"])
     summary = {}
     for alg in algorithms:
-        finite_iters = [x for x in iter_to_gap[alg] if x != float("inf")]
         summary[alg] = {
             "value_percent_best": 100.0 * best_value_count[alg] / n,
             "value_avg_rank": mean(value_ranks[alg]),
+            "value_avg_gap_to_best": mean(value_gaps[alg]),
             "convergence_percent_reached": 100.0 * reached_count[alg] / n,
             "convergence_percent_best": 100.0 * conv_best_count[alg] / n,
             "convergence_avg_rank": mean(conv_ranks[alg]),
+            "selected_iterations_to_gap_mean": mean(selected_iter_costs[alg]),
+            "selected_log10_iterations_to_gap_mean": mean(selected_log10_iter_costs[alg]),
+            "selected_log10_kkt_gap_mean": mean(final_log10_gaps[alg]),
+            "restart_convergence_percent": 100.0 * restart_reached[alg] / restart_total[alg],
         }
     return summary
 
