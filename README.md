@@ -111,7 +111,7 @@ Evaluate on the fixed suite of simulation, subgroup detection, and random decisi
 
 # Reproduction Milestones
 
-**Current: core_claim_plus**
+**Current: core_claim**
 
 ## Stop Justification
-- Completed at milestone `core_claim_plus`.
+- Completed at milestone `core_claim`.
