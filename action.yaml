@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: done
-gpus: 0
+action: pending
+gpus: 1
 test: false
-milestone: core_claim_plus
-notes: "Continuation audit passed: method implements the paper's actual RM/GD product-of-simplices optimizer, evaluation is independent and validated, and baseline packaging was fixed. Original 61-instance suite is unavailable, so final milestone remains core_claim_plus on the compact expanded suite."
+milestone: core_claim
+notes: ""
