@@ -13,8 +13,9 @@ set -e
 
 cd /home/user
 
-# Example: train a model
-python method/train.py --epochs 10 --lr 0.001
+export ITERATIONS="${ITERATIONS:-1500}"
+export RUNS="${RUNS:-3}"
+export TARGET_GAP="${TARGET_GAP:-1e-6}"
 
-# Example: evaluate
-bash scripts/evaluate.sh checkpoints/best.pt
+bash scripts/method.sh
+python validate.py --compare

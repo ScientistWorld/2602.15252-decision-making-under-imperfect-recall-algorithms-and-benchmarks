@@ -17,4 +17,14 @@ set -e
 
 cd /home/user
 
-# TODO: run baseline
+python method/solve.py \
+  --generate-instances \
+  --instances data/instances \
+  --output results/baseline_gd_results.json \
+  --algorithms gd,ogd \
+  --iterations "${ITERATIONS:-3000}" \
+  --runs "${RUNS:-5}" \
+  --eta "${ETA:-0.1}" \
+  --target-gap "${TARGET_GAP:-1e-6}"
+
+bash scripts/evaluate.sh results/baseline_gd_results.json scoring/baseline_scores.json

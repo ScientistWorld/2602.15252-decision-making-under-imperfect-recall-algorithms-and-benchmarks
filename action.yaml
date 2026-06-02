@@ -27,8 +27,8 @@
 #   milestone: core_claim
 #   notes: "Reproduced the core claim. Environment packaged."
 
-action: pending
-gpus: 1
-test: false
+action: submit
+gpus: 0
+test: true
 milestone: none
-notes: ""
+notes: "CPU smoke job: run the compact imperfect-recall optimizer suite with all seven paper algorithms, write scores.json, and validate comparison output."

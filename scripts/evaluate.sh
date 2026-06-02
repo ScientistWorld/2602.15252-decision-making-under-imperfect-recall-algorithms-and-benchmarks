@@ -26,5 +26,11 @@ cd /home/user
 
 mkdir -p scoring
 
-# TODO: implement evaluation using code in eval/
-# Must write scoring/scores.json at the end
+INPUT="${1:-results/optimization_results.json}"
+OUTPUT="${2:-scoring/scores.json}"
+TARGET_GAP="${TARGET_GAP:-1e-6}"
+
+python eval/evaluate_results.py \
+  --input "$INPUT" \
+  --output "$OUTPUT" \
+  --target-gap "$TARGET_GAP"
