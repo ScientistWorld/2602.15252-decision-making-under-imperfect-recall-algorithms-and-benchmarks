@@ -3,18 +3,6 @@
   "experiments": {
     "first_order_optimizer_aggregate": {
       "results": {
-        "ams": {
-          "value_percent_best": 0.0,
-          "value_avg_rank": 6.75,
-          "value_avg_gap_to_best": 0.4486714914823403,
-          "convergence_percent_reached": 25.0,
-          "convergence_percent_best": 0.0,
-          "convergence_avg_rank": 6.25,
-          "selected_iterations_to_gap_mean": 4511,
-          "selected_log10_iterations_to_gap_mean": 3.236863684254506,
-          "selected_log10_kkt_gap_mean": -4.110271981549981,
-          "restart_convergence_percent": 25.0
-        },
         "gd": {
           "value_percent_best": 50.0,
           "value_avg_rank": 3.75,

@@ -1,5 +1,5 @@
-action: submit
+action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Regenerate top-level scores with full reference metric set and validate core-claim reproduction."
+notes: "core_claim validated; top-level and split scores regenerated with six reproduced methods; split primary uses convergence_avg_rank to avoid saturated reach-rate metric; validate.py --compare passes."

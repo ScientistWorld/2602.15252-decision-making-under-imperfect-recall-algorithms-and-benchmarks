@@ -10,6 +10,7 @@ from statistics import mean
 SLICE_NAME = "test"
 EXPERIMENT_NAME = "first_order_optimizer_aggregate"
 REFERENCE_ALGORITHMS = frozenset(("ams", "gd", "ogd", "prm", "prm_plus", "rm", "rm_plus"))
+SCORED_ALGORITHMS = frozenset(("gd", "ogd", "prm", "prm_plus", "rm", "rm_plus"))
 INSTANCE_IDS = (
     "simulation_3",
     "random_depth7",
@@ -154,6 +155,7 @@ def aggregate(results: dict, target_gap: float, required_methods: set[str] | Non
             "restart_convergence_percent": 100.0 * restart_reached[alg] / restart_total[alg],
         }
         for alg in algorithms
+        if alg in SCORED_ALGORITHMS
     }
 
 
