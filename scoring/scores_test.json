@@ -11,6 +11,7 @@
           "convergence_percent_best": 0.0,
           "convergence_avg_rank": 5.5,
           "selected_iterations_to_gap_mean": 3074.5,
+          "selected_log10_iterations_to_gap_mean": 2.934429756272914,
           "selected_log10_kkt_gap_mean": -8.377182522403434,
           "restart_convergence_percent": 45.833333333333336
         },
@@ -22,6 +23,7 @@
           "convergence_percent_best": 0.0,
           "convergence_avg_rank": 6.5,
           "selected_iterations_to_gap_mean": 2716,
+          "selected_log10_iterations_to_gap_mean": 2.778435385551051,
           "selected_log10_kkt_gap_mean": -10.343007961649702,
           "restart_convergence_percent": 66.66666666666667
         },
@@ -33,6 +35,7 @@
           "convergence_percent_best": 0.0,
           "convergence_avg_rank": 6,
           "selected_iterations_to_gap_mean": 2712.75,
+          "selected_log10_iterations_to_gap_mean": 2.7686205581035197,
           "selected_log10_kkt_gap_mean": -10.318912368678445,
           "restart_convergence_percent": 66.66666666666667
         },
@@ -44,6 +47,7 @@
           "convergence_percent_best": 75.0,
           "convergence_avg_rank": 1.5,
           "selected_iterations_to_gap_mean": 248.75,
+          "selected_log10_iterations_to_gap_mean": 1.478241405176026,
           "selected_log10_kkt_gap_mean": -13.501267835680846,
           "restart_convergence_percent": 93.75
         },
@@ -55,6 +59,7 @@
           "convergence_percent_best": 25.0,
           "convergence_avg_rank": 3.25,
           "selected_iterations_to_gap_mean": 861.25,
+          "selected_log10_iterations_to_gap_mean": 1.7635551775589733,
           "selected_log10_kkt_gap_mean": -13.507176695692868,
           "restart_convergence_percent": 100.0
         },
@@ -66,6 +71,7 @@
           "convergence_percent_best": 50.0,
           "convergence_avg_rank": 2.25,
           "selected_iterations_to_gap_mean": 111,
+          "selected_log10_iterations_to_gap_mean": 1.3946254201767017,
           "selected_log10_kkt_gap_mean": -13.519594410903121,
           "restart_convergence_percent": 95.83333333333333
         },
@@ -77,6 +83,7 @@
           "convergence_percent_best": 50.0,
           "convergence_avg_rank": 3,
           "selected_iterations_to_gap_mean": 61.75,
+          "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
           "selected_log10_kkt_gap_mean": -13.506402305201307,
           "restart_convergence_percent": 100.0
         }
