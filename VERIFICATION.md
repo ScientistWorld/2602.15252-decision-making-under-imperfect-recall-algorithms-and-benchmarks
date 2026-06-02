@@ -11,6 +11,7 @@ The workspace started at `core_claim` with a completed compact-suite reproductio
 ## Fixes Applied
 - Rewrote the method-agnostic scoring guidance to describe the scientific targets without naming the paper's algorithm, local update rules, or implementation details.
 - Removed generated `__pycache__` directories.
+- Updated `scripts/run.sh` so scheduler submissions regenerate method outputs before scoring and validation.
 - Re-ran `python validate.py --compare`; all checks passed, including reference/scores schema validation, eval-method separation, shared-path checks, and train/test artifact checks.
 
 ## Final Judgment

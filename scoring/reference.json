@@ -1,7 +1,7 @@
 {
   "experiments": {
     "first_order_optimizer_aggregate": {
-      "description": "Aggregate comparison from Table 1 over the paper's 61 imperfect-recall benchmark instances. Wall-clock time is not scored; convergence is measured by reach rate and iteration-rank style aggregates.",
+      "description": "Aggregate comparison using the Table 1 metrics from the paper's 61 imperfect-recall benchmark instances. The paper reference values are from the 61-instance suite; reproduced scores are computed on the fixed compact suite because the original benchmark artifact was unavailable. Wall-clock time is not scored; convergence is measured by reach rate and iteration-rank style aggregates.",
       "weight": 1.0,
       "primary_metric": "value_percent_best",
       "metrics": {

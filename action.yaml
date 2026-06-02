@@ -1,5 +1,5 @@
-action: done
+action: submit
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Final verification passed: documentation leakage fixed, validate.py --compare passes, and core_claim remains justified."
+notes: "Regenerate the compact-suite optimizer artifact with scripts/run.sh now calling scripts/method.sh, then evaluate and validate."

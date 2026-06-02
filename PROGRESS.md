@@ -7,6 +7,7 @@
 - `method/solve.py` implements expected-utility evaluation, information-set gradients, KKT-gap measurement, random starts, and optimizer-suite execution.
 - `method/optimizers.py` implements the local simplex update rules for GD, OGD, AMS, RM, RM+, PRM, and PRM+.
 - `scripts/method.sh` runs the paper-method optimizer suite and calls the method-agnostic evaluator.
+- `scripts/run.sh` regenerates the optimizer artifact through `scripts/method.sh` before validating, so the scheduler entrypoint does not rely on stale checked-in results.
 - `baseline/run_baseline.py` and `scripts/baseline.sh` run GD/OGD reference methods in the same artifact format.
 - `eval/evaluate_results.py` reads saved result artifacts and writes `scoring/scores.json`; it does not import from `method/`.
 - `environment/container.def` and `environment/setup.sh` provide a CPU Python container with NumPy installed through `uv pip install --system`.
@@ -39,6 +40,7 @@ The core claim is supported on this compact suite: every scored regret-matching 
 - Local login-node Python initially lacked NumPy, so validation of the end-to-end method was done through the scheduler/container path where `environment/setup.sh` installs NumPy. NumPy is now declared in setup.
 - A previous baseline packaging issue was fixed before wrap-up: `scripts/baseline.sh` now calls `baseline/run_baseline.py`, and that entrypoint writes evaluator-compatible artifacts.
 - The GD/OGD baseline runner is self-contained in `baseline/` and no longer imports the proposed-method solver.
+- A final packaging audit found that `scripts/run.sh` previously only evaluated an existing result artifact. It now reruns the method before validation.
 
 ## Deviations from Paper
 

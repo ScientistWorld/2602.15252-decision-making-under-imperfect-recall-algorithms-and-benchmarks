@@ -16,5 +16,9 @@
 - Checked the paper appendix's Google Drive artifact for the original benchmark instances. The URL redirected to Google Drive download infrastructure but returned HTTP 404, so the compact generated suite remains the available reproducible benchmark.
 - Made the GD/OGD baseline runner self-contained under `baseline/` instead of importing the proposed-method solver.
 
+### [2026-06-02 06:14] - core_claim
+- Audited the scheduler entrypoint and found that `scripts/run.sh` only evaluated an existing artifact.
+- Updated `scripts/run.sh` to regenerate the compact-suite optimizer artifact via `scripts/method.sh` before running `python validate.py --compare`.
+
 ## Stop Justification
 - Completed at milestone `core_claim`.
