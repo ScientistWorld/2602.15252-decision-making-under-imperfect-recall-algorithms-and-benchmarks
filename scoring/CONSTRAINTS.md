@@ -1,31 +1,35 @@
 # Scientist Constraints
 
-## Problem Formulation
+## Fixed Problem Suite
 
-Submissions must solve the same tabular tree-form imperfect-recall decision problems. They may not convert the task into a different solution concept, remove imperfect recall, split merged information sets, or evaluate a strategy with additional information unavailable in the original instance.
+Headline scores must use the fixed JSON instances in `data/instances/`:
 
-## Data
+- `absentminded_driver.json`
+- `simulation_3.json`
+- `simulation_5.json`
+- `subgroup_detection_small.json`
+- `subgroup_detection_large.json`
+- `random_depth6.json`
+- `random_depth7.json`
+- `random_depth8.json`
 
-Use the fixed benchmark instances supplied by this reproduction for headline scores. Additional generated instances may be used for development or robustness analysis, but they must not replace the fixed suite in `scores.json`.
+Additional instances may be used for development or supplemental reporting, but they must not replace this suite in `scoring/scores.json`.
 
-## Evaluation
+## Fixed Problem Formulation
 
-Use the shared utility and KKT-gap measurements. Keep the convergence threshold at `1e-6` and apply the same iteration budget to every compared method. Wall-clock speed is not a scored metric because hardware varies across runs.
+Submissions must solve the original tabular tree-form imperfect-recall decision problems. They must preserve the given nodes, chance probabilities, terminal payoffs, action sets, and information-set merges. A method may not split merged information sets, add memory to the strategy, remove absentmindedness, or evaluate decisions using history information that the strategy is not allowed to observe.
 
-## Resources
+## Fixed Output Format
 
-Compare methods under the same initialization policy, number of random starts, and iteration budget. Improvements should come from the optimization method, not from giving one method more starts or easier instances.
+Methods must write artifacts compatible with `eval/evaluate_results.py`: per-instance method names, run records, selected runs, final values, final KKT gaps, and iterations-to-gap. Evaluation must be performed by `bash scripts/evaluate.sh`, which writes `scoring/scores.json`.
 
-## Exact Solvers
+## Fixed Evaluation Settings
 
-Exact global solvers may be reported as references on small instances, but a submission cannot claim the main scalable benchmark result by using only an exact global optimizer that fails or times out on the large suite.
+- Convergence threshold: `1e-6`.
+- Headline run settings used for the checked-in scores: 12 random starts, 6000 iterations, seed 123, and `eta=0.1`.
+- Every compared method in a headline result must use the same instances, start count, seed policy, iteration budget, and threshold.
+- Wall-clock speed must not be used as a scored metric.
 
-## Compliance Checklist
+## Resource Scaling
 
-- [ ] Strategy evaluation uses the original imperfect-recall information sets.
-- [ ] Headline scores use the fixed benchmark suite.
-- [ ] Utility and KKT gap are computed by the shared evaluation pipeline.
-- [ ] Convergence threshold is `1e-6`.
-- [ ] Every method is rerun under the same documented iteration budget.
-- [ ] Number of random starts is equal across compared methods.
-- [ ] Exact-solver results are not used as the sole scalable-method claim.
+Improvement should come from a better optimization method, not from changing the benchmark, giving one method more starts, using a larger iteration budget for only one method, or replacing the local strategy optimization problem with an exact global solve on tiny instances only.

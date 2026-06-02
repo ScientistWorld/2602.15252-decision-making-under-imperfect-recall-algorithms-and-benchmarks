@@ -2,20 +2,20 @@
 
 ## Research Problem
 
-This benchmark asks how to solve tabular sequential decision problems with imperfect recall at scale. The relevant output is a behavioral strategy over the original information sets that attains high expected utility while satisfying a first-order local-optimality criterion.
+The gym studies scalable strategy optimization for tabular sequential decision problems with imperfect recall. A valid method must output a behavioral strategy over the original information sets and should improve both expected utility and first-order convergence behavior.
 
-## Core Contribution
+## Approach Family
 
-The paper's contribution is a scalable first-order optimization approach for products of simplices arising from imperfect-recall decision problems, together with benchmark families that expose scalability and convergence behavior. Future work should improve this optimization direction, not sidestep it by changing the problem or solution concept.
+Future work should remain within the paper's optimization problem: local or structured optimization over products of action simplices for imperfect-recall tree-form decision problems. Acceptable directions include improved first-order updates, regret-matching variants, predictive or adaptive local updates, better initialization, hybrid local-search schedules, and faster tree-based gradient or KKT-gap computation.
 
-## Approach Scope
+## What Must Stay Comparable
 
-Scientists may design alternative first-order or local-search optimizers, change local simplex update rules, use adaptive or hybrid update schedules, improve initialization, exploit tree structure for faster gradient computation, or add convergence diagnostics. The submitted method must still optimize behavioral strategies on the original tabular instances and be judged by utility, KKT gap, and iteration-efficient convergence.
+The method should still optimize strategies for the original tabular instances and be judged by the shared utility and KKT-gap metrics. It may change the optimizer, but not the decision problem, information structure, solution concept, or evaluation objective.
 
-## Out of Bounds
+## Out of Scope
 
-- Replacing the benchmark with a different formalism, dataset, or problem family for headline scores.
-- Expanding information available to the strategy beyond the original imperfect-recall information sets.
-- Reporting only globally optimized tiny instances while ignoring the scalable benchmark suite.
-- Changing the target from first-order strategy computation to a different objective that is not comparable under the shared metrics.
-- Using domain-specific shortcuts that solve only one benchmark family while presenting the result as a general imperfect-recall solver.
+- Replacing imperfect-recall strategy optimization with a different task or formalism.
+- Giving the agent extra memory or observations beyond the original information sets.
+- Solving only tiny instances with an exact global solver and presenting that as the scalable benchmark result.
+- Training a generic model to imitate known outputs instead of optimizing the strategy objective.
+- Reporting scores on a different instance suite as the headline result.

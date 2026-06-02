@@ -2,11 +2,8 @@
 
 ## first_order_optimizer_aggregate
 
-This experiment compares scalable optimizers on the same imperfect-recall benchmark suite. Each method starts from the same seeded random strategies on each instance, runs under the same iteration and convergence threshold, and writes final strategies plus convergence traces.
+This is the one scored reproduction experiment in `scoring/scores.json`.
 
-The scoring script aggregates two questions:
+It tests whether scalable local optimizers can solve the same set of imperfect-recall decision problems while balancing two goals: high final expected utility and first-order convergence. Each compared method is evaluated on the same fixed suite, with the same random-start policy, iteration budget, and convergence threshold.
 
-- Did the method find high expected utility relative to the other compared methods?
-- Did it reach the shared first-order KKT-gap threshold, and how did its convergence rank compare?
-
-The experiment is intentionally method-agnostic. Future agents may replace the solver implementation as long as they write compatible result artifacts for `scripts/evaluate.sh`.
+The experiment establishes whether the proposed optimizer family improves the reliability of reaching first-order stationarity relative to projected-gradient baselines, without losing final utility quality. It is intentionally artifact-based: future agents may change the solver as long as they write compatible result files and run `scripts/evaluate.sh`.
