@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from statistics import mean
 
 
 SLICE_NAME = "train"
 EXPERIMENT_NAME = "first_order_optimizer_aggregate"
+REFERENCE_ALGORITHMS = frozenset(("ams", "gd", "ogd", "prm", "prm_plus", "rm", "rm_plus"))
 INSTANCE_IDS = (
     "absentminded_driver",
     "random_depth6",
@@ -42,10 +44,24 @@ def common_algorithms(instances: dict[str, dict]) -> list[str]:
     present = [set(inst["algorithms"]) for inst in instances.values()]
     if not present:
         raise ValueError(f"{SLICE_NAME} slice has no instances to score")
-    algorithms = sorted(set.intersection(*present))
-    if not algorithms:
-        raise ValueError(f"{SLICE_NAME} slice has no algorithm present on every instance")
-    return algorithms
+    common = set.intersection(*present)
+    missing = sorted(REFERENCE_ALGORITHMS - common)
+    if missing:
+        raise ValueError(f"{SLICE_NAME} artifact is missing required comparator algorithms: {missing}")
+    return sorted(common)
+
+
+def algorithm_runs(algorithm_data: dict) -> list[dict]:
+    runs = algorithm_data.get("runs")
+    if runs:
+        return runs
+    if "selected_run" in algorithm_data:
+        return [algorithm_data["selected_run"]]
+    raise ValueError("algorithm entry has neither selected_run nor runs")
+
+
+def safe_gap(gap: float) -> float:
+    return max(float(gap), 1e-16)
 
 
 def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
@@ -57,6 +73,11 @@ def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
     reached_count = {alg: 0 for alg in algorithms}
     conv_best_count = {alg: 0 for alg in algorithms}
     conv_ranks = {alg: [] for alg in algorithms}
+    value_gaps = {alg: [] for alg in algorithms}
+    final_log10_gaps = {alg: [] for alg in algorithms}
+    selected_iter_costs = {alg: [] for alg in algorithms}
+    restart_reached = {alg: 0 for alg in algorithms}
+    restart_total = {alg: 0 for alg in algorithms}
 
     for inst in instances.values():
         selected = {
@@ -79,6 +100,16 @@ def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
                 conv_best_count[alg] += 1
             if gaps[alg] <= target_gap:
                 reached_count[alg] += 1
+            value_gaps[alg].append(max_value - values[alg])
+            final_log10_gaps[alg].append(math.log10(safe_gap(gaps[alg])))
+            if conv_iters[alg] == float("inf"):
+                selected_iter_costs[alg].append(selected[alg].get("iterations_run", 0) + 1)
+            else:
+                selected_iter_costs[alg].append(conv_iters[alg])
+
+            runs = algorithm_runs(inst["algorithms"][alg])
+            restart_total[alg] += len(runs)
+            restart_reached[alg] += sum(1 for run in runs if run["final_kkt_gap"] <= target_gap)
 
         vrank = rank(values, higher=True)
         crank = rank({alg: -conv_iters[alg] for alg in algorithms}, higher=True)
@@ -91,9 +122,13 @@ def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
         alg: {
             "value_percent_best": 100.0 * best_value_count[alg] / n,
             "value_avg_rank": mean(value_ranks[alg]),
+            "value_avg_gap_to_best": mean(value_gaps[alg]),
             "convergence_percent_reached": 100.0 * reached_count[alg] / n,
             "convergence_percent_best": 100.0 * conv_best_count[alg] / n,
             "convergence_avg_rank": mean(conv_ranks[alg]),
+            "selected_iterations_to_gap_mean": mean(selected_iter_costs[alg]),
+            "selected_log10_kkt_gap_mean": mean(final_log10_gaps[alg]),
+            "restart_convergence_percent": 100.0 * restart_reached[alg] / restart_total[alg],
         }
         for alg in algorithms
     }
@@ -108,6 +143,7 @@ def main() -> None:
 
     results = json.loads(Path(args.input).read_text())
     scores = {
+        "_slice": SLICE_NAME,
         "experiments": {
             EXPERIMENT_NAME: {
                 "results": aggregate(results, args.target_gap)

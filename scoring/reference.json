@@ -7,23 +7,48 @@
       "metrics": {
         "value_percent_best": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Fraction of benchmark instances where the selected run attains the best final utility among the compared optimizers."
         },
         "value_avg_rank": {
           "higher_is_better": false,
-          "coefficient": -0.5
+          "coefficient": -0.5,
+          "description": "Average rank by selected-run final utility across instances, with lower rank indicating better utility."
+        },
+        "value_avg_gap_to_best": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean utility shortfall from the best selected run on the same instance, providing a continuous check beyond win counts."
         },
         "convergence_percent_reached": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Fraction of instances where the selected run reaches the fixed KKT-gap convergence threshold."
         },
         "convergence_percent_best": {
           "higher_is_better": true,
-          "coefficient": 0.5
+          "coefficient": 0.5,
+          "description": "Fraction of instances where the selected run reaches the convergence threshold in the fewest iterations among compared optimizers."
         },
         "convergence_avg_rank": {
           "higher_is_better": false,
-          "coefficient": -0.75
+          "coefficient": -0.75,
+          "description": "Average rank by selected-run iterations to reach the KKT-gap threshold, with nonconverged runs ranked last."
+        },
+        "selected_iterations_to_gap_mean": {
+          "higher_is_better": false,
+          "coefficient": -0.35,
+          "description": "Mean selected-run iteration count to reach the KKT-gap threshold, using a one-step-over-budget penalty for nonconvergence."
+        },
+        "selected_log10_kkt_gap_mean": {
+          "higher_is_better": false,
+          "coefficient": -0.3,
+          "description": "Mean base-10 log final KKT gap for selected runs, retaining signal when binary convergence metrics saturate."
+        },
+        "restart_convergence_percent": {
+          "higher_is_better": true,
+          "coefficient": 0.6,
+          "description": "Fraction of all recorded random restarts that reach the KKT-gap threshold, discouraging cherry-picked selected runs."
         }
       },
       "results": {
