@@ -3,7 +3,7 @@
 ## What Works
 
 - Paper analysis is captured in `briefing/`.
-- The compact benchmark generator creates absentminded-driver, simulation, and random imperfect-recall tree-form instances.
+- The compact benchmark generator creates absentminded-driver, simulation, subgroup-detection-style, and random imperfect-recall tree-form instances.
 - `method/solve.py` implements the paper's local first-order optimization setup: evaluate expected utility, compute information-set gradients and KKT gaps, and run GD, OGD, AMS, RM, RM+, PRM, and PRM+.
 - `scripts/method.sh` runs the optimizer suite and calls the method-agnostic evaluator.
 - `eval/evaluate_results.py` reads method outputs and writes `scoring/scores.json`.
@@ -25,12 +25,26 @@ Reproduced aggregate scores:
 | PRM | 60.0 | 5.2 | 100.0 | 40.0 | 2.4 |
 | PRM+ | 100.0 | 4.0 | 100.0 | 40.0 | 3.0 |
 
-The core claim is supported at reduced scale: the regret-matching family consistently satisfies the first-order KKT convergence constraint more often and with better convergence ranks than GD/OGD on this suite.
+Job `29695a0b-7dd` completed successfully on the expanded eight-instance suite with 12 random starts and 6000 iterations per optimizer. `python validate.py --compare` passed.
+
+Expanded-suite aggregate scores:
+
+| Method | Value % Best | Value Avg Rank | Convergence % Reached | Convergence % Best | Convergence Avg Rank |
+|---|---:|---:|---:|---:|---:|
+| GD | 62.5 | 2.875 | 75.0 | 0.0 | 5.25 |
+| OGD | 62.5 | 3.5 | 75.0 | 0.0 | 6.125 |
+| AMS | 0.0 | 7.0 | 37.5 | 0.0 | 5.875 |
+| RM | 75.0 | 2.875 | 100.0 | 37.5 | 2.625 |
+| RM+ | 75.0 | 3.25 | 100.0 | 62.5 | 2.5 |
+| PRM | 87.5 | 4.125 | 100.0 | 62.5 | 2.25 |
+| PRM+ | 87.5 | 4.375 | 100.0 | 25.0 | 3.375 |
+
+The core claim is supported across additional settings: the regret-matching family satisfies the first-order KKT convergence constraint on every expanded-suite instance and has substantially better convergence ranks than GD/OGD, while also matching or exceeding the paper's reported value-best rates on this compact suite.
 
 ## Remaining
 
-- Run the expanded suite with subgroup-detection-style instances, a larger random instance, 12 starts, and 6000 iterations to move toward `core_claim_plus`.
-- If expanded-suite results are weak, tune only common optimizer hyperparameters or add more fixed generated instances while preserving the paper's optimization procedure.
+- Full-paper coverage would require the original 61-instance benchmark suite, which was not provided in the workspace.
+- AMS underperforms the paper's reported AMS baseline in this compact implementation, but AMS is a comparator rather than the central proposed method.
 
 ## Issues
 
@@ -39,4 +53,4 @@ The core claim is supported at reduced scale: the regret-matching family consist
 ## Deviations from Paper
 
 - The paper evaluates 61 benchmark instances. This reproduction uses generated compact instances covering absentminded-driver, simulation-style, subgroup-detection-style, and random imperfect-recall problems because the exact paper benchmark files were not provided in the workspace.
-- The first successful smoke job used 1500 iterations and 3 starts to validate the environment. The next run uses the paper's 6000-iteration and 12-start settings on the expanded compact suite.
+- The first successful smoke job used 1500 iterations and 3 starts to validate the environment. The final expanded run uses the paper's 6000-iteration and 12-start settings on the compact suite.

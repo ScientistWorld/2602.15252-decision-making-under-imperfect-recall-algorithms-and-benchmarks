@@ -27,8 +27,8 @@
 #   milestone: core_claim
 #   notes: "Reproduced the core claim. Environment packaged."
 
-action: submit
+action: done
 gpus: 0
 test: false
-milestone: core_claim
-notes: "Expanded CPU run: add subgroup-detection-style and larger random instances, use 6000 iterations and 12 starts for all seven paper optimizers, then write scores.json and validate."
+milestone: core_claim_plus
+notes: "Reproduced the paper's first-order optimizer claim on an expanded compact suite with 6000 iterations and 12 starts; validation passes and environment is packaged."

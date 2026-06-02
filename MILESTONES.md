@@ -1,6 +1,6 @@
 # Reproduction Milestones
 
-**Current: core_claim**
+**Current: core_claim_plus**
 
 ## Progress Log
 
@@ -16,5 +16,11 @@
 - On the compact five-instance suite, RM-family methods reached the KKT threshold on 80-100% of instances, while GD/OGD reached it on 60%, supporting the paper's central first-order convergence claim at reduced scale.
 - Expanded the generated suite with subgroup-detection-style instances and a larger random instance for the next run.
 
+### [2026-06-02 04:52] - core_claim_plus
+- The expanded CPU job completed successfully on 8 generated instances: absentminded driver, 2 simulation instances, 2 subgroup-detection-style instances, and 3 random instances.
+- The run used the paper-scale 6000-iteration limit and 12 random starts on the compact suite.
+- RM, RM+, PRM, and PRM+ reached the KKT threshold on 100% of expanded-suite instances, while GD and OGD reached it on 75%.
+- Validation passed with `python validate.py --compare`; `scoring/scores.json` contains the expanded-suite results.
+
 ## Stop Justification
-- Not stopped.
+- Completed at milestone `core_claim_plus`; remaining gaps are coverage gaps against the unavailable full 61-instance paper benchmark, not method or packaging blockers.
