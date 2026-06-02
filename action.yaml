@@ -1,4 +1,4 @@
-action: submit
+action: done
 gpus: 0
 test: false
-notes: "Rerun train/test scoring after adding log-scaled selected-iteration metric and downweighting raw iteration mean."
+notes: "Artifact-based 4-instance train/test split; 70 train metric values, 70 test metric values; train/test non-identical with comparable utility/convergence ranges; raw iteration mean retained diagnostic-only due small-split hardness outlier."
