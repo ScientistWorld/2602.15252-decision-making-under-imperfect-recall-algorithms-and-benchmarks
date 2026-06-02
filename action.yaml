@@ -2,4 +2,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "core_claim validated; top-level and split scores regenerated with six reproduced methods; split primary uses value_percent_best while convergence metrics remain scored constraints; validate.py --compare passes."
+notes: "Packaged fresh-clone scripts: no external artifacts needed, download.sh is lightweight, and script paths are repo-relative."
