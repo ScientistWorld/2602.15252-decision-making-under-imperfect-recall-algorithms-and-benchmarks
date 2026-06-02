@@ -49,6 +49,7 @@ AMS was run and remains in `results/optimization_results.json`, but it is not em
 ## Issues
 
 - Local Python on the login node lacks NumPy, so end-to-end execution is performed inside the scheduler container where `environment/setup.sh` installs NumPy.
+- Current turn resubmits a CPU test job to rerun the packaged reproduction script and validate the checked-in artifacts after milestone bookkeeping cleanup.
 
 ## Deviations from Paper
 

@@ -17,5 +17,5 @@ export ITERATIONS="${ITERATIONS:-6000}"
 export RUNS="${RUNS:-12}"
 export TARGET_GAP="${TARGET_GAP:-1e-6}"
 
-bash scripts/method.sh
+bash scripts/reproduce.sh
 python validate.py --compare
