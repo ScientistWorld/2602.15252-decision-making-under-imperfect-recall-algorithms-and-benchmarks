@@ -29,6 +29,6 @@
 
 action: submit
 gpus: 0
-test: true
-milestone: none
-notes: "CPU smoke job: run the compact imperfect-recall optimizer suite with all seven paper algorithms, write scores.json, and validate comparison output."
+test: false
+milestone: core_claim
+notes: "Expanded CPU run: add subgroup-detection-style and larger random instances, use 6000 iterations and 12 starts for all seven paper optimizers, then write scores.json and validate."

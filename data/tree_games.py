@@ -96,6 +96,48 @@ def simulation_problem(max_tests: int, p_continue: float, good_payoff: float, ba
     return TreeGame(f"simulation_{max_tests}", nodes, [["good", "bad"]], build(max_tests))
 
 
+def subgroup_detection_problem(
+    name: str,
+    depth: int,
+    prevalence: float,
+    signal_accuracy: float,
+    true_positive_reward: float,
+    false_positive_cost: float,
+    missed_positive_cost: float,
+) -> TreeGame:
+    """Privacy-style subgroup detection with noisy current signal and forgotten history."""
+    nodes: list[Node] = []
+    infoset_actions = [["flag", "continue"] for _ in range(2 * depth)]
+
+    def add(node: Node) -> int:
+        nodes.append(node)
+        return len(nodes) - 1
+
+    def terminal_for_miss(is_positive: bool) -> int:
+        payoff = -missed_positive_cost if is_positive else 0.0
+        return add(Node("terminal", [], [], payoff=payoff))
+
+    def observe(is_positive: bool, d: int) -> int:
+        if d >= depth:
+            return terminal_for_miss(is_positive)
+        p_signal = signal_accuracy if is_positive else 1.0 - signal_accuracy
+        low = decision(is_positive, d, 0)
+        high = decision(is_positive, d, 1)
+        return add(Node("chance", ["low_signal", "high_signal"], [low, high], chance_probs=[1.0 - p_signal, p_signal]))
+
+    def decision(is_positive: bool, d: int, signal: int) -> int:
+        flag_payoff = true_positive_reward if is_positive else -false_positive_cost
+        flag = add(Node("terminal", [], [], payoff=flag_payoff))
+        cont = observe(is_positive, d + 1)
+        infoset = 2 * d + signal
+        return add(Node("player", ["flag", "continue"], [flag, cont], infoset=infoset))
+
+    positive = observe(True, 0)
+    negative = observe(False, 0)
+    root = add(Node("chance", ["positive", "negative"], [positive, negative], chance_probs=[prevalence, 1.0 - prevalence]))
+    return TreeGame(name, nodes, infoset_actions, root)
+
+
 def random_imperfect_recall_game(
     name: str,
     depth: int,
@@ -136,8 +178,27 @@ def write_default_suite(out_dir: str | Path) -> list[Path]:
         absentminded_driver(),
         simulation_problem(max_tests=3, p_continue=0.75, good_payoff=1.0, bad_payoff=10.0),
         simulation_problem(max_tests=5, p_continue=0.65, good_payoff=2.0, bad_payoff=9.0),
+        subgroup_detection_problem(
+            "subgroup_detection_small",
+            depth=4,
+            prevalence=0.25,
+            signal_accuracy=0.72,
+            true_positive_reward=8.0,
+            false_positive_cost=2.0,
+            missed_positive_cost=1.0,
+        ),
+        subgroup_detection_problem(
+            "subgroup_detection_large",
+            depth=6,
+            prevalence=0.18,
+            signal_accuracy=0.68,
+            true_positive_reward=12.0,
+            false_positive_cost=2.5,
+            missed_positive_cost=1.5,
+        ),
         random_imperfect_recall_game("random_depth6", 6, 8, 3, 0.2, 11),
         random_imperfect_recall_game("random_depth7", 7, 12, 3, 0.2, 29),
+        random_imperfect_recall_game("random_depth8", 8, 16, 3, 0.25, 47),
     ]
     paths = []
     for game in games:
