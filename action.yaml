@@ -1,5 +1,5 @@
-action: submit
+action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Regenerate the compact-suite optimizer artifact with scripts/run.sh now calling scripts/method.sh, then evaluate and validate."
+notes: "Final verification passed: compact-suite core_claim gym is packaged, evaluator reuse improved, and validate.py --compare passes."

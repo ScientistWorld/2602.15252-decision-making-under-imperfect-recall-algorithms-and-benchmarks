@@ -20,5 +20,10 @@
 - Audited the scheduler entrypoint and found that `scripts/run.sh` only evaluated an existing artifact.
 - Updated `scripts/run.sh` to regenerate the compact-suite optimizer artifact via `scripts/method.sh` before running `python validate.py --compare`.
 
+### [2026-06-02 06:20] - core_claim
+- Performed final gym verification across folder structure, method-agnostic documentation, scoring coefficients, evaluator independence, train/test artifacts, and validation checks.
+- Updated evaluators so future artifact method keys are scored automatically, while retaining the documented exclusion of the unclaimed compact AMS comparator.
+- Re-ran `python validate.py --compare`; all checks passed.
+
 ## Stop Justification
 - Completed at milestone `core_claim`.

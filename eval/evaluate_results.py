@@ -107,22 +107,32 @@ def main() -> None:
     parser.add_argument("--input", default="results/optimization_results.json")
     parser.add_argument("--output", default="scoring/scores.json")
     parser.add_argument("--target-gap", type=float, default=1e-6)
+    parser.add_argument(
+        "--exclude-algorithms",
+        default="ams",
+        help=(
+            "Comma-separated method keys to omit from scores. The default "
+            "omits the compact AMS trace because it is retained only as an "
+            "unclaimed diagnostic comparator; additional method keys are "
+            "scored automatically."
+        ),
+    )
     args = parser.parse_args()
 
     results = json.loads(Path(args.input).read_text())
     summary = aggregate(results, args.target_gap)
-    # AMS is retained in method traces as a comparator, but this compact
-    # implementation is not close enough to the paper's AMS baseline to claim
-    # it as reproduced. Only emit methods whose scores are part of this
-    # reproduction claim.
-    scored_algorithms = {"gd", "ogd", "rm", "rm_plus", "prm", "prm_plus"}
+    excluded_algorithms = {
+        name.strip()
+        for name in args.exclude_algorithms.split(",")
+        if name.strip()
+    }
     scores = {
         "experiments": {
             "first_order_optimizer_aggregate": {
                 "results": {
                     alg: metrics
                     for alg, metrics in summary.items()
-                    if alg in scored_algorithms
+                    if alg not in excluded_algorithms
                 }
             }
         }
