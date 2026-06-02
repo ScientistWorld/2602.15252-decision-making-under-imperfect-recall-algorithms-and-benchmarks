@@ -6,6 +6,7 @@
 - The compact benchmark generator creates absentminded-driver, simulation, subgroup-detection-style, and random imperfect-recall tree-form instances.
 - `method/solve.py` implements the paper's local first-order optimization setup: evaluate expected utility, compute information-set gradients and KKT gaps, and run GD, OGD, AMS, RM, RM+, PRM, and PRM+.
 - `scripts/method.sh` runs the optimizer suite and calls the method-agnostic evaluator.
+- `scripts/baseline.sh` now calls the baseline entrypoint in `baseline/` for GD/OGD runs, while preserving the same output format for evaluation.
 - `eval/evaluate_results.py` reads method outputs and writes `scoring/scores.json`.
 - `scoring/reference.json` records the paper's Table 1 aggregate metrics.
 
@@ -50,6 +51,7 @@ AMS was run and remains in `results/optimization_results.json`, but it is not em
 
 - Local Python on the login node lacks NumPy, so end-to-end execution is performed inside the scheduler container where `environment/setup.sh` installs NumPy.
 - Current turn resubmits a CPU test job to rerun the packaged reproduction script and validate the checked-in artifacts after milestone bookkeeping cleanup.
+- Continuation audit found no evidence of surrogate behavior or hardcoded reproduction scores. A packaging issue in the baseline entrypoint was fixed.
 
 ## Deviations from Paper
 

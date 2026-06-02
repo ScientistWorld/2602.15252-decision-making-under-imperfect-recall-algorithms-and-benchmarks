@@ -17,7 +17,7 @@ set -e
 
 cd /home/user
 
-python method/solve.py \
+python baseline/run_baseline.py \
   --generate-instances \
   --instances data/instances \
   --output results/baseline_gd_results.json \
