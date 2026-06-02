@@ -76,6 +76,7 @@ def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
     value_gaps = {alg: [] for alg in algorithms}
     final_log10_gaps = {alg: [] for alg in algorithms}
     selected_iter_costs = {alg: [] for alg in algorithms}
+    selected_log10_iter_costs = {alg: [] for alg in algorithms}
     restart_reached = {alg: 0 for alg in algorithms}
     restart_total = {alg: 0 for alg in algorithms}
 
@@ -103,9 +104,11 @@ def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
             value_gaps[alg].append(max_value - values[alg])
             final_log10_gaps[alg].append(math.log10(safe_gap(gaps[alg])))
             if conv_iters[alg] == float("inf"):
-                selected_iter_costs[alg].append(selected[alg].get("iterations_run", 0) + 1)
+                iter_cost = selected[alg].get("iterations_run", 0) + 1
             else:
-                selected_iter_costs[alg].append(conv_iters[alg])
+                iter_cost = conv_iters[alg]
+            selected_iter_costs[alg].append(iter_cost)
+            selected_log10_iter_costs[alg].append(math.log10(max(float(iter_cost), 1.0)))
 
             runs = algorithm_runs(inst["algorithms"][alg])
             restart_total[alg] += len(runs)
@@ -127,6 +130,7 @@ def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
             "convergence_percent_best": 100.0 * conv_best_count[alg] / n,
             "convergence_avg_rank": mean(conv_ranks[alg]),
             "selected_iterations_to_gap_mean": mean(selected_iter_costs[alg]),
+            "selected_log10_iterations_to_gap_mean": mean(selected_log10_iter_costs[alg]),
             "selected_log10_kkt_gap_mean": mean(final_log10_gaps[alg]),
             "restart_convergence_percent": 100.0 * restart_reached[alg] / restart_total[alg],
         }

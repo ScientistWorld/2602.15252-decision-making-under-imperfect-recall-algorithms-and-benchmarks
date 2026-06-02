@@ -1,4 +1,4 @@
 action: submit
 gpus: 0
 test: false
-notes: "Run evaluate_train.sh and evaluate_test.sh on the frozen optimization artifact to populate split scores."
+notes: "Rerun train/test scoring after adding log-scaled selected-iteration metric and downweighting raw iteration mean."

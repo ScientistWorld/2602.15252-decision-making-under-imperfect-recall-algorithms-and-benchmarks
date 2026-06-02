@@ -37,8 +37,13 @@
         },
         "selected_iterations_to_gap_mean": {
           "higher_is_better": false,
+          "coefficient": 0.0,
+          "description": "Diagnostic raw mean selected-run iteration count to reach the KKT-gap threshold, using a one-step-over-budget penalty for nonconvergence."
+        },
+        "selected_log10_iterations_to_gap_mean": {
+          "higher_is_better": false,
           "coefficient": -0.35,
-          "description": "Mean selected-run iteration count to reach the KKT-gap threshold, using a one-step-over-budget penalty for nonconvergence."
+          "description": "Mean base-10 log selected-run iteration count to reach the KKT-gap threshold, using a one-step-over-budget penalty for nonconvergence. This scores convergence effort on a multiplicative scale."
         },
         "selected_log10_kkt_gap_mean": {
           "higher_is_better": false,
