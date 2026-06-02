@@ -1,0 +1,64 @@
+{
+  "name": "absentminded_driver",
+  "root": 0,
+  "infoset_actions": [
+    [
+      "exit",
+      "continue"
+    ]
+  ],
+  "nodes": [
+    {
+      "kind": "player",
+      "actions": [
+        "exit",
+        "continue"
+      ],
+      "children": [
+        1,
+        2
+      ],
+      "infoset": 0,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 0.0
+    },
+    {
+      "kind": "player",
+      "actions": [
+        "exit",
+        "continue"
+      ],
+      "children": [
+        3,
+        4
+      ],
+      "infoset": 0,
+      "chance_probs": null,
+      "payoff": null
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 4.0
+    },
+    {
+      "kind": "terminal",
+      "actions": [],
+      "children": [],
+      "infoset": null,
+      "chance_probs": null,
+      "payoff": 1.0
+    }
+  ]
+}

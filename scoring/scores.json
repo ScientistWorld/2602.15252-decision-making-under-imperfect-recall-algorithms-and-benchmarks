@@ -1,0 +1,57 @@
+{
+  "experiments": {
+    "first_order_optimizer_aggregate": {
+      "results": {
+        "ams": {
+          "value_percent_best": 0.0,
+          "value_avg_rank": 6.6,
+          "convergence_percent_reached": 0.0,
+          "convergence_percent_best": 0.0,
+          "convergence_avg_rank": 6
+        },
+        "gd": {
+          "value_percent_best": 60.0,
+          "value_avg_rank": 2.4,
+          "convergence_percent_reached": 60.0,
+          "convergence_percent_best": 0.0,
+          "convergence_avg_rank": 5
+        },
+        "ogd": {
+          "value_percent_best": 60.0,
+          "value_avg_rank": 3.2,
+          "convergence_percent_reached": 60.0,
+          "convergence_percent_best": 0.0,
+          "convergence_avg_rank": 5.8
+        },
+        "prm": {
+          "value_percent_best": 60.0,
+          "value_avg_rank": 5.2,
+          "convergence_percent_reached": 100.0,
+          "convergence_percent_best": 40.0,
+          "convergence_avg_rank": 2.4
+        },
+        "prm_plus": {
+          "value_percent_best": 100.0,
+          "value_avg_rank": 4,
+          "convergence_percent_reached": 100.0,
+          "convergence_percent_best": 40.0,
+          "convergence_avg_rank": 3
+        },
+        "rm": {
+          "value_percent_best": 60.0,
+          "value_avg_rank": 3.6,
+          "convergence_percent_reached": 100.0,
+          "convergence_percent_best": 80.0,
+          "convergence_avg_rank": 2.2
+        },
+        "rm_plus": {
+          "value_percent_best": 80.0,
+          "value_avg_rank": 3,
+          "convergence_percent_reached": 80.0,
+          "convergence_percent_best": 80.0,
+          "convergence_avg_rank": 3.6
+        }
+      }
+    }
+  }
+}
