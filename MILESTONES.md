@@ -12,7 +12,4 @@
 - Completed final handoff documentation in `PROGRESS.md` and `scoring/`, including explicit primary, constraint, and ablation targets.
 
 ## Stop Justification
-
-Final status is `core_claim`. The environment is usable: the paper's core algorithm family runs end-to-end, produces scored artifacts, and supports the central claim that regret-matching-style first-order methods are strong scalable optimizers for imperfect-recall decision problems compared with projected-gradient baselines.
-
-The milestone is kept at `core_claim` rather than a higher final claim because the original 61 benchmark instances from the paper were not available as bundled data in the workspace. This reproduction uses a fixed compact generated suite covering absentminded-driver, simulation-style, subgroup-detection-style, and random imperfect-recall problems. The expanded compact run supports the main effect, but it does not reproduce a majority of the paper's full reported benchmark table.
+- Completed at milestone `core_claim`.
