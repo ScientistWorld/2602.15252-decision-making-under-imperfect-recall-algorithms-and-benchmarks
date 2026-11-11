@@ -1,0 +1,1392 @@
+{
+  "rank_formula": "sum weight * abs(coefficient) * signed(candidate-reference) / population_std(audit cohort)",
+  "caveat": "The future ranking cohort is unknown. These scalar ranks are conditional audit-cohort ranks; raw metrics and Pareto comparisons are authoritative.",
+  "cohorts": {
+    "all_successful_audit_attempts": [
+      "brute_force",
+      "cached_answers_shortcut",
+      "comparison_shift_shortcut",
+      "direct_scores_shortcut",
+      "empty_strategy_shortcut",
+      "failed_task_tradeoff_shortcut",
+      "first_action_shortcut",
+      "forged_fields_shortcut",
+      "longer_rm_plus",
+      "reference",
+      "reference_seed_123",
+      "reference_seed_234",
+      "reference_seed_345",
+      "replace_data_shortcut",
+      "stronger_coordinate",
+      "stronger_gd_eta1",
+      "train_filter_shortcut",
+      "uniform_shortcut",
+      "unscored_method_shortcut",
+      "weaker_one_step"
+    ],
+    "honest_variants": [
+      "reference",
+      "reference_seed_123",
+      "reference_seed_234",
+      "reference_seed_345",
+      "stronger_coordinate",
+      "longer_rm_plus",
+      "weaker_one_step"
+    ]
+  },
+  "normalizers": {
+    "all_successful_audit_attempts": {
+      "value_percent_best": 34.55068740271313,
+      "value_avg_rank": 1.8155577655365307,
+      "value_avg_gap_to_best": 0.20569211085664493,
+      "convergence_percent_reached": 37.81120865563543,
+      "convergence_percent_best": 35.77272005313546,
+      "convergence_avg_rank": 1.6505207511570401,
+      "selected_iterations_to_gap_mean": 2374414.993223569,
+      "selected_log10_iterations_to_gap_mean": 0.9374496908618829,
+      "selected_log10_kkt_gap_mean": 5.155058499779583,
+      "restart_convergence_percent": 37.45063301460263
+    },
+    "honest_variants": {
+      "value_percent_best": 26.726124191242437,
+      "value_avg_rank": 0.6247448458762822,
+      "value_avg_gap_to_best": 0.1622661209533595,
+      "convergence_percent_reached": 34.99271061118826,
+      "convergence_percent_best": 34.99271061118826,
+      "convergence_avg_rank": 1.5025488548544736,
+      "selected_iterations_to_gap_mean": 25.040579311287868,
+      "selected_log10_iterations_to_gap_mean": 0.45040765000251176,
+      "selected_log10_kkt_gap_mean": 4.622960466419395,
+      "restart_convergence_percent": 34.65952389130413
+    }
+  },
+  "seed_metric_spread": {
+    "value_percent_best": {
+      "min": 25.0,
+      "max": 75.0,
+      "range": 50.0
+    },
+    "value_avg_rank": {
+      "min": 4,
+      "max": 5.25,
+      "range": 1.25
+    },
+    "value_avg_gap_to_best": {
+      "min": 0.002136879651707335,
+      "max": 0.19047811032977824,
+      "range": 0.1883412306780709
+    },
+    "convergence_percent_reached": {
+      "min": 100.0,
+      "max": 100.0,
+      "range": 0.0
+    },
+    "convergence_percent_best": {
+      "min": 50.0,
+      "max": 100.0,
+      "range": 50.0
+    },
+    "convergence_avg_rank": {
+      "min": 1.75,
+      "max": 3,
+      "range": 1.25
+    },
+    "selected_iterations_to_gap_mean": {
+      "min": 26,
+      "max": 61.75,
+      "range": 35.75
+    },
+    "selected_log10_iterations_to_gap_mean": {
+      "min": 0.8978774522486636,
+      "max": 1.3720191705226858,
+      "range": 0.4741417182740223
+    },
+    "selected_log10_kkt_gap_mean": {
+      "min": -13.508595328507765,
+      "max": -13.506402305201307,
+      "range": 0.00219302330645732
+    },
+    "restart_convergence_percent": {
+      "min": 95.83333333333333,
+      "max": 100.0,
+      "range": 4.166666666666671
+    }
+  },
+  "seed_rank_spread": {
+    "all_successful_audit_attempts": {
+      "values": [
+        0.0,
+        -0.6702132174838662,
+        0.5169446769467317
+      ],
+      "range": 1.187157894430598
+    },
+    "honest_variants": {
+      "values": [
+        0.0,
+        -1.3577833096686105,
+        0.7454581168636651
+      ],
+      "range": 2.103241426532276
+    }
+  },
+  "attempts": {
+    "brute_force": {
+      "status": {
+        "case": "brute_force",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 7.227262258529663
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 3.5,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 25.0,
+        "convergence_avg_rank": 5,
+        "selected_iterations_to_gap_mean": 10894605,
+        "selected_log10_iterations_to_gap_mean": 4.017166273281595,
+        "selected_log10_kkt_gap_mean": -16.0,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": -1.0975638051830625,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.27539746159067585,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": -0.34942827890730616,
+            "convergence_avg_rank": -0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": -0.9875745813244065,
+            "selected_log10_kkt_gap_mean": 0.14511558083610374,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": -1.50816859758991,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 0.8003267306650412,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": -0.3572172541558801,
+            "convergence_avg_rank": -0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": -2.0554746038626464,
+            "selected_log10_kkt_gap_mean": 0.16181823614403845,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "cached_answers_shortcut": {
+      "status": {
+        "case": "cached_answers_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 1.4560961723327637
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 3.5,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": 1,
+        "selected_log10_iterations_to_gap_mean": 0.0,
+        "selected_log10_kkt_gap_mean": -16.0,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 3.268151760749732,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.27539746159067585,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": 0.5122479791330906,
+            "selected_log10_kkt_gap_mean": 0.14511558083610374,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 4.68172525944859,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 0.8003267306650412,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": 1.0661601988337943,
+            "selected_log10_kkt_gap_mean": 0.16181823614403845,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "comparison_shift_shortcut": {
+      "status": {
+        "case": "comparison_shift_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 0.6955223083496094
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 1,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 3.299281854757228,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.9638911155673655,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 5.45456365113336,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 2.801143557327644,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "direct_scores_shortcut": {
+      "status": {
+        "case": "direct_scores_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 0.601172924041748
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 4.5,
+        "value_avg_gap_to_best": 0.002136879651707335,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 50.0,
+        "convergence_avg_rank": 3,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "empty_strategy_shortcut": {
+      "status": {
+        "case": "empty_strategy_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 0.9211223125457764
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 4.5,
+        "value_avg_gap_to_best": 0.002136879651707335,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 50.0,
+        "convergence_avg_rank": 3,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "failed_task_tradeoff_shortcut": {
+      "status": {
+        "case": "failed_task_tradeoff_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 1.0615909099578857
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 1,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 0.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": 1,
+        "selected_log10_iterations_to_gap_mean": 0.0,
+        "selected_log10_kkt_gap_mean": 0.0,
+        "restart_convergence_percent": 0.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": -1.221306360158427,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.9638911155673655,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": -2.6447184196291453,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": 0.5122479791330906,
+            "selected_log10_kkt_gap_mean": -0.7860086731767721,
+            "restart_convergence_percent": -1.602109101242828
+          }
+        },
+        "honest_variants": {
+          "improvement": 1.0553824324261125,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 2.801143557327644,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": -2.857738033247041,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": 1.0661601988337943,
+            "selected_log10_kkt_gap_mean": -0.8764774695767,
+            "restart_convergence_percent": -1.7311259147173006
+          }
+        }
+      }
+    },
+    "first_action_shortcut": {
+      "status": {
+        "case": "first_action_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 2.740217447280884
+      },
+      "metrics": {
+        "value_percent_best": 0.0,
+        "value_avg_rank": 6,
+        "value_avg_gap_to_best": 0.7710924296914115,
+        "convergence_percent_reached": 25.0,
+        "convergence_percent_best": 25.0,
+        "convergence_avg_rank": 4.75,
+        "selected_iterations_to_gap_mean": 0.75,
+        "selected_log10_iterations_to_gap_mean": 0.0,
+        "selected_log10_kkt_gap_mean": -4.048237166683582,
+        "restart_convergence_percent": 25.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": -8.447097495453509,
+          "contributions": {
+            "value_percent_best": -2.170723815877265,
+            "value_avg_rank": -0.4130961923860138,
+            "value_avg_gap_to_best": -1.4953525379991264,
+            "convergence_percent_reached": -1.983538814721859,
+            "convergence_percent_best": -0.34942827890730616,
+            "convergence_avg_rank": -0.7952035738296035,
+            "selected_log10_iterations_to_gap_mean": 0.5122479791330906,
+            "selected_log10_kkt_gap_mean": -0.5504204349333066,
+            "restart_convergence_percent": -1.201581825932121
+          }
+        },
+        "honest_variants": {
+          "improvement": -10.122268938993185,
+          "contributions": {
+            "value_percent_best": -2.806243040080456,
+            "value_avg_rank": -1.2004900959975617,
+            "value_avg_gap_to_best": -1.8955418309672336,
+            "convergence_percent_reached": -2.143303524935281,
+            "convergence_percent_best": -0.3572172541558801,
+            "convergence_avg_rank": -0.8735156901950583,
+            "selected_log10_iterations_to_gap_mean": 1.0661601988337943,
+            "selected_log10_kkt_gap_mean": -0.6137732654575342,
+            "restart_convergence_percent": -1.2983444360379754
+          }
+        }
+      }
+    },
+    "forged_fields_shortcut": {
+      "status": {
+        "case": "forged_fields_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 2.484942674636841
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 1,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": -100,
+        "selected_log10_iterations_to_gap_mean": 0.0,
+        "selected_log10_kkt_gap_mean": -16.0,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 3.956645414726422,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.9638911155673655,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": 0.5122479791330906,
+            "selected_log10_kkt_gap_mean": 0.14511558083610374,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 6.6825420861111935,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 2.801143557327644,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": 1.0661601988337943,
+            "selected_log10_kkt_gap_mean": 0.16181823614403845,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "longer_rm_plus": {
+      "status": {
+        "case": "longer_rm_plus",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 142.4624423980713
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 4.5,
+        "value_avg_gap_to_best": 0.002136879651707335,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 50.0,
+        "convergence_avg_rank": 3,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "null_value_shortcut": {
+      "status": {
+        "case": "null_value_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 1,
+        "test_exit_code": 1,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 0.6348671913146973
+      }
+    },
+    "omitted_comparator_shortcut": {
+      "status": {
+        "case": "omitted_comparator_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 1,
+        "test_exit_code": 1,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 0.6378839015960693
+      }
+    },
+    "reference": {
+      "status": {
+        "case": "reference",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 3.724076747894287
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 4.5,
+        "value_avg_gap_to_best": 0.002136879651707335,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 50.0,
+        "convergence_avg_rank": 3,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "reference_seed_123": {
+      "status": {
+        "case": "reference_seed_123",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 148.86538457870483
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 4.5,
+        "value_avg_gap_to_best": 0.002136879651707335,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 50.0,
+        "convergence_avg_rank": 3,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "reference_seed_234": {
+      "status": {
+        "case": "reference_seed_234",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 215.1233332157135
+      },
+      "metrics": {
+        "value_percent_best": 25.0,
+        "value_avg_rank": 5.25,
+        "value_avg_gap_to_best": 0.19047811032977824,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1.75,
+        "selected_iterations_to_gap_mean": 26,
+        "selected_log10_iterations_to_gap_mean": 0.9715662647574391,
+        "selected_log10_kkt_gap_mean": -13.508595328507765,
+        "restart_convergence_percent": 95.83333333333333
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": -0.6702132174838662,
+          "contributions": {
+            "value_percent_best": -1.4471492105848434,
+            "value_avg_rank": -0.2065480961930069,
+            "value_avg_gap_to_best": -0.3662585402885645,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.5680025527354311,
+            "selected_log10_iterations_to_gap_mean": 0.14951044134323183,
+            "selected_log10_kkt_gap_mean": 0.00012762357439112016,
+            "restart_convergence_percent": -0.06675454588511791
+          }
+        },
+        "honest_variants": {
+          "improvement": -1.3577833096686105,
+          "contributions": {
+            "value_percent_best": -1.8708286933869707,
+            "value_avg_rank": -0.6002450479987809,
+            "value_avg_gap_to_best": -0.4642773970845245,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.6239397787107559,
+            "selected_log10_iterations_to_gap_mean": 0.31118147530810086,
+            "selected_log10_kkt_gap_mean": 0.00014231291760250815,
+            "restart_convergence_percent": -0.07213024644655426
+          }
+        }
+      }
+    },
+    "reference_seed_345": {
+      "status": {
+        "case": "reference_seed_345",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 347.6462321281433
+      },
+      "metrics": {
+        "value_percent_best": 50.0,
+        "value_avg_rank": 4,
+        "value_avg_gap_to_best": 0.16041297629230092,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1.75,
+        "selected_iterations_to_gap_mean": 33.5,
+        "selected_log10_iterations_to_gap_mean": 0.8978774522486636,
+        "selected_log10_kkt_gap_mean": -13.508267769829056,
+        "restart_convergence_percent": 97.91666666666667
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.5169446769467317,
+          "contributions": {
+            "value_percent_best": -0.7235746052924217,
+            "value_avg_rank": 0.13769873079533793,
+            "value_avg_gap_to_best": -0.30779225509704167,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.5680025527354311,
+            "selected_log10_iterations_to_gap_mean": 0.17702240772337893,
+            "selected_log10_kkt_gap_mean": 0.00010856120999372035,
+            "restart_convergence_percent": -0.033377272942558836
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.7454581168636651,
+          "contributions": {
+            "value_percent_best": -0.9354143466934853,
+            "value_avg_rank": 0.4001633653325206,
+            "value_avg_gap_to_best": -0.390164245526242,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.6239397787107559,
+            "selected_log10_iterations_to_gap_mean": 0.3684431234571223,
+            "selected_log10_kkt_gap_mean": 0.00012105649451031102,
+            "restart_convergence_percent": -0.03606512322327701
+          }
+        }
+      }
+    },
+    "replace_data_shortcut": {
+      "status": {
+        "case": "replace_data_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 2.0070078372955322
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 1,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": 1,
+        "selected_log10_iterations_to_gap_mean": 0.0,
+        "selected_log10_kkt_gap_mean": -13.783474859079389,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 3.8276541448301415,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.9638911155673655,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": 0.5122479791330906,
+            "selected_log10_kkt_gap_mean": 0.016124310939823194,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 6.538704052646198,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 2.801143557327644,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": 1.0661601988337943,
+            "selected_log10_kkt_gap_mean": 0.01798020267904313,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "stronger_coordinate": {
+      "status": {
+        "case": "stronger_coordinate",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 6.3351616859436035
+      },
+      "metrics": {
+        "value_percent_best": 50.0,
+        "value_avg_rank": 5.25,
+        "value_avg_gap_to_best": 0.024660530191976088,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": 2.25,
+        "selected_log10_iterations_to_gap_mean": 0.2697953115119062,
+        "selected_log10_kkt_gap_mean": -15.82677988726351,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 1.180291213132264,
+          "contributions": {
+            "value_percent_best": -0.7235746052924217,
+            "value_avg_rank": -0.2065480961930069,
+            "value_avg_gap_to_best": -0.04380070863479327,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": 0.4115189907408168,
+            "selected_log10_kkt_gap_mean": 0.13503499032036687,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 1.1286427173709672,
+          "contributions": {
+            "value_percent_best": -0.9354143466934853,
+            "value_avg_rank": -0.6002450479987809,
+            "value_avg_gap_to_best": -0.05552274352264273,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": 0.8565093213927905,
+            "selected_log10_kkt_gap_mean": 0.15057737994411602,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "stronger_gd_eta1": {
+      "status": {
+        "case": "stronger_gd_eta1",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "gd",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 44.064887046813965
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 1.5,
+        "value_avg_gap_to_best": 0.007976096653850823,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 25.0,
+        "convergence_avg_rank": 3.5,
+        "selected_iterations_to_gap_mean": 332.5,
+        "selected_log10_iterations_to_gap_mean": 1.6148481219398076,
+        "selected_log10_kkt_gap_mean": -13.500125462421318,
+        "restart_convergence_percent": 87.5
+      },
+      "reference_method": "gd",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 3.1979452636199803,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": 0.2065480961930069,
+            "value_avg_gap_to_best": 0.006453442345740367,
+            "convergence_percent_reached": 0.6611796049072863,
+            "convergence_percent_best": 0.34942827890730616,
+            "convergence_avg_rank": 1.022404594923776,
+            "selected_log10_iterations_to_gap_mean": 0.4344292245587153,
+            "selected_log10_kkt_gap_mean": 0.18372929235856036,
+            "restart_convergence_percent": 0.33377272942558905
+          }
+        },
+        "honest_variants": {
+          "improvement": 4.272889734130642,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": 0.6002450479987809,
+            "value_avg_gap_to_best": 0.008180525735058017,
+            "convergence_percent_reached": 0.7144345083117603,
+            "convergence_percent_best": 0.3572172541558801,
+            "convergence_avg_rank": 1.1230916016793606,
+            "selected_log10_iterations_to_gap_mean": 0.904193217547846,
+            "selected_log10_kkt_gap_mean": 0.20487634646918493,
+            "restart_convergence_percent": 0.36065123223277085
+          }
+        }
+      }
+    },
+    "train_filter_shortcut": {
+      "status": {
+        "case": "train_filter_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 0.7335946559906006
+      },
+      "metrics": {
+        "value_percent_best": 100.0,
+        "value_avg_rank": 1,
+        "value_avg_gap_to_best": 0.0,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 100.0,
+        "convergence_avg_rank": 1,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 3.299281854757228,
+          "contributions": {
+            "value_percent_best": 0.7235746052924217,
+            "value_avg_rank": 0.9638911155673655,
+            "value_avg_gap_to_best": 0.004155491706138622,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.6988565578146123,
+            "convergence_avg_rank": 0.9088040843766897,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 5.45456365113336,
+          "contributions": {
+            "value_percent_best": 0.9354143466934853,
+            "value_avg_rank": 2.801143557327644,
+            "value_avg_gap_to_best": 0.0052675928632608246,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.7144345083117603,
+            "convergence_avg_rank": 0.9983036459372094,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "uniform_shortcut": {
+      "status": {
+        "case": "uniform_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 1.7330262660980225
+      },
+      "metrics": {
+        "value_percent_best": 0.0,
+        "value_avg_rank": 6,
+        "value_avg_gap_to_best": 0.4176724438895666,
+        "convergence_percent_reached": 0.0,
+        "convergence_percent_best": 0.0,
+        "convergence_avg_rank": 6,
+        "selected_iterations_to_gap_mean": 1,
+        "selected_log10_iterations_to_gap_mean": 0.0,
+        "selected_log10_kkt_gap_mean": -1.3843817259942648,
+        "restart_convergence_percent": 0.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": -9.893979370066123,
+          "contributions": {
+            "value_percent_best": -2.170723815877265,
+            "value_avg_rank": -0.4130961923860138,
+            "value_avg_gap_to_best": -0.8080729251253834,
+            "convergence_percent_reached": -2.6447184196291453,
+            "convergence_percent_best": -0.6988565578146123,
+            "convergence_avg_rank": -1.3632061265650346,
+            "selected_log10_iterations_to_gap_mean": 0.5122479791330906,
+            "selected_log10_kkt_gap_mean": -0.7054442105589305,
+            "restart_convergence_percent": -1.602109101242828
+          }
+        },
+        "honest_variants": {
+          "improvement": -11.55229802970793,
+          "contributions": {
+            "value_percent_best": -2.806243040080456,
+            "value_avg_rank": -1.2004900959975617,
+            "value_avg_gap_to_best": -1.0243310477787229,
+            "convergence_percent_reached": -2.857738033247041,
+            "convergence_percent_best": -0.7144345083117603,
+            "convergence_avg_rank": -1.4974554689058142,
+            "selected_log10_iterations_to_gap_mean": 1.0661601988337943,
+            "selected_log10_kkt_gap_mean": -0.7866401195030682,
+            "restart_convergence_percent": -1.7311259147173006
+          }
+        }
+      }
+    },
+    "unscored_method_shortcut": {
+      "status": {
+        "case": "unscored_method_shortcut",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": false,
+        "elapsed_seconds": 0.6315925121307373
+      },
+      "metrics": {
+        "value_percent_best": 75.0,
+        "value_avg_rank": 4.5,
+        "value_avg_gap_to_best": 0.002136879651707335,
+        "convergence_percent_reached": 100.0,
+        "convergence_percent_best": 50.0,
+        "convergence_avg_rank": 3,
+        "selected_iterations_to_gap_mean": 61.75,
+        "selected_log10_iterations_to_gap_mean": 1.3720191705226858,
+        "selected_log10_kkt_gap_mean": -13.506402305201307,
+        "restart_convergence_percent": 100.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        },
+        "honest_variants": {
+          "improvement": 0.0,
+          "contributions": {
+            "value_percent_best": 0.0,
+            "value_avg_rank": -0.0,
+            "value_avg_gap_to_best": -0.0,
+            "convergence_percent_reached": 0.0,
+            "convergence_percent_best": 0.0,
+            "convergence_avg_rank": -0.0,
+            "selected_log10_iterations_to_gap_mean": -0.0,
+            "selected_log10_kkt_gap_mean": -0.0,
+            "restart_convergence_percent": 0.0
+          }
+        }
+      }
+    },
+    "weaker_one_step": {
+      "status": {
+        "case": "weaker_one_step",
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "target_method": "rm_plus",
+        "train_exit_code": 0,
+        "test_exit_code": 0,
+        "test_wrote_new_content": true,
+        "elapsed_seconds": 4.059875965118408
+      },
+      "metrics": {
+        "value_percent_best": 0.0,
+        "value_avg_rank": 6,
+        "value_avg_gap_to_best": 0.47636343995015784,
+        "convergence_percent_reached": 0.0,
+        "convergence_percent_best": 0.0,
+        "convergence_avg_rank": 6,
+        "selected_iterations_to_gap_mean": 2,
+        "selected_log10_iterations_to_gap_mean": 0.3010299956639812,
+        "selected_log10_kkt_gap_mean": -0.882077770343976,
+        "restart_convergence_percent": 0.0
+      },
+      "reference_method": "rm_plus",
+      "scored_methods": [
+        "gd",
+        "ogd",
+        "prm",
+        "prm_plus",
+        "rm",
+        "rm_plus"
+      ],
+      "ranks": {
+        "all_successful_audit_attempts": {
+          "improvement": -10.149735329460341,
+          "contributions": {
+            "value_percent_best": -2.170723815877265,
+            "value_avg_rank": -0.4130961923860138,
+            "value_avg_gap_to_best": -0.9222066093316685,
+            "convergence_percent_reached": -2.6447184196291453,
+            "convergence_percent_best": -0.6988565578146123,
+            "convergence_avg_rank": -1.3632061265650346,
+            "selected_log10_iterations_to_gap_mean": 0.3998574161946934,
+            "selected_log10_kkt_gap_mean": -0.7346759228084675,
+            "restart_convergence_percent": -1.602109101242828
+          }
+        },
+        "honest_variants": {
+          "improvement": -11.96349518878078,
+          "contributions": {
+            "value_percent_best": -2.806243040080456,
+            "value_avg_rank": -1.2004900959975617,
+            "value_avg_gap_to_best": -1.169009421097232,
+            "convergence_percent_reached": -2.857738033247041,
+            "convergence_percent_best": -0.7144345083117603,
+            "convergence_avg_rank": -1.4974554689058142,
+            "selected_log10_iterations_to_gap_mean": 0.8322376655868438,
+            "selected_log10_kkt_gap_mean": -0.819236372010458,
+            "restart_convergence_percent": -1.7311259147173006
+          }
+        }
+      }
+    }
+  }
+}

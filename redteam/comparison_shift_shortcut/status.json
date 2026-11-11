@@ -1,0 +1,9 @@
+{
+  "case": "comparison_shift_shortcut",
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "target_method": "rm_plus",
+  "train_exit_code": 0,
+  "test_exit_code": 0,
+  "test_wrote_new_content": true,
+  "elapsed_seconds": 0.6955223083496094
+}

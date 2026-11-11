@@ -1,0 +1,9 @@
+{
+  "case": "replace_data_shortcut",
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "target_method": "rm_plus",
+  "train_exit_code": 0,
+  "test_exit_code": 0,
+  "test_wrote_new_content": true,
+  "elapsed_seconds": 2.0070078372955322
+}
