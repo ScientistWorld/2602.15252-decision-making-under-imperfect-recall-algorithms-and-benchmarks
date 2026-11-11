@@ -35,6 +35,8 @@ CASES = [
     "comparison_shift_shortcut", "train_filter_shortcut", "replace_data_shortcut",
     "failed_task_tradeoff_shortcut", "direct_scores_shortcut", "null_value_shortcut",
     "omitted_comparator_shortcut", "unscored_method_shortcut",
+    "gd_reference_seed_123", "gd_reference_seed_234", "gd_reference_seed_345",
+    "stronger_gd_eta1_seed_234", "stronger_gd_eta1_seed_345", "weaker_gd_one_step",
 ]
 
 
@@ -78,8 +80,9 @@ def solve_all(artifact, kind, seed=123, iterations=6000):
         elif kind == "brute_force":
             one = brute_force_game(game)
             runs = [dict(one, seed=seed + s) for s in range(12)]
-        elif kind == "gd_eta1":
-            runs = [tuned_gd_game(game, seed + s, iterations) for s in range(12)]
+        elif kind in {"gd_eta1", "gd_eta01"}:
+            eta = 1. if kind == "gd_eta1" else .1
+            runs = [tuned_gd_game(game, seed + s, iterations, eta) for s in range(12)]
         elif kind in {"uniform", "first_action"}:
             import numpy as np
             from baseline.pgd import evaluate_and_gradient
@@ -117,11 +120,14 @@ def apply_case(name, artifact, folder):
         info = solve_all(artifact, "rm_plus", seed=int(name.rsplit("_", 1)[-1]))
     elif name == "stronger_coordinate":
         info = solve_all(artifact, "coordinate")
-    elif name == "stronger_gd_eta1":
+    elif (name == "stronger_gd_eta1" or name.startswith("stronger_gd_eta1_seed_")
+          or name.startswith("gd_reference_seed_") or name == "weaker_gd_one_step"):
         # Use the GD row, preserving all other fixed comparators. This is a
         # separate within-GD positive control, not a claim of beating RM+.
         original_rm = {k: copy.deepcopy(i["algorithms"][TARGET]) for k, i in artifact["instances"].items()}
-        info = solve_all(artifact, "gd_eta1")
+        seed = int(name.rsplit("_", 1)[-1]) if "seed_" in name else 123
+        kind = "gd_eta1" if name.startswith("stronger_gd") else "gd_eta01"
+        info = solve_all(artifact, kind, seed, 1 if name == "weaker_gd_one_step" else 6000)
         for key, inst in artifact["instances"].items():
             inst["algorithms"]["gd"] = inst["algorithms"][TARGET]
             inst["algorithms"][TARGET] = original_rm[key]
@@ -134,18 +140,22 @@ def apply_case(name, artifact, folder):
     elif name == "cached_answers_shortcut":
         # Prepare the lookup using only public game data and the exhaustive
         # search case. Its enumeration work is deliberately left uncharged.
-        brute_path = AUDIT / "brute_force/outputs.json"
-        if not brute_path.exists():
-            raise FileNotFoundError("run redteam/brute_force/run.sh first")
-        brute = read(brute_path)
-        lookup = {}
+        lookup_path = folder / "strategy_lookup.json"
+        lookup = read(lookup_path) if lookup_path.exists() else {}
+        from data.tree_games import TreeGame
+        from baseline.pgd import evaluate_and_gradient
+        from redteam.solvers import brute_force_game
+        import numpy as np
         for key, inst in artifact["instances"].items():
-            solved = copy.deepcopy(brute["instances"][key]["algorithms"][TARGET])
-            lookup[key] = solved["selected_run"]["strategy"]
-            for r in records(solved):
-                r["iterations_run"] = 1
-                r["iterations_to_gap"] = 1 if r["final_kkt_gap"] <= 1e-6 else None
-            inst["algorithms"][TARGET] = solved
+            game = TreeGame.from_json(ROOT / "data/instances" / (key + ".json"))
+            if key not in lookup:
+                lookup[key] = brute_force_game(game)["strategy"]
+            strategy = [np.array(x) for x in lookup[key]]
+            value, _, gap = evaluate_and_gradient(game, strategy)
+            one = {"algorithm": "cached_answers_shortcut", "strategy": lookup[key],
+                   "final_value": value, "final_kkt_gap": gap, "iterations_run": 1,
+                   "iterations_to_gap": 1 if gap <= 1e-6 else None, "trace": []}
+            inst["algorithms"][TARGET] = entry([dict(one, seed=123+s) for s in range(12)])
         write(folder / "strategy_lookup.json", lookup)
         info = {"shortcut": "public-instance answer lookup; enumeration cost omitted", "preparation": "../brute_force/diagnostics.json"}
     elif name in {"forged_fields_shortcut", "failed_task_tradeoff_shortcut"}:
@@ -219,7 +229,8 @@ def run_case(name):
     method_file = ROOT / "method/on_disk_failure_shortcut.py"
     start = time.time()
     status = {"case": name, "hidden_test_command": "bash scripts/evaluate_test.sh", "target_method": TARGET}
-    if name == "stronger_gd_eta1":
+    if (name.startswith("stronger_gd_eta1") or name.startswith("gd_reference_seed_")
+            or name == "weaker_gd_one_step"):
         status["target_method"] = "gd"
     try:
         reset_artifacts()

@@ -72,10 +72,17 @@ def main():
                   ("reference_seed_123", "reference_seed_234", "reference_seed_345")
                   if "ranks" in rows.get(n, {})]
         rank_spread[panel] = {"values": values, "range": max(values) - min(values)} if values else {}
+    gd_seeds = [n for n in ("gd_reference_seed_123", "gd_reference_seed_234", "gd_reference_seed_345")
+                if rows.get(n, {}).get("metrics")]
+    gd_spread = {}
+    for panel in panels:
+        values = [rows[n]["ranks"][panel]["improvement"] for n in gd_seeds]
+        gd_spread[panel] = {"values": values, "range": max(values) - min(values)} if values else {}
     output = {"rank_formula": "sum weight * abs(coefficient) * signed(candidate-reference) / population_std(audit cohort)",
               "caveat": "The future ranking cohort is unknown. These scalar ranks are conditional audit-cohort ranks; raw metrics and Pareto comparisons are authoritative.",
               "cohorts": panels, "normalizers": normalizers, "seed_metric_spread": spread,
-              "seed_rank_spread": rank_spread, "attempts": rows}
+              "seed_rank_spread": rank_spread, "gd_seed_rank_spread": gd_spread,
+              "attempts": rows}
     (AUDIT / "summary.json").write_text(json.dumps(output, indent=2) + "\n")
     lines = ["case\ttest_exit\trank_all\trank_honest\tvalue%\tvalue_rank\tutility_gap\tconverged%\tfastest%\tconv_rank\tlog_iters\tlog_gap\trestarts%"]
     for name, row in rows.items():

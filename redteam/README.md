@@ -26,6 +26,11 @@ are not equal-cost units. The eta-1 GD check restores a paper learning rate
 omitted by the reproduction. The longer run uses a 24000-update ceiling but
 the original early stopping criterion. The weaker run allows one update.
 
+Additional GD controls run eta 0.1 and eta 1 with seeds 123/234/345 and a
+one-step GD ablation. These use the same validated vectorized tree passes
+as the tuned GD control and recompute final results independently. They
+measure GD seed variation separately from the RM+ reference variation.
+
 The brute-force check enumerates all deterministic policies, including all
 3^16 policies on the largest instance. If its best pure solution is not
 stationary, it performs coordinate polishing. Its reported cost includes
@@ -39,6 +44,9 @@ weight, absolute coefficient, and the declared better direction. Zero-variance
 metrics contribute zero in the audit calculation. No unit-based weighting or
 coefficient-sign reversal is used. Failed evaluations are recorded as failed
 and never treated as fresh scores.
+The `honest_variants` normalization is deliberately fixed to the seven RM+
+controls listed in `summary.json`; it is an example of a plausible future
+cohort, not a claim that the other scientific controls are shortcuts.
 
 Large intermediate case outputs and logs are ignored by `redteam/.gitignore`;
 scores, status, solver diagnostics, source, lookup tables, and the comparator

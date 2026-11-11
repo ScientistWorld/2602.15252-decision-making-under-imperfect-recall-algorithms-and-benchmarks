@@ -136,8 +136,8 @@ def coordinate_game(game, seed, max_sweeps=6000, initial_strategy=None):
             "value_evaluations": evaluations, "elapsed_seconds_observed": time.perf_counter() - start}
 
 
-def tuned_gd_game(game, seed, iterations=6000):
-    """Ordinary paper GD with eta=1, using vectorized tree passes."""
+def tuned_gd_game(game, seed, iterations=6000, eta=1.):
+    """Ordinary paper GD, using independently checked vectorized tree passes."""
     from baseline.pgd import project_simplex
     start = time.perf_counter()
     engine = BatchValue(game)
@@ -156,11 +156,11 @@ def tuned_gd_game(game, seed, iterations=6000):
             break
         if t < iterations:
             for i, a in enumerate(game.infoset_actions):
-                x[i, :len(a)] = project_simplex(x[i, :len(a)] + grads[i, :len(a)])
+                x[i, :len(a)] = project_simplex(x[i, :len(a)] + eta * grads[i, :len(a)])
     strategy = [x[i, :len(a)] for i, a in enumerate(game.infoset_actions)]
     # Independent original tree passes validate every final scalar.
     value, _, gap = evaluate_and_gradient(game, strategy)
-    return {"algorithm": "gd_eta1", "seed": seed, "iterations_run": t,
+    return {"algorithm": "gd", "eta": eta, "seed": seed, "iterations_run": t,
             "iterations_to_gap": reached, "final_value": value, "final_kkt_gap": gap,
             "strategy": [s.tolist() for s in strategy], "trace": trace,
             "elapsed_seconds_observed": time.perf_counter() - start}
