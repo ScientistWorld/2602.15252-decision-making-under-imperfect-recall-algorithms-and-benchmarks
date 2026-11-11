@@ -37,7 +37,7 @@ stationary, it performs coordinate polishing. Its reported cost includes
 enumeration; the separately named cached-answer shortcut deliberately omits
 preparation cost and reuses a fixed lookup table of the public answers.
 
-`summary.json` and `summary.tsv` give raw hidden-test metrics and two disclosed
+`summary.json` and `summary.tsv` give raw hidden-test metrics and three disclosed
 audit-cohort rank normalizations. Future attempts determine their own metric
 standard deviations, which are unknowable now. Each score uses experiment
 weight, absolute coefficient, and the declared better direction. Zero-variance
@@ -47,6 +47,9 @@ and never treated as fresh scores.
 The `honest_variants` normalization is deliberately fixed to the seven RM+
 controls listed in `summary.json`; it is an example of a plausible future
 cohort, not a claim that the other scientific controls are shortcuts.
+The third cohort adds `failed_task_tradeoff_shortcut` to those seven controls,
+including that candidate itself in the standard deviation. Its positive rank
+is a concrete counterexample to stationarity being a hard requirement.
 
 Large intermediate case outputs and logs are ignored by `redteam/.gitignore`;
 scores, status, solver diagnostics, source, lookup tables, and the comparator

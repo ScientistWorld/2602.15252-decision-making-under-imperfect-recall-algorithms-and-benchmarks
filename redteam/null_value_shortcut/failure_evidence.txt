@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/user/eval/test/evaluate.py", line 188, in <module>
+    main()
+  File "/home/user/eval/test/evaluate.py", line 176, in main
+    "results": aggregate(results, args.target_gap, required_methods)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/eval/test/evaluate.py", line 115, in aggregate
+    max_value = max(values.values())
+                ^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'NoneType' and 'float'

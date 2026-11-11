@@ -1,0 +1,25 @@
+[hive] This stderr log is managed by Hive.
+[hive] job_id: b27e9208
+[hive] host: node
+[hive] node_id: 415b0def197554ee33040e41fe480d48537627dedf7b6508168ecec1
+[hive] user: nexus/user (remote)
+[hive] resource: gpu-cpu-test
+[hive] gpus: 0
+[hive] cpus: 1
+[hive] workdir: /home/user
+[hive] timeout_sec: 21600
+[hive] started_at: 2026-11-11 12:31:04 EST
+[hive] command: apptainer exec --containall --cleanenv --env HF_HOME=/home/user/shared/hf_cache --env TRANSFORMERS_CACHE=/home/user/shared/hf_cache --env HF_DATASETS_CACHE=/home/user/shared/hf_cache/datasets --env TORCH_HOME=/home/user/shared/hf_cache/torch --bind /home/user/scratch/AgentWorkspaces/workspaces/2602.15252:/home/user --overlay /home/user/scratch/AgentWorkspaces/workspaces/2602.15252/environment/overlay.img:ro --bind /home/user/scratch/AgentWorkspaces/shared/datasets:/home/user/shared/datasets:ro --bind /home/user/scratch/AgentWorkspaces/shared/models:/home/user/shared/models:ro --bind /home/user/scratch/AgentWorkspaces/shared/hf_cache:/home/user/shared/hf_cache /home/user/scratch/AgentWorkspaces/workspaces/2602.15252/environment/container.sif bash -c 'cd /home/user && bash /home/user/scripts/run.sh'
+[hive] Preempted for SLURM worker drain before walltime
+[hive] This stderr log is managed by Hive.
+[hive] job_id: b27e9208
+[hive] host: node
+[hive] node_id: 6d3445135ad278143e2003a21dbe6382012fbe1a691bccdff248eeaa
+[hive] user: nexus/user (remote)
+[hive] resource: gpu-cpu-test
+[hive] gpus: 0
+[hive] cpus: 1
+[hive] workdir: /home/user
+[hive] timeout_sec: 21600
+[hive] started_at: 2026-11-11 12:33:36 EST
+[hive] command: apptainer exec --containall --cleanenv --env HF_HOME=/home/user/shared/hf_cache --env TRANSFORMERS_CACHE=/home/user/shared/hf_cache --env HF_DATASETS_CACHE=/home/user/shared/hf_cache/datasets --env TORCH_HOME=/home/user/shared/hf_cache/torch --bind /home/user/scratch/AgentWorkspaces/workspaces/2602.15252:/home/user --overlay /home/user/scratch/AgentWorkspaces/workspaces/2602.15252/environment/overlay.img:ro --bind /home/user/scratch/AgentWorkspaces/shared/datasets:/home/user/shared/datasets:ro --bind /home/user/scratch/AgentWorkspaces/shared/models:/home/user/shared/models:ro --bind /home/user/scratch/AgentWorkspaces/shared/hf_cache:/home/user/shared/hf_cache /home/user/scratch/AgentWorkspaces/workspaces/2602.15252/environment/container.sif bash -c 'cd /home/user && bash /home/user/scripts/run.sh'

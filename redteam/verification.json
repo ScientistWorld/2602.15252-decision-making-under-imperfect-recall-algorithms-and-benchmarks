@@ -1,0 +1,22 @@
+{
+  "initial_commit": "604716ce170e01b0037905b060d0e67d47b40bbc",
+  "cases": 28,
+  "successful_hidden_tests": 26,
+  "rejected_hidden_tests": 2,
+  "all_successful_scores_have_every_metric": true,
+  "all_case_run_scripts_pass_shell_syntax": true,
+  "seed_123_matches_original_RM_plus_and_GD_test_scores": true,
+  "fixed_task_source_and_artifacts_restored_with_git": [
+    "baseline",
+    "briefing",
+    "data",
+    "environment",
+    "eval",
+    "method",
+    "results",
+    "scoring",
+    "scripts"
+  ],
+  "failed_task_rank_with_candidate_in_cohort": 0.3090120880976765,
+  "report_sha256": "e2f9d24cf73002ede1046f8f456df318d33335879701df389430b48185de447e"
+}

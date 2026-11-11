@@ -41,6 +41,10 @@ def main():
                                       "stronger_coordinate", "longer_rm_plus", "weaker_one_step")
                             if rows.get(n, {}).get("metrics")],
     }
+    # This concrete cohort includes the failed candidate itself in the
+    # variance estimate, matching the stated ranking rule exactly.
+    if rows.get("failed_task_tradeoff_shortcut", {}).get("metrics"):
+        panels["honest_plus_failed_task_shortcut"] = panels["honest_variants"] + ["failed_task_tradeoff_shortcut"]
     normalizers = {}
     for panel, names in panels.items():
         sigma = {}
@@ -84,7 +88,10 @@ def main():
               "seed_rank_spread": rank_spread, "gd_seed_rank_spread": gd_spread,
               "attempts": rows}
     (AUDIT / "summary.json").write_text(json.dumps(output, indent=2) + "\n")
-    lines = ["case\ttest_exit\trank_all\trank_honest\tvalue%\tvalue_rank\tutility_gap\tconverged%\tfastest%\tconv_rank\tlog_iters\tlog_gap\trestarts%"]
+    labels = {"all_successful_audit_attempts": "rank_all", "honest_variants": "rank_honest",
+              "honest_plus_failed_task_shortcut": "rank_failure_cohort"}
+    lines = ["case\ttest_exit\t" + "\t".join(labels[p] for p in panels)
+             + "\tvalue%\tvalue_rank\tutility_gap\tconverged%\tfastest%\tconv_rank\tlog_iters\tlog_gap\trestarts%"]
     for name, row in rows.items():
         m = row.get("metrics")
         if not m:
