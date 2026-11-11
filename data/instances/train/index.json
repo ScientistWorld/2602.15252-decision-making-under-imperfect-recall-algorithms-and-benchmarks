@@ -1,0 +1,202 @@
+{
+ "detection_a1": {
+  "paper_file": "decisionproblems/detection/a/agame1.txt",
+  "nodes": 105,
+  "leaves": 93,
+  "infosets": 8,
+  "dimension": 73,
+  "decision_edges": 103,
+  "min_payoff": 0.0,
+  "max_payoff": 12.0
+ },
+ "detection_a2": {
+  "paper_file": "decisionproblems/detection/a/agame2.txt",
+  "nodes": 86,
+  "leaves": 75,
+  "infosets": 7,
+  "dimension": 57,
+  "decision_edges": 84,
+  "min_payoff": 0.0,
+  "max_payoff": 18.0
+ },
+ "detection_b1": {
+  "paper_file": "decisionproblems/detection/b/bgame1.txt",
+  "nodes": 1788,
+  "leaves": 1580,
+  "infosets": 53,
+  "dimension": 436,
+  "decision_edges": 1785,
+  "min_payoff": 0.0,
+  "max_payoff": 27.0
+ },
+ "detection_b2": {
+  "paper_file": "decisionproblems/detection/b/bgame2.txt",
+  "nodes": 1355,
+  "leaves": 1183,
+  "infosets": 29,
+  "dimension": 212,
+  "decision_edges": 1352,
+  "min_payoff": 0.0,
+  "max_payoff": 24.0
+ },
+ "detection_b3": {
+  "paper_file": "decisionproblems/detection/b/bgame3.txt",
+  "nodes": 1991,
+  "leaves": 1776,
+  "infosets": 19,
+  "dimension": 160,
+  "decision_edges": 1988,
+  "min_payoff": 0.0,
+  "max_payoff": 21.0
+ },
+ "detection_c1": {
+  "paper_file": "decisionproblems/detection/c/cgame1.txt",
+  "nodes": 10647,
+  "leaves": 9764,
+  "infosets": 79,
+  "dimension": 884,
+  "decision_edges": 10641,
+  "min_payoff": 0.0,
+  "max_payoff": 30.0
+ },
+ "detection_c2": {
+  "paper_file": "decisionproblems/detection/c/cgame2.txt",
+  "nodes": 8236,
+  "leaves": 7484,
+  "infosets": 84,
+  "dimension": 854,
+  "decision_edges": 8230,
+  "min_payoff": 0.0,
+  "max_payoff": 30.0
+ },
+ "detection_c3": {
+  "paper_file": "decisionproblems/detection/c/cgame3.txt",
+  "nodes": 10685,
+  "leaves": 9801,
+  "infosets": 72,
+  "dimension": 807,
+  "decision_edges": 10679,
+  "min_payoff": 0.0,
+  "max_payoff": 30.0
+ },
+ "random_a1": {
+  "paper_file": "decisionproblems/random/a/agame1.txt",
+  "nodes": 6712,
+  "leaves": 5041,
+  "infosets": 25,
+  "dimension": 100,
+  "decision_edges": 5345,
+  "min_payoff": 5.4097132269448345e-05,
+  "max_payoff": 0.9999550483565288
+ },
+ "random_a2": {
+  "paper_file": "decisionproblems/random/a/agame2.txt",
+  "nodes": 11873,
+  "leaves": 8891,
+  "infosets": 16,
+  "dimension": 63,
+  "decision_edges": 9438,
+  "min_payoff": 0.0002282851278988529,
+  "max_payoff": 0.999502447334888
+ },
+ "random_a3": {
+  "paper_file": "decisionproblems/random/a/agame3.txt",
+  "nodes": 12237,
+  "leaves": 9195,
+  "infosets": 10,
+  "dimension": 41,
+  "decision_edges": 9831,
+  "min_payoff": 9.907319600932496e-06,
+  "max_payoff": 0.9999889267190334
+ },
+ "random_b1": {
+  "paper_file": "decisionproblems/random/b/bgame1.txt",
+  "nodes": 42092,
+  "leaves": 31562,
+  "infosets": 44,
+  "dimension": 175,
+  "decision_edges": 33912,
+  "min_payoff": 6.671182567363765e-06,
+  "max_payoff": 0.999993469124018
+ },
+ "random_b2": {
+  "paper_file": "decisionproblems/random/b/bgame2.txt",
+  "nodes": 24449,
+  "leaves": 18339,
+  "infosets": 19,
+  "dimension": 75,
+  "decision_edges": 19537,
+  "min_payoff": 1.1229628082976006e-07,
+  "max_payoff": 0.9999889726299519
+ },
+ "random_b3": {
+  "paper_file": "decisionproblems/random/b/bgame3.txt",
+  "nodes": 35261,
+  "leaves": 26481,
+  "infosets": 15,
+  "dimension": 60,
+  "decision_edges": 28226,
+  "min_payoff": 7.461621882798308e-05,
+  "max_payoff": 0.9999726591744779
+ },
+ "simulation_a1": {
+  "paper_file": "decisionproblems/simulation/a/agame1.txt",
+  "nodes": 759,
+  "leaves": 377,
+  "infosets": 1,
+  "dimension": 2,
+  "decision_edges": 382,
+  "min_payoff": 0.0,
+  "max_payoff": 23.370854807000843
+ },
+ "simulation_a2": {
+  "paper_file": "decisionproblems/simulation/a/agame2.txt",
+  "nodes": 438,
+  "leaves": 216,
+  "infosets": 1,
+  "dimension": 2,
+  "decision_edges": 222,
+  "min_payoff": 0.0,
+  "max_payoff": 37.95840321537795
+ },
+ "simulation_a3": {
+  "paper_file": "decisionproblems/simulation/a/agame3.txt",
+  "nodes": 245,
+  "leaves": 119,
+  "infosets": 1,
+  "dimension": 2,
+  "decision_edges": 126,
+  "min_payoff": 0.0,
+  "max_payoff": 20.140410436191036
+ },
+ "simulation_b1": {
+  "paper_file": "decisionproblems/simulation/b/bgame1.txt",
+  "nodes": 12844,
+  "leaves": 6740,
+  "infosets": 2,
+  "dimension": 4,
+  "decision_edges": 6760,
+  "min_payoff": 0.0,
+  "max_payoff": 3117.596107105141
+ },
+ "simulation_b2": {
+  "paper_file": "decisionproblems/simulation/b/bgame2.txt",
+  "nodes": 6823,
+  "leaves": 3611,
+  "infosets": 2,
+  "dimension": 4,
+  "decision_edges": 3638,
+  "min_payoff": 0.0,
+  "max_payoff": 2418.9291295829144
+ },
+ "simulation_b3": {
+  "paper_file": "decisionproblems/simulation/b/bgame3.txt",
+  "nodes": 3302,
+  "leaves": 1763,
+  "infosets": 2,
+  "dimension": 4,
+  "decision_edges": 1798,
+  "min_payoff": 0.0,
+  "max_payoff": 2290.1114999727497
+ }
+}

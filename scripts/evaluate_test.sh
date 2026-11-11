@@ -1,24 +1,8 @@
 #!/bin/bash
-# Held-out test-slice evaluation entry point.
-#
-# Mirrors scripts/evaluate.sh's artifact contract and writes the held-out
-# scores to scoring/scores_test.json. When scoring/scores_train.json exists,
-# the same method entries scored on train are scored on test.
-
+# Held-out evaluation. Runs with no arguments: starts every solver listed in
+# scripts/solvers.json on the hidden problems through the evaluator's oracle,
+# and writes every method's metrics to scoring/scores_test.json.
 set -e
-
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-
-mkdir -p scoring
-
-INPUT="${1:-results/optimization_results.json}"
-OUTPUT="${2:-scoring/scores_test.json}"
-TARGET_GAP="${TARGET_GAP:-1e-6}"
-TRAIN_SCORES="${TRAIN_SCORES:-scoring/scores_train.json}"
-
-python eval/test/evaluate.py \
-  --input "$INPUT" \
-  --output "$OUTPUT" \
-  --target-gap "$TARGET_GAP" \
-  --train-scores "$TRAIN_SCORES"
+python eval/test/evaluate.py

@@ -1,0 +1,10 @@
+{
+  "_doc": "Solvers on disk. Each entry is a command the evaluator starts once per random start; it speaks the oracle protocol on stdin/stdout (briefing/evaluation.md). Every listed solver is scored by scripts/evaluate_train.sh and scripts/evaluate_test.sh.",
+  "gd": {"command": ["python", "baseline/solver.py", "--algo", "gd", "--lr", "0.1"]},
+  "ogd": {"command": ["python", "baseline/solver.py", "--algo", "ogd", "--lr", "0.01"]},
+  "ams": {"command": ["python", "baseline/solver.py", "--algo", "ams", "--lr", "0.1", "--beta1", "0.9", "--beta2", "0.999"]},
+  "rm": {"command": ["python", "method/solver.py", "--algo", "rm"]},
+  "rm_plus": {"command": ["python", "method/solver.py", "--algo", "rm_plus"]},
+  "prm": {"command": ["python", "method/solver.py", "--algo", "prm"]},
+  "prm_plus": {"command": ["python", "method/solver.py", "--algo", "prm_plus"]}
+}

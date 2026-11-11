@@ -1,24 +1,8 @@
 #!/bin/bash
-# Run the paper's proposed method.
-#
-# This script trains/runs the paper's method using code in method/.
-#
-# Usage:
-#   bash scripts/method.sh
-
+# Run the paper's method (RM, RM+, PRM, PRM+ solvers in method/solver.py) on the
+# training problems through the evaluator; scores go to results/method_scores_train.json.
 set -e
-
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-
-python method/solve.py \
-  --generate-instances \
-  --instances data/instances \
-  --output results/optimization_results.json \
-  --algorithms gd,ogd,ams,rm,rm_plus,prm,prm_plus \
-  --iterations "${ITERATIONS:-3000}" \
-  --runs "${RUNS:-5}" \
-  --eta "${ETA:-0.1}" \
-  --target-gap "${TARGET_GAP:-1e-6}"
-
-bash scripts/evaluate.sh results/optimization_results.json
+mkdir -p results
+python eval/train/evaluate.py --only rm,rm_plus,prm,prm_plus --output results/method_scores_train.json

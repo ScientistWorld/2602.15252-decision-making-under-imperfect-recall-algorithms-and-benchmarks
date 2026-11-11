@@ -230,3 +230,14 @@ tmp/
 protocol.md
 *.egg-info
 core.[0-9]*
+
+# Hardened evaluator diagnostics (per-run records, resume caches)
+eval/test/_runs/
+eval/test/field_partial.json
+results/*cache*.json
+results/*details*.json
+results/forged_scores.json
+redteam/hardening/scores_smoke/
+redteam/hardening/status_smoke.json
+tmp/
+**/__pycache__/

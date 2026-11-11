@@ -1,165 +1,106 @@
+"""Training-slice evaluation: run every solver on disk on the paper's public problems.
+
+    python eval/train/evaluate.py           # what scripts/evaluate_train.sh runs
+
+Same interface and metrics as the held-out evaluation.  The problems are the
+paper's own small/medium benchmark instances (data/instances/train/), the
+starting points are the paper's (seeds 33-44), and the comparators are the
+paper's own logged runs from those starts (eval/train/field.json).
+Solvers are discovered from scripts/solvers.json.
+"""
 from __future__ import annotations
 
 import argparse
 import json
-import math
+import sys
+import time
 from pathlib import Path
-from statistics import mean
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+sys.path.insert(0, str(HERE))
+
+from harness import TreeOracle, load_instance, load_registry, paper_start, run_solver  # noqa: E402
+from metrics import METRICS, build_field, failed_records, method_metrics  # noqa: E402
+
+SLICE = "train"
+EXPERIMENT = "first_order_optimizer_aggregate"
+INSTANCES = ROOT / "data" / "instances" / "train"
+BUDGET = 6000
+TARGET_GAP = 1e-6
+START_SEEDS = list(range(33, 45))
+MESSAGE_TIMEOUT = 300.0
+INSTANCE_TIMEOUT = 1200.0
+METHOD_TIMEOUT = 5400.0
 
 
-SLICE_NAME = "train"
-EXPERIMENT_NAME = "first_order_optimizer_aggregate"
-REFERENCE_ALGORITHMS = frozenset(("ams", "gd", "ogd", "prm", "prm_plus", "rm", "rm_plus"))
-EXCLUDED_ALGORITHMS = frozenset(("ams",))
-INSTANCE_IDS = (
-    "absentminded_driver",
-    "random_depth6",
-    "simulation_5",
-    "subgroup_detection_large",
-)
+def log(msg: str) -> None:
+    print(msg, file=sys.stderr, flush=True)
 
 
-def rank(values: dict[str, float], higher: bool) -> dict[str, int]:
-    ordered = sorted(values, key=values.get, reverse=higher)
-    return {name: i + 1 for i, name in enumerate(ordered)}
-
-
-def selected_run(algorithm_data: dict) -> dict:
-    if "selected_run" in algorithm_data:
-        return algorithm_data["selected_run"]
-    runs = algorithm_data.get("runs", [])
-    if not runs:
-        raise ValueError("algorithm entry has neither selected_run nor runs")
-    return min(runs, key=lambda run: run["final_kkt_gap"])
-
-
-def load_slice(results: dict) -> dict:
-    instances = results.get("instances", {})
-    missing = [name for name in INSTANCE_IDS if name not in instances]
-    if missing:
-        raise ValueError(f"{SLICE_NAME} slice missing instances in result artifact: {missing}")
-    return {name: instances[name] for name in INSTANCE_IDS}
-
-
-def common_algorithms(instances: dict[str, dict]) -> list[str]:
-    present = [set(inst["algorithms"]) for inst in instances.values()]
-    if not present:
-        raise ValueError(f"{SLICE_NAME} slice has no instances to score")
-    common = set.intersection(*present)
-    missing = sorted(REFERENCE_ALGORITHMS - common)
-    if missing:
-        raise ValueError(f"{SLICE_NAME} artifact is missing required comparator algorithms: {missing}")
-    return sorted(common)
-
-
-def algorithm_runs(algorithm_data: dict) -> list[dict]:
-    runs = algorithm_data.get("runs")
-    if runs:
-        return runs
-    if "selected_run" in algorithm_data:
-        return [algorithm_data["selected_run"]]
-    raise ValueError("algorithm entry has neither selected_run nor runs")
-
-
-def safe_gap(gap: float) -> float:
-    return max(float(gap), 1e-16)
-
-
-def aggregate(results: dict, target_gap: float) -> dict[str, dict[str, float]]:
-    instances = load_slice(results)
-    algorithms = common_algorithms(instances)
-
-    best_value_count = {alg: 0 for alg in algorithms}
-    value_ranks = {alg: [] for alg in algorithms}
-    reached_count = {alg: 0 for alg in algorithms}
-    conv_best_count = {alg: 0 for alg in algorithms}
-    conv_ranks = {alg: [] for alg in algorithms}
-    value_gaps = {alg: [] for alg in algorithms}
-    final_log10_gaps = {alg: [] for alg in algorithms}
-    selected_iter_costs = {alg: [] for alg in algorithms}
-    selected_log10_iter_costs = {alg: [] for alg in algorithms}
-    restart_reached = {alg: 0 for alg in algorithms}
-    restart_total = {alg: 0 for alg in algorithms}
-
-    for inst in instances.values():
-        selected = {
-            alg: selected_run(inst["algorithms"][alg])
-            for alg in algorithms
-        }
-        values = {alg: run["final_value"] for alg, run in selected.items()}
-        gaps = {alg: run["final_kkt_gap"] for alg, run in selected.items()}
-        conv_iters = {
-            alg: (run["iterations_to_gap"] if run["iterations_to_gap"] is not None else float("inf"))
-            for alg, run in selected.items()
-        }
-
-        max_value = max(values.values())
-        min_iter = min(conv_iters.values())
-        for alg in algorithms:
-            if values[alg] >= max_value - 1e-9:
-                best_value_count[alg] += 1
-            if conv_iters[alg] == min_iter and min_iter != float("inf"):
-                conv_best_count[alg] += 1
-            if gaps[alg] <= target_gap:
-                reached_count[alg] += 1
-            value_gaps[alg].append(max_value - values[alg])
-            final_log10_gaps[alg].append(math.log10(safe_gap(gaps[alg])))
-            if conv_iters[alg] == float("inf"):
-                iter_cost = selected[alg].get("iterations_run", 0) + 1
+def evaluate(registry_path: Path, field_path: Path, only=None, cache_path=None, details_path=None):
+    raw = json.loads(field_path.read_text())
+    if raw["budget"] != BUDGET or raw["target_gap"] != TARGET_GAP or raw["start_seeds"] != START_SEEDS:
+        raise ValueError("field was built with different settings")
+    field = build_field(raw)
+    registry = load_registry(registry_path, ROOT)
+    methods = sorted(set(raw["families"]) | set(registry))
+    if only:
+        methods = [m for m in methods if m in only]
+    cache = {}
+    if cache_path and Path(cache_path).is_file():
+        cache = json.loads(Path(cache_path).read_text())
+    records = {m: {} for m in methods}
+    spent = {m: 0.0 for m in methods}
+    # Everything a solver could tamper with on disk is read before any solver runs.
+    oracles = {inst: TreeOracle(load_instance(INSTANCES / f"{inst}.json")) for inst in sorted(field)}
+    for inst in sorted(field):
+        oracle = oracles[inst]
+        starts = [paper_start(oracle.sizes, s) for s in START_SEEDS]
+        for m in methods:
+            key = f"{m}|{inst}"
+            if key in cache:
+                records[m][inst] = cache[key]
+                continue
+            if m not in registry:
+                recs = failed_records(len(starts), "no solver registered under this name")
+            elif spent[m] > METHOD_TIMEOUT:
+                recs = failed_records(len(starts), "method time limit exhausted")
             else:
-                iter_cost = conv_iters[alg]
-            selected_iter_costs[alg].append(iter_cost)
-            selected_log10_iter_costs[alg].append(math.log10(max(float(iter_cost), 1.0)))
-
-            runs = algorithm_runs(inst["algorithms"][alg])
-            restart_total[alg] += len(runs)
-            restart_reached[alg] += sum(1 for run in runs if run["final_kkt_gap"] <= target_gap)
-
-        vrank = rank(values, higher=True)
-        crank = rank({alg: -conv_iters[alg] for alg in algorithms}, higher=True)
-        for alg in algorithms:
-            value_ranks[alg].append(vrank[alg])
-            conv_ranks[alg].append(crank[alg])
-
-    n = len(instances)
-    return {
-        alg: {
-            "value_percent_best": 100.0 * best_value_count[alg] / n,
-            "value_avg_rank": mean(value_ranks[alg]),
-            "value_avg_gap_to_best": mean(value_gaps[alg]),
-            "convergence_percent_reached": 100.0 * reached_count[alg] / n,
-            "convergence_percent_best": 100.0 * conv_best_count[alg] / n,
-            "convergence_avg_rank": mean(conv_ranks[alg]),
-            "selected_iterations_to_gap_mean": mean(selected_iter_costs[alg]),
-            "selected_log10_iterations_to_gap_mean": mean(selected_log10_iter_costs[alg]),
-            "selected_log10_kkt_gap_mean": mean(final_log10_gaps[alg]),
-            "restart_convergence_percent": 100.0 * restart_reached[alg] / restart_total[alg],
-        }
-        for alg in algorithms
-        if alg not in EXCLUDED_ALGORITHMS
-    }
+                t0 = time.monotonic()
+                recs = run_solver(registry[m], oracle, starts, BUDGET, TARGET_GAP, ROOT,
+                                  MESSAGE_TIMEOUT, INSTANCE_TIMEOUT)
+                spent[m] += time.monotonic() - t0
+                log(f"[{SLICE}] {inst:16s} {m:24s} {time.monotonic() - t0:7.1f}s "
+                    f"solved {sum(r['converged'] for r in recs)}/{len(recs)} "
+                    f"failed {sum(r['failed'] for r in recs)} "
+                    f"iters {sorted(r['calls'] for r in recs)[len(recs) // 2]}")
+            records[m][inst] = recs
+            if cache_path:
+                cache[key] = recs
+                Path(cache_path).write_text(json.dumps(cache))
+    results = {m: method_metrics(m, records[m], field, BUDGET) for m in methods}
+    if details_path:
+        Path(details_path).write_text(json.dumps({"seeds": START_SEEDS, "records": records}))
+    return results
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default="results/optimization_results.json")
-    parser.add_argument("--output", default="scoring/scores_train.json")
-    parser.add_argument("--target-gap", type=float, default=1e-6)
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--registry", default=str(ROOT / "scripts" / "solvers.json"))
+    parser.add_argument("--output", default=str(ROOT / "scoring" / "scores_train.json"))
+    parser.add_argument("--field", default=str(HERE / "field.json"))
+    parser.add_argument("--only", default="", help="comma-separated subset of methods")
+    parser.add_argument("--cache", default="", help="resume file for per-run records")
+    parser.add_argument("--details", default="", help="write per-run records here")
     args = parser.parse_args()
-
-    results = json.loads(Path(args.input).read_text())
-    scores = {
-        "_slice": SLICE_NAME,
-        "experiments": {
-            EXPERIMENT_NAME: {
-                "results": aggregate(results, args.target_gap)
-            }
-        }
-    }
-
-    output = Path(args.output)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(scores, indent=2) + "\n")
+    only = {m for m in args.only.split(",") if m} or None
+    results = evaluate(Path(args.registry), Path(args.field), only, args.cache or None, args.details or None)
+    scores = {"_slice": SLICE, "experiments": {EXPERIMENT: {"results": {
+        m: {k: results[m][k] for k in METRICS} for m in sorted(results)}}}}
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(scores, indent=2) + "\n")
     print(json.dumps(scores, indent=2))
 
 

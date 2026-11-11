@@ -1,0 +1,25 @@
+{
+  "_note": "Comparator configurations used once to freeze eval/test/field.json. Paper grids (GD/OGD step sizes {1,0.1,0.01,0.001}; AMSGrad 8 settings) restricted to the settings that the paper's own runs ever selected per problem on the training problems.",
+  "families": {
+    "gd": ["pgd_1e0", "pgd_1e-1"],
+    "ogd": ["optgd_1e0", "optgd_1e-1", "optgd_1e-2"],
+    "ams": ["ams_a1e-1_b0.9_c0.99", "ams_a1e-1_b0.9_c0.999"],
+    "rm": ["rm"],
+    "rm_plus": ["rm+"],
+    "prm": ["prm"],
+    "prm_plus": ["prm+"]
+  },
+  "configs": {
+    "pgd_1e0": ["python", "baseline/solver.py", "--algo", "gd", "--lr", "1"],
+    "pgd_1e-1": ["python", "baseline/solver.py", "--algo", "gd", "--lr", "0.1"],
+    "optgd_1e0": ["python", "baseline/solver.py", "--algo", "ogd", "--lr", "1"],
+    "optgd_1e-1": ["python", "baseline/solver.py", "--algo", "ogd", "--lr", "0.1"],
+    "optgd_1e-2": ["python", "baseline/solver.py", "--algo", "ogd", "--lr", "0.01"],
+    "ams_a1e-1_b0.9_c0.99": ["python", "baseline/solver.py", "--algo", "ams", "--lr", "0.1", "--beta1", "0.9", "--beta2", "0.99"],
+    "ams_a1e-1_b0.9_c0.999": ["python", "baseline/solver.py", "--algo", "ams", "--lr", "0.1", "--beta1", "0.9", "--beta2", "0.999"],
+    "rm": ["python", "method/solver.py", "--algo", "rm"],
+    "rm+": ["python", "method/solver.py", "--algo", "rm_plus"],
+    "prm": ["python", "method/solver.py", "--algo", "prm"],
+    "prm+": ["python", "method/solver.py", "--algo", "prm_plus"]
+  }
+}
