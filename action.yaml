@@ -1,4 +1,4 @@
 action: submit
 gpus: 0
 test: false
-notes: "Run bundled redteam audit: three reference seeds, genuine stronger/weaker variants, brute force, and artifact shortcuts; save every hidden-test score."
+notes: "Measure tuned-GD improvements against three GD seed controls and a one-step ablation; verify standalone cached-answer shortcut, preserving all previous audit evidence."

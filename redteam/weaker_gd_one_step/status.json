@@ -1,0 +1,9 @@
+{
+  "case": "weaker_gd_one_step",
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "target_method": "gd",
+  "train_exit_code": 0,
+  "test_exit_code": 0,
+  "test_wrote_new_content": true,
+  "elapsed_seconds": 1.18646240234375
+}

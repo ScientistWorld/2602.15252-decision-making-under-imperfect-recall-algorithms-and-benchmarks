@@ -1,0 +1,9 @@
+{
+  "case": "gd_reference_seed_123",
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "target_method": "gd",
+  "train_exit_code": 0,
+  "test_exit_code": 0,
+  "test_wrote_new_content": false,
+  "elapsed_seconds": 61.707929611206055
+}
