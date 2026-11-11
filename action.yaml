@@ -1,2 +1,8 @@
-action: done
-notes: "Committed audit 8d94fe2: 28 cases; genuine controls respond, but major scoring shortcuts pay. Original gym files restored; evidence is in redteam/ and REDTEAM.md."
+# Once you set action to 'submit' or 'done', STOP immediately.
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends.
+action: pending
+gpus: 0
+test: false
+milestone: core_claim
+notes: ""
