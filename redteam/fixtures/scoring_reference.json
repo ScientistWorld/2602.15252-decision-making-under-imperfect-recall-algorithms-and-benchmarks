@@ -1,0 +1,119 @@
+{
+  "experiments": {
+    "first_order_optimizer_aggregate": {
+      "description": "Aggregate comparison using the Table 1 metrics from the paper's 61 imperfect-recall benchmark instances. The paper reference values are from the 61-instance suite; reproduced scores are computed on the fixed compact suite because the original benchmark artifact was unavailable. Wall-clock time is not scored; convergence is measured by reach rate and iteration-rank style aggregates.",
+      "weight": 1.0,
+      "primary_metric": "value_percent_best",
+      "metrics": {
+        "value_percent_best": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Fraction of benchmark instances where the selected run attains the best final utility among the compared optimizers."
+        },
+        "value_avg_rank": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Average rank by selected-run final utility across instances, with lower rank indicating better utility."
+        },
+        "value_avg_gap_to_best": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean utility shortfall from the best selected run on the same instance, providing a continuous check beyond win counts."
+        },
+        "convergence_percent_reached": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Fraction of instances where the selected run reaches the fixed KKT-gap convergence threshold."
+        },
+        "convergence_percent_best": {
+          "higher_is_better": true,
+          "coefficient": 0.5,
+          "description": "Fraction of instances where the selected run reaches the convergence threshold in the fewest iterations among compared optimizers."
+        },
+        "convergence_avg_rank": {
+          "higher_is_better": false,
+          "coefficient": -0.75,
+          "description": "Average rank by selected-run iterations to reach the KKT-gap threshold, with nonconverged runs ranked last."
+        },
+        "selected_iterations_to_gap_mean": {
+          "higher_is_better": false,
+          "coefficient": 0.0,
+          "description": "Diagnostic raw mean selected-run iteration count to reach the KKT-gap threshold, using a one-step-over-budget penalty for nonconvergence."
+        },
+        "selected_log10_iterations_to_gap_mean": {
+          "higher_is_better": false,
+          "coefficient": -0.35,
+          "description": "Mean base-10 log selected-run iteration count to reach the KKT-gap threshold, using a one-step-over-budget penalty for nonconvergence. This scores convergence effort on a multiplicative scale."
+        },
+        "selected_log10_kkt_gap_mean": {
+          "higher_is_better": false,
+          "coefficient": -0.3,
+          "description": "Mean base-10 log final KKT gap for selected runs, retaining signal when binary convergence metrics saturate."
+        },
+        "restart_convergence_percent": {
+          "higher_is_better": true,
+          "coefficient": 0.6,
+          "description": "Fraction of all recorded random restarts that reach the KKT-gap threshold, discouraging cherry-picked selected runs."
+        }
+      },
+      "results": {
+        "gd": {
+          "type": "baseline",
+          "value_percent_best": 44.3,
+          "value_avg_rank": 4.99,
+          "convergence_percent_reached": 72.1,
+          "convergence_percent_best": 11.5,
+          "convergence_avg_rank": 5.08
+        },
+        "ogd": {
+          "type": "baseline",
+          "value_percent_best": 44.3,
+          "value_avg_rank": 5.28,
+          "convergence_percent_reached": 72.1,
+          "convergence_percent_best": 6.6,
+          "convergence_avg_rank": 5.84
+        },
+        "ams": {
+          "type": "baseline",
+          "value_percent_best": 60.7,
+          "value_avg_rank": 4.16,
+          "convergence_percent_reached": 98.4,
+          "convergence_percent_best": 37.7,
+          "convergence_avg_rank": 3.35
+        },
+        "rm": {
+          "type": "proposed",
+          "value_percent_best": 70.5,
+          "value_avg_rank": 3.93,
+          "convergence_percent_reached": 83.6,
+          "convergence_percent_best": 29.5,
+          "convergence_avg_rank": 2.8
+        },
+        "rm_plus": {
+          "type": "proposed",
+          "value_percent_best": 70.5,
+          "value_avg_rank": 3.79,
+          "convergence_percent_reached": 90.2,
+          "convergence_percent_best": 21.3,
+          "convergence_avg_rank": 2.7
+        },
+        "prm": {
+          "type": "proposed",
+          "value_percent_best": 73.8,
+          "value_avg_rank": 3.79,
+          "convergence_percent_reached": 78.7,
+          "convergence_percent_best": 18.0,
+          "convergence_avg_rank": 4.24
+        },
+        "prm_plus": {
+          "type": "proposed",
+          "value_percent_best": 70.5,
+          "value_avg_rank": 3.81,
+          "convergence_percent_reached": 80.3,
+          "convergence_percent_best": 18.0,
+          "convergence_avg_rank": 3.99
+        }
+      }
+    }
+  }
+}

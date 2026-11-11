@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+# Large intermediate strategy artifacts are reproducible; keep scores/diagnostics.
+*/outputs.json
+*/test.log
+*/train.log
+*/driver.log
+*/stale_scores_test.json
