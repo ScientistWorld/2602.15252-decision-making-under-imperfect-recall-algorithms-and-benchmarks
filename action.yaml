@@ -3,4 +3,4 @@ action: submit
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Full hardened run: train rows vs paper logs, freeze held-out comparator field (11 configs x 24 problems), official evaluate_test, 25 variant/shortcut/noise cases, validate (resumable)"
+notes: "Finish last two shortcut cases (degrade comparators, extra raising method), fresh no-cache re-run of rm_plus/gd rows with final evaluator to verify scores_test.json, validate"
