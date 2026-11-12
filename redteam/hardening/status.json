@@ -204,20 +204,20 @@
  },
  "shortcut_degrade_comparators": {
   "returncode": 0,
-  "seconds": 200.0,
+  "seconds": 56.2,
   "stderr_tail": [
-   "[test] simulation_b4    gd                           1.2s solved 0/12 failed 0 iters 1",
-   "[test] simulation_b4    ogd                          1.1s solved 0/12 failed 12 iters 0",
-   "[test] simulation_b4    rm_plus                      1.3s solved 12/12 failed 0 iters 22"
+   "[test] simulation_b8    gd                           0.9s solved 0/12 failed 0 iters 1",
+   "[test] simulation_b8    ogd                          0.8s solved 0/12 failed 12 iters 0",
+   "[test] simulation_b8    rm_plus                      0.7s solved 12/12 failed 0 iters 2"
   ]
  },
  "shortcut_extra_raising_method": {
   "returncode": 0,
-  "seconds": 36.7,
+  "seconds": 22.6,
   "stderr_tail": [
-   "[test] simulation_b2    my_method                    1.5s solved 0/12 failed 12 iters 1",
-   "[test] simulation_b3    my_method                    1.5s solved 0/12 failed 12 iters 1",
-   "[test] simulation_b4    my_method                    1.5s solved 0/12 failed 12 iters 1"
+   "[test] simulation_b6    my_method                    0.9s solved 0/12 failed 12 iters 1",
+   "[test] simulation_b7    my_method                    0.9s solved 0/12 failed 12 iters 1",
+   "[test] simulation_b8    my_method                    0.8s solved 0/12 failed 12 iters 1"
   ]
  },
  "noise_rm_plus_seeds_d": {
