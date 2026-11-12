@@ -25,6 +25,7 @@ REG = json.loads((ROOT / "scripts" / "solvers.json").read_text())
 S = ["python", "redteam/hardening/solvers.py", "--kind"]
 SEEDS_B = ",".join(str(1001 + i) for i in range(12))
 SEEDS_C = ",".join(str(2001 + i) for i in range(12))
+SEEDS_D = ",".join(str(3001 + i) for i in range(12))
 
 
 def default(row):
@@ -36,7 +37,12 @@ CASES = {
     # seed noise of the reference (different fixed starting points, same problems)
     "noise_rm_plus_seeds_b": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_B]),
     "noise_rm_plus_seeds_c": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_C]),
+    "noise_rm_plus_seeds_d": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_D]),
     "noise_gd_seeds_b": ("test", {"gd": default("gd")}, ["--start-seeds", SEEDS_B]),
+    # paired re-runs of the adaptive-GD variant on the alternative start sets
+    "paired_gd_adaptive_as_rm_plus_seeds_b": ("test", {"rm_plus": S + ["gd_adaptive"]}, ["--start-seeds", SEEDS_B]),
+    "paired_gd_adaptive_as_rm_plus_seeds_c": ("test", {"rm_plus": S + ["gd_adaptive"]}, ["--start-seeds", SEEDS_C]),
+    "paired_gd_adaptive_as_rm_plus_seeds_d": ("test", {"rm_plus": S + ["gd_adaptive"]}, ["--start-seeds", SEEDS_D]),
     # honest variants
     "better_rm_plus_restarts": ("test", {"rm_plus": S + ["rm_plus_restarts"]}, []),
     "variant_rm_plus_discount": ("test", {"rm_plus": S + ["rm_plus_discount"]}, []),
@@ -116,9 +122,15 @@ def main() -> None:
         registry = {row: {"command": cmd} for row, cmd in rows.items() if cmd is not None}
         reg_path = HERE / "registries" / f"{name}.json"
         reg_path.write_text(json.dumps(registry, indent=1) + "\n")
+        details = runs_dir / f"{name}{tag}.json"
+        cache = ROOT / "tmp" / "case_cache" / f"{name}{tag}.json"
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        if not cache.is_file() and details.is_file():  # resume from an earlier run's per-run records
+            recs = json.loads(details.read_text())["records"]
+            cache.write_text(json.dumps({f"{m}|{i}": v for m, per in recs.items() for i, v in per.items()}))
         cmd = [PY, f"eval/{slice_}/evaluate.py", "--registry", str(reg_path.relative_to(ROOT)),
                "--only", ",".join(rows), "--output", str(out.relative_to(ROOT)),
-               "--details", str((runs_dir / f"{name}{tag}.json").relative_to(ROOT))] + extra
+               "--details", str(details.relative_to(ROOT)), "--cache", str(cache.relative_to(ROOT))] + extra
         if field and slice_ == "test":
             cmd += ["--field", field]
         snapshot(snap)

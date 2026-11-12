@@ -28,5 +28,5 @@ Wall-clock time is not scored.
 ## Protocol
 
 - `bash scripts/evaluate_train.sh`: every listed solver on the 20 training problems (the paper's public instances), the paper's starting points (seeds 33-44), comparators = the paper's own logged runs. Writes `scoring/scores_train.json`.
-- `bash scripts/evaluate_test.sh` (no arguments): every listed solver on the 24 held-out problems with hidden starting points and frozen comparators. Writes `scoring/scores_test.json`.
+- `bash scripts/evaluate_test.sh` (no arguments): every listed solver on the 48 held-out problems with hidden starting points and frozen comparators. Writes `scoring/scores_test.json`.
 - Every reference row (`gd`, `ogd`, `ams`, `rm`, `rm_plus`, `prm`, `prm_plus`) always appears; a row with no working solver gets the worst value of every metric.

@@ -1,7 +1,7 @@
 # Scientist Constraints
 
 ## Fixed by the evaluator (not by submissions)
-- Problems: training = the paper's 20 public instances (`data/instances/train/`); held-out = 24 hidden instances in `eval/test/`.
+- Problems: training = the paper's 20 public instances (`data/instances/train/`); held-out = 48 hidden instances in `eval/test/`.
 - Starting points: 12 per problem (training: the paper's seeds 33-44; held-out: hidden seeds), sent to every solver.
 - Budget: 6000 gradient evaluations per run; convergence threshold: KKT gap <= 1e-6.
 - Comparators: frozen per-run results of GD, OGD, AMSGrad (per-problem best setting from the paper's grids), RM, RM+, PRM, PRM+ (`eval/train/field.json`, `eval/test/field.json`).
