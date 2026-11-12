@@ -14,3 +14,9 @@ The paper studies single-agent tree-form decision problems where information set
 - Exact nonlinear optimization validates tiny instances but fails to scale beyond relatively small trees.
 - Across 61 benchmark instances, the strongest regret-matching variants reach the best observed utility on about 70% of instances and converge on about 80-90%.
 - Regret-matching variants and AMSGrad substantially outperform plain and optimistic projected gradient descent in convergence speed on the reported suite.
+
+## This Gym
+
+- Problems: the paper's own public benchmark instances of the small/medium size presets (training, 20 problems) and 24 hidden problems drawn with the paper's generators at the same presets (held-out test).
+- Solvers are programs that query a counted first-order oracle run by the evaluator (`briefing/evaluation.md`); all scores are computed by the evaluator against a frozen field of the paper's comparators.
+- Scaled down from the paper: no instances above ~43k nodes, no Gurobi baseline, convergence measured in gradient evaluations instead of wall-clock time.

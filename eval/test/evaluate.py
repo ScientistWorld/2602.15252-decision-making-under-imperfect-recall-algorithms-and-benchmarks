@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -53,8 +54,34 @@ def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache
         cache = json.loads(Path(cache_path).read_text())
     records = {m: {} for m in methods}
     spent = {m: 0.0 for m in methods}
-    # Everything a solver could tamper with on disk is read before any solver runs.
+    # Everything a solver could tamper with on disk is read before any solver runs,
+    # and the files that hold or regenerate the hidden problems are made
+    # unreadable while solvers run (solvers only get the counted oracle).
+    _set_hidden(False)
     oracles = {inst: TreeOracle(load_instance(HERE / "instances" / f"{inst}.json")) for inst in sorted(field)}
+    _set_hidden(True)
+    try:
+        _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent)
+    finally:
+        _set_hidden(False)
+    results = {m: method_metrics(m, records[m], field, BUDGET) for m in methods}
+    if details_path:
+        Path(details_path).write_text(json.dumps({"seeds": seeds, "records": records}, indent=None))
+    return results
+
+
+HIDDEN = (("instances", 0o755), ("generate_instances.py", 0o644))
+
+
+def _set_hidden(hidden: bool) -> None:
+    for name, mode in HIDDEN:
+        try:
+            os.chmod(HERE / name, 0 if hidden else mode)
+        except OSError:
+            pass  # e.g. a read-only mount
+
+
+def _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent) -> None:
     for inst in sorted(field):
         oracle = oracles[inst]
         starts = [paper_start(oracle.sizes, s) for s in seeds]
@@ -80,10 +107,6 @@ def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache
             if cache_path:
                 cache[key] = recs
                 Path(cache_path).write_text(json.dumps(cache))
-    results = {m: method_metrics(m, records[m], field, BUDGET) for m in methods}
-    if details_path:
-        Path(details_path).write_text(json.dumps({"seeds": seeds, "records": records}, indent=None))
-    return results
 
 
 def main() -> None:

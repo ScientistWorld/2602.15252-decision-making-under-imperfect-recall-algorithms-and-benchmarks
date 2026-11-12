@@ -16,6 +16,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 MODE="${MODE:-$(cat tmp/run_mode 2>/dev/null || echo full)}"
 mkdir -p results eval/test/_runs tmp
+# a killed held-out evaluation can leave the hidden-problem files unreadable
+chmod 755 eval/test/instances 2>/dev/null || true
+chmod 644 eval/test/generate_instances.py 2>/dev/null || true
 python -c "import sys, numpy; print('python', sys.version.split()[0], 'numpy', numpy.__version__)"
 echo "cpus: $(nproc)  mode: $MODE  start: $(date)"
 
@@ -57,7 +60,7 @@ stage "3. held-out comparator field"
 
 stage "4. held-out evaluation (reference)"
 if [ ! -f eval/test/_runs/reference_details.json ]; then
-  python eval/test/evaluate.py --cache eval/test/_runs/reference_cache.json \
+  python eval/test/evaluate.py --cache tmp/reference_test_cache.json \
     --details eval/test/_runs/reference_details.json > /dev/null
 fi
 cat scoring/scores_test.json

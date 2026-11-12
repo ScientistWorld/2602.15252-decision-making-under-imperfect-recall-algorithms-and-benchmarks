@@ -1,35 +1,17 @@
 # Scientist Constraints
 
-## Fixed Problem Suite
+## Fixed by the evaluator (not by submissions)
+- Problems: training = the paper's 20 public instances (`data/instances/train/`); held-out = 24 hidden instances in `eval/test/`.
+- Starting points: 12 per problem (training: the paper's seeds 33-44; held-out: hidden seeds), sent to every solver.
+- Budget: 6000 gradient evaluations per run; convergence threshold: KKT gap <= 1e-6.
+- Comparators: frozen per-run results of GD, OGD, AMSGrad (per-problem best setting from the paper's grids), RM, RM+, PRM, PRM+ (`eval/train/field.json`, `eval/test/field.json`).
+- All utilities, gaps and iteration counts are computed by the evaluator from the strategies a solver queries.
 
-Headline scores must use the fixed JSON instances in `data/instances/`:
+## What a submission controls
+- The solver program(s) in `scripts/solvers.json` and their code. A solver may implement any procedure that uses the oracle: its own initialisation, step rules, restarts within the budget, line searches. Every query counts.
 
-- `absentminded_driver.json`
-- `simulation_3.json`
-- `simulation_5.json`
-- `subgroup_detection_small.json`
-- `subgroup_detection_large.json`
-- `random_depth6.json`
-- `random_depth7.json`
-- `random_depth8.json`
-
-Additional instances may be used for development or supplemental reporting, but they must not replace this suite in `scoring/scores.json`.
-
-## Fixed Problem Formulation
-
-Submissions must solve the original tabular tree-form imperfect-recall decision problems. They must preserve the given nodes, chance probabilities, terminal payoffs, action sets, and information-set merges. A method may not split merged information sets, add memory to the strategy, remove absentmindedness, or evaluate decisions using history information that the strategy is not allowed to observe.
-
-## Fixed Output Format
-
-Methods must write artifacts compatible with `eval/evaluate_results.py`: per-instance method names, run records, selected runs, final values, final KKT gaps, and iterations-to-gap. Evaluation must be performed by `bash scripts/evaluate.sh`, which writes `scoring/scores.json`.
-
-## Fixed Evaluation Settings
-
-- Convergence threshold: `1e-6`.
-- Headline run settings used for the checked-in scores: 12 random starts, 6000 iterations, seed 123, and `eta=0.1`.
-- Every compared method in a headline result must use the same instances, start count, seed policy, iteration budget, and threshold.
-- Wall-clock speed must not be used as a scored metric.
-
-## Resource Scaling
-
-Improvement should come from a better optimization method, not from changing the benchmark, giving one method more starts, using a larger iteration budget for only one method, or replacing the local strategy optimization problem with an exact global solve on tiny instances only.
+## Rules
+- A solver must interact with problems only through the oracle protocol (`data/oracle_client.py`). Reading problem files, evaluator files, other runs' outputs, or sharing information between runs/processes is not allowed.
+- Strategies must be behavioural strategies on the given information sets (no extra memory, no splitting of information sets).
+- Starts are independent runs: one start may not use another start's results.
+- Wall-clock time is not scored, but the time limits in `briefing/evaluation.md` apply.

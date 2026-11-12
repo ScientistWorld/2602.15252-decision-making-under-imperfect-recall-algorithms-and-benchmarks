@@ -4,7 +4,7 @@
 
 Honest variants:  rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short
 Shortcuts:        uniform_once, no_query, crash, invalid_strategy, over_budget_random,
-                  forge_files, cached_train_answers, brute_force_vertices
+                  forge_files, cached_train_answers, brute_force_vertices, read_hidden_files
 """
 from __future__ import annotations
 
@@ -169,10 +169,59 @@ def brute_force_vertices(o: OracleClient) -> None:
     o.query(best[0])
 
 
+def read_hidden_files(o: OracleClient) -> None:
+    """Try to read the problem files and optimise privately (uncounted), then submit.
+
+    If a problem file matching this run can be read, RM+ is run privately on a
+    local copy of the oracle and only the final strategy is queried (2 counted
+    iterations).  Otherwise the solver falls back to plain (counted) RM+.
+    """
+    trees = []
+    for folder in (ROOT / "eval" / "test" / "instances", ROOT / "data" / "instances" / "train"):
+        try:
+            for f in folder.glob("*_*.json"):
+                trees.append(json.loads(f.read_text()))
+        except OSError:
+            pass
+    value0, u0 = o.query(o.x0)
+    match = None
+    if trees:
+        sys.path.insert(0, str(ROOT / "eval" / "train"))
+        from harness import TreeOracle  # noqa: E402  (public training copy of the oracle)
+        for tree in trees:
+            if tree.get("infoset_sizes") == o.sizes:
+                local = TreeOracle(tree)
+                if abs(float(local.evaluate(o.x0[None])[0][0]) - value0) < 1e-9:
+                    match = local
+                    break
+    if match is None:  # files unreadable: honest RM+ from the first answer onward
+        x, u, r = o.x0.copy(), u0, np.zeros(o.dim)
+        while o.kkt_gap(x, u) > o.target_gap and o.calls < o.budget:
+            c = u - o.expand(o.block_sum(u * x))
+            r = np.maximum(r + c, 0.0)
+            tot = o.block_sum(r)
+            pos = o.expand(tot > 0)
+            x = np.where(pos, r / np.where(pos, o.expand(tot), 1.0), x)
+            _, u = o.query(x)
+        return
+    x, r = o.x0.copy(), np.zeros(o.dim)
+    for _ in range(o.budget):
+        _, G, gap = match.evaluate(x[None])
+        u = G[0]
+        if gap[0] <= o.target_gap:
+            break
+        c = u - o.expand(o.block_sum(u * x))
+        r = np.maximum(r + c, 0.0)
+        tot = o.block_sum(r)
+        pos = o.expand(tot > 0)
+        x = np.where(pos, r / np.where(pos, o.expand(tot), 1.0), x)
+    o.query(x)
+
+
 KINDS = {f.__name__: f for f in (
     rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short,
     uniform_once, no_query, crash, invalid_strategy, over_budget_random, forge_files,
-    cached_train_answers, brute_force_vertices)}
+    cached_train_answers, brute_force_vertices, read_hidden_files)}
 
 
 def main() -> None:
