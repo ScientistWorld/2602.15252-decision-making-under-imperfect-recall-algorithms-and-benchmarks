@@ -135,14 +135,18 @@ def main() -> None:
             cmd += ["--field", field]
         snapshot(snap)
         t0 = time.monotonic()
-        proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+        try:
+            proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=3600)
+            rc, err_tail = proc.returncode, proc.stderr
+        except subprocess.TimeoutExpired as exc:
+            rc, err_tail = "timeout", (exc.stderr or b"").decode(errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
         restore(snap)
-        status[name] = {"returncode": proc.returncode, "seconds": round(time.monotonic() - t0, 1),
-                        "stderr_tail": proc.stderr.strip().splitlines()[-3:]}
+        status[name] = {"returncode": rc, "seconds": round(time.monotonic() - t0, 1),
+                        "stderr_tail": err_tail.strip().splitlines()[-3:]}
         status_path.write_text(json.dumps(status, indent=1) + "\n")
-        print(f"[case] {name}: rc={proc.returncode} {status[name]['seconds']}s", flush=True)
-        if proc.returncode != 0:
-            print(proc.stderr[-2000:], flush=True)
+        print(f"[case] {name}: rc={rc} {status[name]['seconds']}s", flush=True)
+        if rc != 0:
+            print(err_tail[-2000:], flush=True)
 
 
 if __name__ == "__main__":

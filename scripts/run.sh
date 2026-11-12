@@ -70,6 +70,18 @@ if [ -f redteam/hardening/run_cases.py ]; then
   python redteam/hardening/run_cases.py
 fi
 
+stage "5b. fresh re-run of two reference rows with the final evaluator (no cache)"
+if [ ! -f tmp/verify_scores_test.json ]; then
+  python eval/test/evaluate.py --only rm_plus,gd --output tmp/verify_scores_test.json > /dev/null
+fi
+python - <<'PY'
+import json
+a = json.load(open("scoring/scores_test.json"))["experiments"]["first_order_optimizer_aggregate"]["results"]
+b = json.load(open("tmp/verify_scores_test.json"))["experiments"]["first_order_optimizer_aggregate"]["results"]
+for row in b:
+    print(row, "identical to scoring/scores_test.json:", a[row] == b[row])
+PY
+
 stage "6. validate"
 python validate.py --compare || echo "validate.py reported problems"
 echo "done: $(date)"

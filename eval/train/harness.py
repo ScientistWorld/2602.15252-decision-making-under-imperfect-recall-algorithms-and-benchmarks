@@ -184,13 +184,24 @@ def _read_exact(fd: int, n: int, deadline: float):
     return buf
 
 
-def _write_all(fd: int, data: bytes) -> bool:
+def _write_all(fd: int, data: bytes, timeout: float = 300.0) -> bool:
+    """Write everything to a (non-blocking) pipe; False if the solver stops reading or exits."""
     view = memoryview(data)
+    deadline = time.monotonic() + timeout
     try:
         while view:
-            written = os.write(fd, view)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return False
+            _, ready, _ = select.select([], [fd], [], remaining)
+            if not ready:
+                return False
+            try:
+                written = os.write(fd, view)
+            except BlockingIOError:
+                continue
             view = view[written:]
-    except (BrokenPipeError, OSError):
+    except OSError:
         return False
     return True
 
@@ -209,6 +220,8 @@ def run_solver(command, oracle: TreeOracle, starts: list[np.ndarray], budget: in
     else:
         env = dict(os.environ)
         env.setdefault("PYTHONUNBUFFERED", "1")
+        for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+            env.setdefault(var, "1")  # one CPU per job: no thread oversubscription across starts
         for k, (r, x0) in enumerate(zip(runs, starts)):
             err = tempfile.TemporaryFile()
             try:
@@ -219,9 +232,10 @@ def run_solver(command, oracle: TreeOracle, starts: list[np.ndarray], budget: in
                 err.close()
                 continue
             r["proc"], r["err"] = proc, err
+            os.set_blocking(proc.stdin.fileno(), False)
             header = {"protocol": PROTOCOL, "infoset_sizes": oracle.sizes, "budget": budget,
                       "target_gap": target_gap, "x0": [float(v) for v in x0], "run": k}
-            if not _write_all(proc.stdin.fileno(), (json.dumps(header) + "\n").encode()):
+            if not _write_all(proc.stdin.fileno(), (json.dumps(header) + "\n").encode(), message_timeout):
                 r["status"], r["reason"] = "failed", "solver closed its input before reading the header"
     started = time.monotonic()
 
@@ -294,7 +308,7 @@ def run_solver(command, oracle: TreeOracle, starts: list[np.ndarray], budget: in
                 r["calls"] += 1
                 r["value"], r["gap"] = float(values[i]), float(gaps[i])
                 msg = np.concatenate([[values[i]], grads[i]]).astype("<f8").tobytes()
-                if not _write_all(r["proc"].stdin.fileno(), msg):
+                if not _write_all(r["proc"].stdin.fileno(), msg, message_timeout):
                     stop(r, "eof")
                 elif r["calls"] >= budget:
                     pass  # a further query is refused and ends the run
