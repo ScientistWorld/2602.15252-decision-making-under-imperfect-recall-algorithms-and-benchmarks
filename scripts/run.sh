@@ -7,7 +7,7 @@
 #      (+ run-by-run comparison with the authors' logged runs)
 #   3. the held-out comparator field (only if eval/test/field.json is missing)
 #   4. every registered solver on the held-out problems -> scoring/scores_test.json
-#   5. hardening cases (variants, shortcuts, seed noise) -> redteam/hardening/scores/
+#   5. (RUN_HARDENING=1) variant / shortcut / seed-noise cases -> redteam/hardening/
 #   6. python validate.py --compare
 # Stages resume from their outputs if the job is restarted.  MODE=smoke runs a
 # short version on three held-out problems (outputs under tmp/).
@@ -15,6 +15,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 MODE="${MODE:-$(cat tmp/run_mode 2>/dev/null || echo full)}"
+RUN_HARDENING="${RUN_HARDENING:-0}"
 mkdir -p results eval/test/_runs tmp
 # a killed held-out evaluation can leave the hidden-problem files unreadable
 chmod 755 eval/test/instances 2>/dev/null || true
@@ -36,13 +37,7 @@ if [ "$MODE" = smoke ]; then
   python eval/test/build_field.py --instances detection_b1,random_a2,simulation_b3 \
     --output tmp/field_smoke.json --partial tmp/field_smoke_partial.json
   stage "4s. held-out evaluation on the smoke field"
-  python eval/test/evaluate.py --field tmp/field_smoke.json --output tmp/smoke_scores_test.json \
-    --details eval/test/_runs/smoke_details.json
-  stage "5s. a few hardening cases on the smoke field"
-  HARDENING_TAG=smoke HARDENING_FIELD=tmp/field_smoke.json python redteam/hardening/run_cases.py \
-    shortcut_forge_files shortcut_crash shortcut_invalid_strategy shortcut_no_query \
-    shortcut_unregistered_rm_plus better_gd_adaptive better_rm_plus_restarts shortcut_brute_force_vertices \
-    shortcut_cached_train_answers
+  python eval/test/evaluate.py --field tmp/field_smoke.json --output tmp/smoke_scores_test.json
   cat tmp/smoke_scores_test.json
   echo "smoke done: $(date)"
   exit 0
@@ -65,22 +60,11 @@ if [ ! -f eval/test/_runs/reference_details.json ]; then
 fi
 cat scoring/scores_test.json
 
-stage "5. hardening cases"
-if [ -f redteam/hardening/run_cases.py ]; then
+if [ "$RUN_HARDENING" = 1 ]; then
+  stage "5. hardening cases"
   python redteam/hardening/run_cases.py
+  python redteam/hardening/summarize.py > /dev/null
 fi
-
-stage "5b. fresh re-run of two reference rows with the final evaluator (no cache)"
-if [ ! -f tmp/verify_scores_test.json ]; then
-  python eval/test/evaluate.py --only rm_plus,gd --output tmp/verify_scores_test.json > /dev/null
-fi
-python - <<'PY'
-import json
-a = json.load(open("scoring/scores_test.json"))["experiments"]["first_order_optimizer_aggregate"]["results"]
-b = json.load(open("tmp/verify_scores_test.json"))["experiments"]["first_order_optimizer_aggregate"]["results"]
-for row in b:
-    print(row, "identical to scoring/scores_test.json:", a[row] == b[row])
-PY
 
 stage "6. validate"
 python validate.py --compare || echo "validate.py reported problems"

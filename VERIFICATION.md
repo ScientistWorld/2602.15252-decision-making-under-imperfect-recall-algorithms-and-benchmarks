@@ -1,3 +1,5 @@
+> Superseded: this report describes the pre-hardening artifact-based gym. The current evaluation design and its audit are in HARDENING.md.
+
 # Verification Report
 
 ## Initial Assessment

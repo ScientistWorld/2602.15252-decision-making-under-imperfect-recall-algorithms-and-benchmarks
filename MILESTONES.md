@@ -25,5 +25,11 @@
 - Updated evaluators so future artifact method keys are scored automatically, while retaining the documented exclusion of the unclaimed compact AMS comparator.
 - Re-ran `python validate.py --compare`; all checks passed.
 
+### [2026-11-12] - core_claim (hardening, final iteration)
+- Replaced the artifact-based evaluator (which trusted self-reported values, gaps, iterations and comparator rows) with an evaluator that runs every solver through a counted first-order oracle on hidden problems and computes every scored number itself.
+- Recovered the paper's benchmark artifact (Drive ID had been mangled): training = the paper's 20 public instances with the authors' logged runs as comparators; test = 48 hidden draws from a port of the paper's generators.
+- Ported the authors' RM/RM+/PRM/PRM+/GD/OGD/AMSGrad code; it retraces the authors' logged runs (1678/1680 identical iteration counts).
+- The paper's claim reproduces in its direction on the held-out problems (RM+ vs GD: convergence rank 3.15 vs 5.69, log10 iterations 1.22 vs 1.91, 75% vs 54% best utility). All red-team shortcuts score at most the reference; a better variant beats the reference beyond seed noise. See HARDENING.md.
+
 ## Stop Justification
 - Completed at milestone `core_claim`.

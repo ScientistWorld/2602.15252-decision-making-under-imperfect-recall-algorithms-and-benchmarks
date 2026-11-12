@@ -1,29 +1,7 @@
-# Train/Test Evaluation Design Notes
+# Design Notes (hardened gym)
 
-Checked:
-- Reviewed `eval/train/evaluate.py`, `eval/test/evaluate.py`, `scripts/evaluate_train.sh`, `scripts/evaluate_test.sh`, and `scoring/reference.json`.
-- Confirmed train and test scripts point at their own evaluator folders and write `scoring/scores_train.json` and `scoring/scores_test.json`.
-- Confirmed the split remains artifact-based: evaluators read `results/optimization_results.json` and do not import or rerun `method/`.
-- Confirmed no `scoring/scores_train.json` or `scoring/scores_test.json` stubs are present.
-- Ran `bash -n` on both train/test shell scripts.
-
-Changed:
-- Hardened both slice evaluators against comparator omission. They now require the fixed paper comparator set (`gd`, `ogd`, `ams`, `rm`, `rm_plus`, `prm`, `prm_plus`) to be present on every scored slice instance, while still scoring additional methods present across the slice.
-- Added `_slice` markers to train/test score outputs so copied or mislabeled artifacts are easier to spot.
-- Added continuous utility and convergence metrics to both slices:
-  - `value_avg_gap_to_best`
-  - `selected_iterations_to_gap_mean`
-  - `selected_log10_kkt_gap_mean`
-  - `restart_convergence_percent`
-- Added required metric descriptions to `scoring/reference.json` and registered the new metrics there. Paper-reported result values were left unchanged.
-
-Fixed pattern:
-- Rank/win-count gaming by omitted comparators. Before this pass, an artifact containing only one method could make rank and percent-best metrics trivially perfect.
-- Binary convergence saturation. The new log-gap and iteration-count metrics retain signal when several methods all reach the same KKT threshold.
-- Cherry-picked selected runs. The restart convergence metric uses all recorded runs when available.
-
-Runtime concerns for the next iteration:
-- I did not run either evaluator or generate scores in this file-only pass. The runner should verify that the new score keys are emitted as valid JSON numbers on the current artifact.
-- `scripts/evaluate.sh` still uses the older top-level aggregate evaluator and does not emit the new train/test-only metrics. This pass focused on the split harness requested here; a later pass should decide whether to mirror the new metrics in the standard evaluator or keep them split-only.
-- The split has only four instances per side because the compact reproduction ships eight instances total. The added restart and continuous metrics improve triangulation, but the held-out signal is still limited by small slice size.
-- Future methods that introduce new method names may be scored by the split evaluators, but the existing validator may reject unknown method names against `scoring/reference.json`. Improve-mode agents can avoid this by writing compatible results under the existing optimizer names.
+- `eval/train/` and `eval/test/` are independent copies of the same harness (`harness.py`: oracle + solver protocol; `metrics.py`; `evaluate.py`). They share no code; `eval/` never imports `method/`.
+- The held-out problems, their generator (with seeds), the start seeds and the frozen comparator field live only in `eval/test/`. While solvers run, the problem files and generator are unreadable; everything is loaded before the first solver starts.
+- Train comparators = the authors' logged runs (`eval/train/build_field_from_paper_logs.py`). Test comparators were frozen once by `eval/test/build_field.py` (run through the same oracle protocol as any submission).
+- Rows: every comparator family (`gd`, `ogd`, `ams`, `rm`, `rm_plus`, `prm`, `prm_plus`) plus every registered solver; missing or failing solvers get worst values.
+- Checks and audit tooling: `redteam/hardening/` (oracle checks, run-by-run agreement with the paper's logs, variant/shortcut cases, summary).
