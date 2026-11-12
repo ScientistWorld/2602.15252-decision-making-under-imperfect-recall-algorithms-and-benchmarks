@@ -1,0 +1,10 @@
+{
+ "gd": {
+  "command": [
+   "python",
+   "redteam/hardening/solvers.py",
+   "--kind",
+   "gd_adaptive"
+  ]
+ }
+}

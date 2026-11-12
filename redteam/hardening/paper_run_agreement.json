@@ -1,0 +1,30 @@
+{
+ "rm_plus": {
+  "runs": 240,
+  "same_iterations": 240,
+  "same_convergence": 240,
+  "max_rel_value_diff_when_both_converged": 6.391988748375559e-16,
+  "examples": []
+ },
+ "prm_plus": {
+  "runs": 240,
+  "same_iterations": 240,
+  "same_convergence": 240,
+  "max_rel_value_diff_when_both_converged": 5.135782098834173e-16,
+  "examples": []
+ },
+ "gd": {
+  "runs": 240,
+  "same_iterations": 240,
+  "same_convergence": 240,
+  "max_rel_value_diff_when_both_converged": 1.198349156394496e-15,
+  "examples": []
+ },
+ "ams": {
+  "runs": 240,
+  "same_iterations": 240,
+  "same_convergence": 240,
+  "max_rel_value_diff_when_both_converged": 3.4238547325560327e-16,
+  "examples": []
+ }
+}
