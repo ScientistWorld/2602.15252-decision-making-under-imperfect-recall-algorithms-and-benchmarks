@@ -69,14 +69,16 @@ def main() -> None:
         noise = [0.0] + [summary["cases"][n]["delta_vs_reference"][c] for n in sorted(cases)
                          if n.startswith("noise_rm_plus")]
         summary[f"rm_plus_seed_noise_{c}"] = {"deltas": noise, "range": max(noise) - min(noise), "std": std(noise)}
-        paired = {"official": summary["cases"].get("better_gd_adaptive_as_rm_plus", {}).get("delta_vs_reference", {}).get(c)}
-        for tag in ("b", "c", "d"):
-            v = summary["cases"].get(f"paired_gd_adaptive_as_rm_plus_seeds_{tag}")
-            r = summary["cases"].get(f"noise_rm_plus_seeds_{tag}")
-            if v and r:  # variant minus reference, both on start set <tag>
-                paired[f"seeds_{tag}"] = v["delta_vs_reference"][c] - r["delta_vs_reference"][c]
-        summary[f"gd_adaptive_vs_rm_plus_paired_{c}"] = paired
-        print(c, "noise", summary[f"rm_plus_seed_noise_{c}"], "paired gd_adaptive - rm_plus", paired)
+        print(c, "rm_plus seed noise", summary[f"rm_plus_seed_noise_{c}"])
+        for variant in sorted({n[len("paired_"):].rsplit("_seeds_", 1)[0] for n in cases if n.startswith("paired_")}):
+            paired = {"official": summary["cases"].get(f"better_{variant}", {}).get("delta_vs_reference", {}).get(c)}
+            for tag in ("b", "c", "d"):
+                v = summary["cases"].get(f"paired_{variant}_seeds_{tag}")
+                r = summary["cases"].get(f"noise_rm_plus_seeds_{tag}")
+                if v and r:  # variant minus reference, both on start set <tag>
+                    paired[f"seeds_{tag}"] = v["delta_vs_reference"][c] - r["delta_vs_reference"][c]
+            summary.setdefault(f"paired_vs_rm_plus_{c}", {})[variant] = paired
+            print(c, "paired", variant, "- rm_plus:", {k: round(x, 3) for k, x in paired.items() if x is not None})
     (HERE / "summary.json").write_text(json.dumps(summary, indent=1) + "\n")
     short = {"value_percent_best": "best%", "value_avg_rank": "vrank", "utility_gain_mean": "gain",
              "convergence_percent_reached": "conv%", "convergence_percent_best": "fast%",

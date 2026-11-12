@@ -2,7 +2,7 @@
 
     python redteam/hardening/solvers.py --kind <kind>
 
-Honest variants:  rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short
+Honest variants:  rm_plus_fallback50, rm_plus_fallback200, rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short
 Shortcuts:        uniform_once, no_query, crash, invalid_strategy, over_budget_random,
                   forge_files, cached_train_answers, brute_force_vertices, read_hidden_files
 """
@@ -218,10 +218,52 @@ def read_hidden_files(o: OracleClient) -> None:
     o.query(x)
 
 
+def _rm_plus_then_adaptive_gd(o: OracleClient, switch: int) -> None:
+    """RM+; if it has not reached the threshold after `switch` iterations, continue
+    from its current strategy with projected gradient ascent and an accept/reject
+    step-size rule (step starts at 1, x1.5 on improvement, x0.5 otherwise)."""
+    x = o.x0.copy()
+    r = np.zeros_like(x)
+    value, u = o.query(x)
+    while o.kkt_gap(x, u) > o.target_gap and o.calls < min(switch, o.budget):
+        c = u - o.expand(o.block_sum(u * x))
+        r = np.maximum(r + c, 0.0)
+        tot = o.block_sum(r)
+        pos = o.expand(tot > 0)
+        x = np.where(pos, r / np.where(pos, o.expand(tot), 1.0), x)
+        value, u = o.query(x)
+    if o.kkt_gap(x, u) <= o.target_gap or o.calls >= o.budget:
+        return
+    sys.path.insert(0, str(ROOT / "baseline"))
+    from solver import Blocks  # noqa: E402  (projection helper of the baseline)
+    blocks = Blocks(o.sizes)
+    lr = 1.0
+    last_is_x = True
+    while o.calls < o.budget - 1:
+        if o.kkt_gap(x, u) <= o.target_gap:
+            return
+        y = blocks.project(x + lr * u)
+        vy, uy = o.query(y)
+        if vy >= value:
+            x, value, u, lr, last_is_x = y, vy, uy, lr * 1.5, True
+        else:
+            lr, last_is_x = lr * 0.5, False
+    if not last_is_x:
+        o.query(x)
+
+
+def rm_plus_fallback50(o: OracleClient) -> None:
+    _rm_plus_then_adaptive_gd(o, 50)
+
+
+def rm_plus_fallback200(o: OracleClient) -> None:
+    _rm_plus_then_adaptive_gd(o, 200)
+
+
 KINDS = {f.__name__: f for f in (
     rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short,
     uniform_once, no_query, crash, invalid_strategy, over_budget_random, forge_files,
-    cached_train_answers, brute_force_vertices, read_hidden_files)}
+    cached_train_answers, brute_force_vertices, read_hidden_files, rm_plus_fallback50, rm_plus_fallback200)}
 
 
 def main() -> None:
