@@ -1,6 +1,4 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
-action: submit
-gpus: 0
-test: false
+action: done
 milestone: core_claim
-notes: "Headroom check on the rm_plus row: RM+ with adaptive-GD fallback (switch at 50/200 iterations), official + paired start sets B/C/D (8 cases, ~30 min); other stages resume as done"
+notes: "Hardened: solvers run through a counted oracle on 48 hidden paper-generator problems; paper's own train instances/runs; all shortcuts closed (<= reference); better variant beats reference beyond noise; see HARDENING.md"

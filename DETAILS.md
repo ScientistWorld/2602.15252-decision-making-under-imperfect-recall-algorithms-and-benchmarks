@@ -15,21 +15,37 @@ The paper studies single-agent tree-form decision problems where information set
 - Across 61 benchmark instances, the strongest regret-matching variants reach the best observed utility on about 70% of instances and converge on about 80-90%.
 - Regret-matching variants and AMSGrad substantially outperform plain and optimistic projected gradient descent in convergence speed on the reported suite.
 
+## This Gym
+
+- Problems: the paper's own public benchmark instances of the small/medium size presets (training, 20 problems) and 48 hidden problems drawn with the paper's generators at the same presets (held-out test).
+- Solvers are programs that query a counted first-order oracle run by the evaluator (`briefing/evaluation.md`); all scores are computed by the evaluator against a frozen field of the paper's comparators.
+- Scaled down from the paper: no instances above ~43k nodes, no Gurobi baseline, convergence measured in gradient evaluations instead of wall-clock time.
+
 ---
 
 # Problem Definition
 
 ## Research Question
 
-How can an algorithm compute high-quality strategies for tabular sequential decision problems in which the decision maker may forget past information? The benchmark focuses on imperfect-recall tree-form problems where strategies are probability distributions over actions at information sets, and where success means finding a strategy that is both valuable and locally stable under one-shot deviations.
+How can an algorithm compute high-quality strategies for tabular sequential decision problems in which the decision maker may forget information it held before (imperfect recall, including absentmindedness)? A strategy assigns a probability distribution over actions to every information set. The expected utility is a polynomial over a product of probability simplices, so finding an optimal strategy is NP-hard in general. The practical target is a first-order optimal strategy: a strategy at which no single information set can gain by a one-shot deviation, measured by the KKT gap (for every information set, the largest partial derivative minus the current expected partial derivative; the gap is the maximum over information sets).
 
 ## Why It Matters
 
-Imperfect recall appears in settings such as limited-communication teams, privacy-preserving decision systems, abstractions of large games, and simulation-based AI evaluation. Scalable solvers make it possible to analyze these settings beyond small hand-worked examples.
+Imperfect recall models teams that cannot communicate, game abstractions, AI systems that must forget sensitive information, and AI agents tested in simulations they cannot tell apart from deployment. Solvers that scale make these problems analysable beyond pen-and-paper examples.
+
+## The Problems
+
+Three benchmark families, all tree-form single-agent problems with chance nodes:
+
+- **Simulation problems**: an agent with a "good" and a "bad" action is tested an uncertain number of times in simulation (caught and stopped if it acts bad) before an uncertain number of deployment rounds; simulation and deployment decisions share information sets.
+- **Subgroup detection under privacy constraints**: on a small graph, hidden connected subgroups (lines, cycles, cliques, stars) carry values; the agent selects nodes for a few rounds, remembers hits, and forgets misses.
+- **Random problems**: random trees with chance nodes and information sets that merge many decision nodes, including nodes on the same path.
+
+Training problems are the paper's own public small/medium instances (86 to 42k nodes, 1 to 84 information sets). Held-out problems are new draws from the same generators and size presets; they are never shown to solvers.
 
 ## Success Criteria
 
-A successful system should return strategies with high expected utility, small first-order optimality gap, and practical runtime on benchmark instances spanning simulation, privacy-constrained subgroup detection, and random imperfect-recall decision problems. It should work across small instances where global optima can be checked and large instances where only local optimality and comparative performance are feasible to assess.
+A good solver reaches a first-order optimal strategy (KKT gap at most 1e-6) from as many starting points as possible, in as few gradient evaluations as possible, and ends on strategies with high expected utility.
 
 ---
 
@@ -54,25 +70,45 @@ Baselines include a commercial exact nonlinear optimizer on small instances and 
 - **Secondary claim:** exact global nonlinear optimization is useful for tiny instances but is not a practical solver for the larger tabular benchmark instances.
 - **Secondary claim:** predictive regret-matching variants do not consistently improve over the non-predictive variants in this single-agent nonlinear optimization setting.
 
+## Implementation in This Gym
+
+- `method/solver.py`: RM, RM+, PRM, PRM+ (Algorithm 1 with regret-matching local optimizers), ported from the authors' released code; it retraces the authors' logged runs exactly on the training problems (same iteration counts, utilities equal to ~1e-15).
+- `baseline/solver.py`: GD, OGD and AMSGrad as in the authors' code (Euclidean / weighted simplex projections). Registered rows use one setting per method chosen on the training problems (GD step 0.1, OGD step 0.01, AMSGrad 0.1/0.9/0.999); the frozen comparator field uses the paper's per-problem best setting.
+
 ---
 
 # Evaluation
 
+## How solvers are run
+
+A solver is a program listed in `scripts/solvers.json` (`{"name": {"command": [...]}}`). The evaluator never gives a solver the decision problem. It starts the solver once per random start and talks to it over stdin/stdout:
+
+1. The evaluator sends one JSON header line: `{"protocol": "irtree-oracle-1", "infoset_sizes": [...], "budget": 6000, "target_gap": 1e-06, "x0": [...], "run": k}`. A strategy is a flat vector of probabilities, one block per information set (block sizes `infoset_sizes`); `x0` is the starting strategy.
+2. The solver queries strategies: it writes the byte `Q` followed by the strategy as little-endian float64. The evaluator answers with `1 + D` float64 values: the expected utility and the gradient (partial derivative for every action). Each query is one iteration of the budget.
+3. The solver writes `D` when done. The run's result is the **last strategy it queried**. After 6000 answered queries the evaluator stops answering.
+
+`data/oracle_client.py` implements the client side (`OracleClient().query(x) -> (utility, gradient)`, plus `kkt_gap`). Queries must be valid strategies (non-negative, each block summing to 1 within 1e-6); an invalid query, a crash, no query at all, or exceeding the time limits (300 s per message, 1200 s per problem, 5400 s per solver) fails the run. Starts run in separate processes; the evaluator computes every scored number itself and reads nothing a solver writes.
+
 ## Metrics
 
-- **Expected utility**: value of the returned strategy at the root of the decision tree; higher is better.
-- **KKT gap**: first-order stationarity gap for the product-of-simplices strategy space; lower is better. A run is considered converged at gap at most `1e-6`.
-- **Iterations to convergence**: iteration count until convergence or the iteration limit; lower is better when the final gap criterion is met. This reproduction does not score wall-clock time because hardware varies across runs.
-- **Best-value frequency and rank**: across benchmark instances, count how often a solver attains the best observed utility and report average utility rank; higher frequency and lower rank are better.
-- **Convergence frequency and rank**: across benchmark instances, count how often a solver reaches the target gap and report average iteration-to-convergence rank; higher frequency and lower rank are better.
+A run is **solved** if its result has KKT gap at most 1e-6. Unsolved and failed runs count as the worst possible run (no utility; iterations = 6001). The median run of the 12 starts is taken separately for utility and for iterations (the 7th best of 12). Every row is compared with a frozen field of reference solvers (the paper's comparators, fixed by the evaluator), excluding the reference solver of the same name.
 
-## Baselines and Targets
+- `value_percent_best` (higher): problems where the median utility is within 1e-4 (relative) of the field's best median utility.
+- `value_avg_rank` (lower): tie-aware rank of the median utility in the field.
+- `utility_gain_mean` (higher): mean over problems and starts of (utility - uniform-strategy utility) / (best known utility - uniform-strategy utility); unsolved runs score 0. Values above 1 beat every reference run.
+- `convergence_percent_reached` (higher): problems whose median run is solved.
+- `convergence_percent_best` (higher): problems where the median run is solved in no more iterations than any field entry.
+- `convergence_avg_rank` (lower): tie-aware rank of the median iterations in the field.
+- `log10_iterations_mean` (lower): mean log10 iterations over all runs (6001 for unsolved runs).
+- `restart_convergence_percent` (higher): solved runs among all runs.
 
-Reference comparisons should include an exact nonlinear optimizer on small instances when available, plus standard scalable first-order optimizers on all instances. The paper reports aggregate results over 61 instances: the strongest reported methods reach the best observed utility on roughly 70-74% of instances, converge on roughly 80-90% of instances, and have the best average convergence ranks among first-order methods. Exact optimization is useful as a small-instance value check but does not scale to the larger benchmark cases.
+Wall-clock time is not scored.
 
-## Evaluation Protocol
+## Protocol
 
-Evaluate on the fixed suite of simulation, subgroup detection, and random decision problems. Run scalable methods from multiple random initial strategies and report the median result. The paper stops each run when it reaches KKT gap `1e-6`, a 4-hour time limit, or 6000 iterations. This compact reproduction preserves the KKT criterion and equal iteration budgets, and compares methods using the same problem instances, initialization policy, stopping criteria, and utility/gap computation.
+- `bash scripts/evaluate_train.sh`: every listed solver on the 20 training problems (the paper's public instances), the paper's starting points (seeds 33-44), comparators = the paper's own logged runs. Writes `scoring/scores_train.json`.
+- `bash scripts/evaluate_test.sh` (no arguments): every listed solver on the 48 held-out problems with hidden starting points and frozen comparators. Writes `scoring/scores_test.json`.
+- Every reference row (`gd`, `ogd`, `ams`, `rm`, `rm_plus`, `prm`, `prm_plus`) always appears; a row with no working solver gets the worst value of every metric.
 
 ---
 
@@ -326,6 +362,43 @@ Evaluate on the fixed suite of simulation, subgroup detection, and random decisi
 - Performed final gym verification across folder structure, method-agnostic documentation, scoring coefficients, evaluator independence, train/test artifacts, and validation checks.
 - Updated evaluators so future artifact method keys are scored automatically, while retaining the documented exclusion of the unclaimed compact AMS comparator.
 - Re-ran `python validate.py --compare`; all checks passed.
+
+</details>
+
+### Iteration 11: claude-opus-5-5 (hardener)
+- **Milestone**: `core_claim` | **Status**: done
+- **Working time**: 54m | **GPU**: 0.0h
+- **Jobs**: 9 total (8 completed, 0 failed)
+
+<details>
+<summary>Progress Log</summary>
+
+### [2026-06-02 05:43] - core_claim
+- Audited the continued workspace for paper-method integrity. The solver implements the paper's actual tabular imperfect-recall optimization pipeline: behavioral strategies on information sets, tree-pass expected utility and gradient computation, first-order KKT-gap checks, and local GD/OGD/RM/RM+/PRM/PRM+ simplex updates.
+- Verified that `eval/` is method-agnostic: it reads saved optimizer artifacts from `results/optimization_results.json`, aggregates utility and convergence metrics, and writes `scoring/scores.json` without importing from `method/`.
+- Confirmed reproduced scores come from a completed expanded compact-suite run with 8 generated imperfect-recall instances, 12 random starts, 6000 iterations, and a `1e-6` convergence threshold. The regret-matching family reaches the KKT-gap target on every instance and compares favorably against GD/OGD on convergence metrics.
+- Ran `python validate.py --compare`; all scoring, import-separation, output-contract, and shared-path checks passed.
+- Completed final handoff documentation in `PROGRESS.md` and `scoring/`, including explicit primary, constraint, and ablation targets.
+
+### [2026-06-02 06:06] - core_claim
+- Re-ran `python validate.py --compare`; all checks passed and the checked-in scores still support the core claim on the compact suite.
+- Checked the paper appendix's Google Drive artifact for the original benchmark instances. The URL redirected to Google Drive download infrastructure but returned HTTP 404, so the compact generated suite remains the available reproducible benchmark.
+- Made the GD/OGD baseline runner self-contained under `baseline/` instead of importing the proposed-method solver.
+
+### [2026-06-02 06:14] - core_claim
+- Audited the scheduler entrypoint and found that `scripts/run.sh` only evaluated an existing artifact.
+- Updated `scripts/run.sh` to regenerate the compact-suite optimizer artifact via `scripts/method.sh` before running `python validate.py --compare`.
+
+### [2026-06-02 06:20] - core_claim
+- Performed final gym verification across folder structure, method-agnostic documentation, scoring coefficients, evaluator independence, train/test artifacts, and validation checks.
+- Updated evaluators so future artifact method keys are scored automatically, while retaining the documented exclusion of the unclaimed compact AMS comparator.
+- Re-ran `python validate.py --compare`; all checks passed.
+
+### [2026-11-12] - core_claim (hardening, final iteration)
+- Replaced the artifact-based evaluator (which trusted self-reported values, gaps, iterations and comparator rows) with an evaluator that runs every solver through a counted first-order oracle on hidden problems and computes every scored number itself.
+- Recovered the paper's benchmark artifact (Drive ID had been mangled): training = the paper's 20 public instances with the authors' logged runs as comparators; test = 48 hidden draws from a port of the paper's generators.
+- Ported the authors' RM/RM+/PRM/PRM+/GD/OGD/AMSGrad code; it retraces the authors' logged runs (1678/1680 identical iteration counts).
+- The paper's claim reproduces in its direction on the held-out problems (RM+ vs GD: convergence rank 3.15 vs 5.69, log10 iterations 1.22 vs 1.91, 75% vs 54% best utility). All red-team shortcuts score at most the reference; a better variant beats the reference beyond seed noise. See HARDENING.md.
 
 </details>
 
