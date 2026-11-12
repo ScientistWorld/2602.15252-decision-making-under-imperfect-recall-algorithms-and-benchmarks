@@ -1,0 +1,34 @@
+{
+ "rm_plus": {
+  "command": [
+   "python",
+   "method/solver.py",
+   "--algo",
+   "rm_plus"
+  ]
+ },
+ "gd": {
+  "command": [
+   "python",
+   "redteam/hardening/solvers.py",
+   "--kind",
+   "uniform_once"
+  ]
+ },
+ "ogd": {
+  "command": [
+   "python",
+   "redteam/hardening/solvers.py",
+   "--kind",
+   "no_query"
+  ]
+ },
+ "ams": {
+  "command": [
+   "python",
+   "redteam/hardening/solvers.py",
+   "--kind",
+   "crash"
+  ]
+ }
+}

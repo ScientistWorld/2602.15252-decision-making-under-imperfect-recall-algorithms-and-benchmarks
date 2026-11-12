@@ -1,0 +1,10 @@
+{
+ "my_method": {
+  "command": [
+   "python",
+   "redteam/hardening/solvers.py",
+   "--kind",
+   "crash"
+  ]
+ }
+}

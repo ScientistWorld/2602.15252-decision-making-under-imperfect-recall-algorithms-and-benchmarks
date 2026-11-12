@@ -1,6 +1,6 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 action: submit
 gpus: 0
-test: true
+test: false
 milestone: core_claim
-notes: "Smoke test of the hardened evaluator (oracle checks, train subset vs paper logs, 3-instance test field, shortcut cases); MODE=smoke via tmp/run_mode"
+notes: "Full hardened run: train rows vs paper logs, freeze held-out comparator field (11 configs x 24 problems), official evaluate_test, 25 variant/shortcut/noise cases, validate (resumable)"

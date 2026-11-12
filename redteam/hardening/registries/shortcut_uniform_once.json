@@ -1,0 +1,10 @@
+{
+ "rm_plus": {
+  "command": [
+   "python",
+   "redteam/hardening/solvers.py",
+   "--kind",
+   "uniform_once"
+  ]
+ }
+}

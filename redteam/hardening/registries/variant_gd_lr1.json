@@ -1,0 +1,12 @@
+{
+ "gd": {
+  "command": [
+   "python",
+   "baseline/solver.py",
+   "--algo",
+   "gd",
+   "--lr",
+   "1"
+  ]
+ }
+}
