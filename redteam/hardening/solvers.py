@@ -4,7 +4,8 @@
 
 Honest variants:  rm_plus_fallback50, rm_plus_fallback200, rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short
 Shortcuts:        uniform_once, no_query, crash, invalid_strategy, over_budget_random,
-                  forge_files, cached_train_answers, brute_force_vertices, read_hidden_files
+                  forge_files, cached_train_answers, brute_force_vertices, read_hidden_files,
+                  rm_plus_own_start, read_field_targets
 """
 from __future__ import annotations
 
@@ -218,6 +219,48 @@ def read_hidden_files(o: OracleClient) -> None:
     o.query(x)
 
 
+def rm_plus_own_start(o: OracleClient) -> None:
+    """Plain RM+, but from a start of its own instead of the one the evaluator sends.
+
+    Same algorithm as the reference; only its pairing with the comparators'
+    starting points changes.  (Before the fix the evaluator sent solvers the
+    comparators' own starts.)"""
+    rng = np.random.default_rng(777_000 + int(o.run or 0))
+    rm_plus_run(o, random_point(o, rng), o.budget, o.target_gap)
+
+
+def read_field_targets(o: OracleClient) -> None:
+    """Read the frozen comparator field to learn this problem's best known utility
+    (identified by the uniform strategy's utility), then restart RM+ until it is
+    reached.  If no field is readable, plain RM+ from the given start."""
+    target = None
+    for path in (ROOT / "eval" / "test" / "field.json", ROOT / "eval" / "train" / "field.json"):
+        try:
+            field = json.loads(path.read_text())
+        except OSError:
+            continue
+        v_uni, _ = o.query(o.expand(1.0 / np.asarray(o.sizes, dtype=float)))
+        for inst in field["instances"].values():
+            if abs(inst["uniform_value"] - v_uni) <= 1e-9 * max(1.0, abs(v_uni)):
+                vals = [v for runs in inst["configs"].values() for (_, v, g) in runs if g <= o.target_gap]
+                if vals:
+                    target = max(vals)
+                break
+        if target is not None:
+            break
+    rng = np.random.default_rng(555_000 + int(o.run or 0))
+    x, best = o.x0.copy(), None
+    while o.calls < o.budget - 1:
+        x, value, gap = rm_plus_run(o, x, o.budget - 1, o.target_gap)
+        if gap is not None and gap <= o.target_gap and (best is None or value > best[1]):
+            best = (x.copy(), value)
+        if target is None or (best is not None and best[1] >= target - 1e-4 * max(1.0, abs(target))):
+            break
+        x = random_point(o, rng)
+    if best is not None and not np.array_equal(best[0], x):
+        o.query(best[0])
+
+
 def _rm_plus_then_adaptive_gd(o: OracleClient, switch: int) -> None:
     """RM+; if it has not reached the threshold after `switch` iterations, continue
     from its current strategy with projected gradient ascent and an accept/reject
@@ -263,7 +306,8 @@ def rm_plus_fallback200(o: OracleClient) -> None:
 KINDS = {f.__name__: f for f in (
     rm_plus_restarts, rm_plus_discount, gd_adaptive, rm_plus_loose, rm_plus_short,
     uniform_once, no_query, crash, invalid_strategy, over_budget_random, forge_files,
-    cached_train_answers, brute_force_vertices, read_hidden_files, rm_plus_fallback50, rm_plus_fallback200)}
+    cached_train_answers, brute_force_vertices, read_hidden_files, rm_plus_fallback50, rm_plus_fallback200,
+    rm_plus_own_start, read_field_targets)}
 
 
 def main() -> None:

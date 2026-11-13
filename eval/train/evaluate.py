@@ -4,8 +4,10 @@
 
 Same interface and metrics as the held-out evaluation.  The problems are the
 paper's own small/medium benchmark instances (data/instances/train/), the
-starting points are the paper's (seeds 33-44), and the comparators are the
-paper's own logged runs from those starts (eval/train/field.json).
+comparators are the paper's own logged runs (eval/train/field.json, from the
+paper's starting points, seeds 33-44).  Scored solvers start from other random
+points (seeds 45-56), so that no solver is matched start-for-start with a
+comparator (as on the held-out slice).
 Solvers are discovered from scripts/solvers.json.
 """
 from __future__ import annotations
@@ -28,7 +30,8 @@ EXPERIMENT = "first_order_optimizer_aggregate"
 INSTANCES = ROOT / "data" / "instances" / "train"
 BUDGET = 6000
 TARGET_GAP = 1e-6
-START_SEEDS = list(range(33, 45))
+PAPER_SEEDS = list(range(33, 45))   # starts of the authors' logged runs (the comparators)
+START_SEEDS = list(range(45, 57))   # starts of the scored solvers
 MESSAGE_TIMEOUT = 300.0
 INSTANCE_TIMEOUT = 1200.0
 METHOD_TIMEOUT = 5400.0
@@ -38,10 +41,11 @@ def log(msg: str) -> None:
     print(msg, file=sys.stderr, flush=True)
 
 
-def evaluate(registry_path: Path, field_path: Path, only=None, cache_path=None, details_path=None):
+def evaluate(registry_path: Path, field_path: Path, only=None, cache_path=None, details_path=None, seeds=None):
     raw = json.loads(field_path.read_text())
-    if raw["budget"] != BUDGET or raw["target_gap"] != TARGET_GAP or raw["start_seeds"] != START_SEEDS:
+    if raw["budget"] != BUDGET or raw["target_gap"] != TARGET_GAP or raw["start_seeds"] != PAPER_SEEDS:
         raise ValueError("field was built with different settings")
+    seeds = seeds or START_SEEDS
     field = build_field(raw)
     registry = load_registry(registry_path, ROOT)
     methods = sorted(set(raw["families"]) | set(registry))
@@ -50,13 +54,16 @@ def evaluate(registry_path: Path, field_path: Path, only=None, cache_path=None, 
     cache = {}
     if cache_path and Path(cache_path).is_file():
         cache = json.loads(Path(cache_path).read_text())
+        if cache.get("_seeds") != list(seeds):  # records from other starting points: not reused
+            cache = {}
+    cache["_seeds"] = list(seeds)
     records = {m: {} for m in methods}
     spent = {m: 0.0 for m in methods}
     # Everything a solver could tamper with on disk is read before any solver runs.
     oracles = {inst: TreeOracle(load_instance(INSTANCES / f"{inst}.json")) for inst in sorted(field)}
     for inst in sorted(field):
         oracle = oracles[inst]
-        starts = [paper_start(oracle.sizes, s) for s in START_SEEDS]
+        starts = [paper_start(oracle.sizes, s) for s in seeds]
         for m in methods:
             key = f"{m}|{inst}"
             if key in cache:
@@ -81,7 +88,7 @@ def evaluate(registry_path: Path, field_path: Path, only=None, cache_path=None, 
                 Path(cache_path).write_text(json.dumps(cache))
     results = {m: method_metrics(m, records[m], field, BUDGET) for m in methods}
     if details_path:
-        Path(details_path).write_text(json.dumps({"seeds": START_SEEDS, "records": records}))
+        Path(details_path).write_text(json.dumps({"seeds": seeds, "records": records}))
     return results
 
 
@@ -93,9 +100,12 @@ def main() -> None:
     parser.add_argument("--only", default="", help="comma-separated subset of methods")
     parser.add_argument("--cache", default="", help="resume file for per-run records")
     parser.add_argument("--details", default="", help="write per-run records here")
+    parser.add_argument("--start-seeds", default="",
+                        help="diagnostics: comma-separated start seeds (e.g. the paper's 33-44 to retrace its logs)")
     args = parser.parse_args()
     only = {m for m in args.only.split(",") if m} or None
-    results = evaluate(Path(args.registry), Path(args.field), only, args.cache or None, args.details or None)
+    seeds = [int(x) for x in args.start_seeds.split(",") if x] or None
+    results = evaluate(Path(args.registry), Path(args.field), only, args.cache or None, args.details or None, seeds)
     scores = {"_slice": SLICE, "experiments": {EXPERIMENT: {"results": {
         m: {k: results[m][k] for k in METRICS} for m in sorted(results)}}}}
     out = Path(args.output)

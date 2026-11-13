@@ -34,7 +34,7 @@ def main() -> None:
                     diffs.append([inst, k, a["calls"], b["calls"]])
         report[m] = {"runs_compared": total, "identical": same, "examples": diffs}
         print(m, report[m])
-    out = Path(__file__).resolve().parent / "reference_rerun_agreement.json"
+    out = Path(sys.argv[3]) if len(sys.argv) > 3 else Path(__file__).resolve().parent / "reference_rerun_agreement.json"
     out.write_text(json.dumps(report, indent=1) + "\n")
 
 

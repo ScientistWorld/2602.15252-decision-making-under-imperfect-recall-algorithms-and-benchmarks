@@ -19,7 +19,8 @@ RUN_HARDENING="${RUN_HARDENING:-$(cat tmp/run_hardening 2>/dev/null || echo 0)}"
 mkdir -p results eval/test/_runs tmp
 # a killed held-out evaluation can leave the hidden-problem files unreadable
 chmod 755 eval/test/instances 2>/dev/null || true
-chmod 644 eval/test/generate_instances.py 2>/dev/null || true
+chmod 644 eval/test/generate_instances.py eval/test/field.json eval/test/build_field.py 2>/dev/null || true
+chmod 644 eval/test/field_partial.json 2>/dev/null || true
 python -c "import sys, numpy; print('python', sys.version.split()[0], 'numpy', numpy.__version__)"
 echo "nproc: $(nproc)  cpu.max: $(cat /sys/fs/cgroup/cpu.max 2>/dev/null || echo n/a)  memory.max: $(cat /sys/fs/cgroup/memory.max 2>/dev/null || echo n/a)"
 export IRTREE_EVAL_WORKERS="${IRTREE_EVAL_WORKERS:-$(python -c "import sys; sys.path.insert(0, 'eval/test'); import harness; print(harness.default_workers())")}"
@@ -32,25 +33,34 @@ stage "1. oracle checks"
 [ -f redteam/hardening/checks.json ] || python redteam/hardening/checks.py
 
 stage "2. training-slice evaluation"
+# diagnostic: every registered solver from the paper's own starts (seeds 33-44) retraces the authors' logs
 if [ ! -f results/train_details.json ]; then
-  python eval/train/evaluate.py --cache results/train_cache.json --details results/train_details.json > /dev/null
+  python eval/train/evaluate.py --start-seeds 33,34,35,36,37,38,39,40,41,42,43,44 \
+    --output results/scores_train_paperstarts.json --cache results/train_cache.json \
+    --details results/train_details.json > /dev/null
+fi
+python redteam/hardening/compare_paper_runs.py results/train_details.json
+# scored: every registered solver from the evaluator's own starts -> scoring/scores_train.json
+if [ ! -f tmp/train_rows_done ]; then
+  python eval/train/evaluate.py --cache results/train_cache_rows.json --details results/train_details_rows.json > /dev/null
+  touch tmp/train_rows_done
 fi
 cp scoring/scores_train.json scoring/scores.json
-python redteam/hardening/compare_paper_runs.py results/train_details.json
 
 stage "3. held-out problems and comparator field"
 python eval/test/generate_instances.py | awk '{print $2}' | sort | uniq -c
 python eval/test/build_field.py
 
 stage "4. held-out evaluation (reference, fresh run of every registered solver)"
-if [ ! -f eval/test/_runs/reference_details.json ] || [ ! -f tmp/reference_176_done ]; then
-  python eval/test/evaluate.py --cache tmp/reference_test_cache_176.json \
+if [ ! -f eval/test/_runs/reference_details.json ] || [ ! -f tmp/reference_done ]; then
+  python eval/test/evaluate.py --cache tmp/reference_test_cache.json \
     --details eval/test/_runs/reference_details.json > /dev/null
-  touch tmp/reference_176_done
+  touch tmp/reference_done
 fi
 cat scoring/scores_test.json
-python redteam/hardening/compare_reference_runs.py tmp/old_runs_48/reference_details_48.json \
-  eval/test/_runs/reference_details.json || true
+# determinism: the fresh rm_plus row vs an earlier rm_plus run from the same starts
+python redteam/hardening/compare_reference_runs.py tmp/rm_plus_seeds1001_details.json \
+  eval/test/_runs/reference_details.json redteam/hardening/reference_rerun_agreement.json || true
 
 if [ "$RUN_HARDENING" = 1 ]; then
   stage "5. hardening cases"

@@ -90,23 +90,23 @@ def paired_per_problem(cases, sds):
     if ref is None:
         return {}
     out = {}
-    tags = {"a": None, "b": "noise_rm_plus_seeds_b", "c": "noise_rm_plus_seeds_c", "d": "noise_rm_plus_seeds_d"}
+    tags = {"official": None, "c": "noise_rm_plus_seeds_c", "d": "noise_rm_plus_seeds_d", "e": "noise_rm_plus_seeds_e"}
     for variant, row, base_row in (("rm_plus_gd_fallback50", "rm_plus", "rm_plus"),
                                    ("rm_plus_gd_fallback200", "rm_plus", "rm_plus"),
                                    ("gd_adaptive", "gd", "gd")):
         per_set = {}
         for tag, noise_case in tags.items():
-            vname = f"better_{variant}" if tag == "a" else f"paired_{variant}_seeds_{tag}"
+            vname = f"better_{variant}" if tag == "official" else f"paired_{variant}_seeds_{tag}"
             v = _details(vname)
-            b = ref if tag == "a" else _details(noise_case)
+            b = ref if tag == "official" else _details(noise_case)
             if v is None or b is None or row not in v or base_row not in b:
                 continue
-            if tag != "a" and base_row != "rm_plus":
+            if tag != "official" and base_row != "rm_plus":
                 continue
             per_set[tag] = per_problem_delta(row, v[row], b[base_row], sds)
         if not per_set:
             continue
-        insts = sorted(per_set["a"]) if "a" in per_set else sorted(next(iter(per_set.values())))
+        insts = sorted(per_set["official"]) if "official" in per_set else sorted(next(iter(per_set.values())))
         entry = {f"seeds_{t}": bootstrap([d[i] for i in insts]) for t, d in per_set.items()}
         if len(per_set) > 1:
             pooled = [sum(d[i] for d in per_set.values()) / len(per_set) for i in insts]
@@ -118,7 +118,7 @@ def paired_per_problem(cases, sds):
         entry["by_family_mean"] = {f: sum(v) / len(v) for f, v in sorted(fam.items())}
         out[variant] = entry
     noise = {}
-    for tag in "bcd":
+    for tag in "cde":
         b = _details(f"noise_rm_plus_seeds_{tag}")
         if b is not None and "rm_plus" in b:
             noise[tag] = per_problem_delta("rm_plus", b["rm_plus"], ref["rm_plus"], sds)
@@ -131,7 +131,7 @@ def paired_per_problem(cases, sds):
 
 def main() -> None:
     cases = rows()
-    honest_names = [n for n in cases if n.startswith(("noise_", "better_", "variant_", "weaker_"))]
+    honest_names = [n for n in cases if n.startswith(("noise_", "better_", "variant_", "weaker_", "fieldstarts_"))]
     cohorts = {
         "ALL": [reference[r] for r in reference] + [m for _, m in cases.values()],
         "HONEST": [reference[r] for r in reference] + [cases[n][1] for n in honest_names],
@@ -151,7 +151,7 @@ def main() -> None:
         print(c, "rm_plus seed noise", summary[f"rm_plus_seed_noise_{c}"])
         for variant in sorted({n[len("paired_"):].rsplit("_seeds_", 1)[0] for n in cases if n.startswith("paired_")}):
             paired = {"official": summary["cases"].get(f"better_{variant}", {}).get("delta_vs_reference", {}).get(c)}
-            for tag in ("b", "c", "d"):
+            for tag in ("c", "d", "e"):
                 v = summary["cases"].get(f"paired_{variant}_seeds_{tag}")
                 r = summary["cases"].get(f"noise_rm_plus_seeds_{tag}")
                 if v and r:  # variant minus reference, both on start set <tag>

@@ -29,9 +29,14 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 
-from evaluate import BUDGET, INSTANCE_TIMEOUT, MESSAGE_TIMEOUT, START_SEEDS, TARGET_GAP  # noqa: E402
+from evaluate import BUDGET, INSTANCE_TIMEOUT, MESSAGE_TIMEOUT, TARGET_GAP  # noqa: E402
+from evaluate import START_SEEDS as SOLVER_START_SEEDS  # noqa: E402
 from harness import TreeOracle, default_workers, paper_start, run_solver, run_tasks  # noqa: E402
 
+# Starting points of the comparator runs (paper_start(sizes, seed) per problem).
+# Scored solvers start elsewhere (evaluate.START_SEEDS).
+START_SEEDS = [913452, 270118, 655307, 481926, 107733, 839214, 362580, 728491, 194067, 566812, 33159, 947205]
+assert not set(START_SEEDS) & set(SOLVER_START_SEEDS)
 _ORACLES: dict = {}
 
 

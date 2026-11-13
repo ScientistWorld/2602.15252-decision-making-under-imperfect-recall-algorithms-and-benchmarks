@@ -23,9 +23,12 @@ HERE = Path(__file__).resolve().parent
 PY = sys.executable
 REG = json.loads((ROOT / "scripts" / "solvers.json").read_text())
 S = ["python", "redteam/hardening/solvers.py", "--kind"]
-SEEDS_B = ",".join(str(1001 + i) for i in range(12))
+# The evaluator's own starts are seeds 1001-1012 (eval/*/evaluate.py).  Seed noise:
+# the same solvers from other start sets C, D, E.  FIELD: the comparators' own starts.
 SEEDS_C = ",".join(str(2001 + i) for i in range(12))
 SEEDS_D = ",".join(str(3001 + i) for i in range(12))
+SEEDS_E = ",".join(str(4001 + i) for i in range(12))
+SEEDS_FIELD = "913452,270118,655307,481926,107733,839214,362580,728491,194067,566812,33159,947205"
 
 
 def default(row):
@@ -33,21 +36,27 @@ def default(row):
 
 
 # name: (slice, {row: command or None}, extra evaluator args); listed in priority order
+F50, F200 = S + ["rm_plus_fallback50"], S + ["rm_plus_fallback200"]
 CASES = {
-    # seed noise of the reference (different fixed starting points, same problems)
-    "noise_rm_plus_seeds_b": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_B]),
+    # seed noise of the reference (other fixed starting points, same problems)
     "noise_rm_plus_seeds_c": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_C]),
     "noise_rm_plus_seeds_d": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_D]),
-    # the better variant, official and paired on the alternative start sets
-    "better_rm_plus_gd_fallback50": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, []),
-    "paired_rm_plus_gd_fallback50_seeds_b": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, ["--start-seeds", SEEDS_B]),
-    "paired_rm_plus_gd_fallback50_seeds_c": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, ["--start-seeds", SEEDS_C]),
-    "paired_rm_plus_gd_fallback50_seeds_d": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, ["--start-seeds", SEEDS_D]),
+    "noise_rm_plus_seeds_e": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_E]),
+    # the better variant, official and paired on the other start sets
+    "better_rm_plus_gd_fallback50": ("test", {"rm_plus": F50}, []),
+    "paired_rm_plus_gd_fallback50_seeds_c": ("test", {"rm_plus": F50}, ["--start-seeds", SEEDS_C]),
+    "paired_rm_plus_gd_fallback50_seeds_d": ("test", {"rm_plus": F50}, ["--start-seeds", SEEDS_D]),
+    "paired_rm_plus_gd_fallback50_seeds_e": ("test", {"rm_plus": F50}, ["--start-seeds", SEEDS_E]),
+    # the reference from the comparators' own starts (how the test worked before this fix)
+    "fieldstarts_rm_plus": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_FIELD]),
+    "fieldstarts_rm_plus_gd_fallback50": ("test", {"rm_plus": F50}, ["--start-seeds", SEEDS_FIELD]),
     # the paper's effect: GD row, its seed noise and better/other GD variants
-    "noise_gd_seeds_b": ("test", {"gd": default("gd")}, ["--start-seeds", SEEDS_B]),
+    "noise_gd_seeds_c": ("test", {"gd": default("gd")}, ["--start-seeds", SEEDS_C]),
     "better_gd_adaptive": ("test", {"gd": S + ["gd_adaptive"]}, []),
     "variant_gd_lr1": ("test", {"gd": ["python", "baseline/solver.py", "--algo", "gd", "--lr", "1"]}, []),
     # shortcuts, each submitted as the rm_plus row
+    "shortcut_own_start": ("test", {"rm_plus": S + ["rm_plus_own_start"]}, []),
+    "shortcut_read_field_targets": ("test", {"rm_plus": S + ["read_field_targets"]}, []),
     "shortcut_uniform_once": ("test", {"rm_plus": S + ["uniform_once"]}, []),
     "shortcut_no_query": ("test", {"rm_plus": S + ["no_query"]}, []),
     "shortcut_crash": ("test", {"rm_plus": S + ["crash"]}, []),
@@ -59,23 +68,25 @@ CASES = {
     "shortcut_degrade_comparators": ("test", {"rm_plus": default("rm_plus"), "gd": S + ["uniform_once"],
                                               "ogd": S + ["no_query"], "ams": S + ["crash"]}, []),
     "shortcut_extra_raising_method": ("test", {"my_method": S + ["crash"]}, []),
+    # training-slice contrasts (training files are public by design)
+    "shortcut_read_field_targets_on_train": ("train", {"rm_plus": S + ["read_field_targets"]}, []),
+    "shortcut_cached_train_answers_on_train": ("train", {"rm_plus": S + ["cached_train_answers"]}, []),
+    "shortcut_read_hidden_files_on_train": ("train", {"rm_plus": S + ["read_hidden_files"]}, []),
     "shortcut_brute_force_vertices": ("test", {"rm_plus": S + ["brute_force_vertices"]}, []),
     # other honest variants
-    "better_rm_plus_gd_fallback200": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, []),
+    "better_rm_plus_gd_fallback200": ("test", {"rm_plus": F200}, []),
     "better_gd_adaptive_as_rm_plus": ("test", {"rm_plus": S + ["gd_adaptive"]}, []),
     "variant_prm_plus_as_rm_plus": ("test", {"rm_plus": default("prm_plus")}, []),
-    "better_rm_plus_restarts": ("test", {"rm_plus": S + ["rm_plus_restarts"]}, []),
     "variant_rm_plus_discount": ("test", {"rm_plus": S + ["rm_plus_discount"]}, []),
     "weaker_rm_plus_loose_threshold": ("test", {"rm_plus": S + ["rm_plus_loose"]}, []),
     "weaker_rm_plus_100_iterations": ("test", {"rm_plus": S + ["rm_plus_short"]}, []),
-    "paired_rm_plus_gd_fallback200_seeds_b": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_B]),
-    "paired_rm_plus_gd_fallback200_seeds_c": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_C]),
-    "paired_rm_plus_gd_fallback200_seeds_d": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_D]),
+    "better_rm_plus_restarts": ("test", {"rm_plus": S + ["rm_plus_restarts"]}, []),
+    "paired_rm_plus_gd_fallback200_seeds_c": ("test", {"rm_plus": F200}, ["--start-seeds", SEEDS_C]),
+    "paired_rm_plus_gd_fallback200_seeds_d": ("test", {"rm_plus": F200}, ["--start-seeds", SEEDS_D]),
     "shortcut_over_budget_random": ("test", {"rm_plus": S + ["over_budget_random"]}, []),
-    # training-slice contrasts (the training slice did not change; scores kept from the 48-problem run)
-    "shortcut_cached_train_answers_on_train": ("train", {"rm_plus": S + ["cached_train_answers"]}, []),
-    "shortcut_read_hidden_files_on_train": ("train", {"rm_plus": S + ["read_hidden_files"]}, []),
 }
+
+OFFICIAL_SEEDS = {"test": list(range(1001, 1013)), "train": list(range(45, 57))}
 
 PROTECT = ["eval/test/instances", "eval/test/field.json", "eval/train/field.json", "data/instances/train",
            "scripts/solvers.json", "scoring"]
@@ -109,8 +120,8 @@ def restore(src: Path) -> None:
 
 
 # run only when named explicitly (budget enforcement and the fallback-200 pairing do not depend on test size)
-OPTIONAL = {"shortcut_over_budget_random", "paired_rm_plus_gd_fallback200_seeds_b",
-            "paired_rm_plus_gd_fallback200_seeds_c", "paired_rm_plus_gd_fallback200_seeds_d"}
+OPTIONAL = {"shortcut_over_budget_random", "paired_rm_plus_gd_fallback200_seeds_c",
+            "paired_rm_plus_gd_fallback200_seeds_d"}
 
 
 def main() -> None:
@@ -137,9 +148,13 @@ def main() -> None:
         details = runs_dir / f"{name}{tag}.json"
         cache = ROOT / "tmp" / "case_cache" / f"{name}{tag}.json"
         cache.parent.mkdir(parents=True, exist_ok=True)
+        want_seeds = ([int(x) for x in extra[extra.index("--start-seeds") + 1].split(",")]
+                      if "--start-seeds" in extra else OFFICIAL_SEEDS[slice_])
         if not cache.is_file() and details.is_file():  # resume from an earlier run's per-run records
-            recs = json.loads(details.read_text())["records"]
-            cache.write_text(json.dumps({f"{m}|{i}": v for m, per in recs.items() for i, v in per.items()}))
+            old = json.loads(details.read_text())
+            if old.get("seeds") == want_seeds:  # only records from the same starting points
+                entries = {f"{m}|{i}": v for m, per in old["records"].items() for i, v in per.items() if m in rows}
+                cache.write_text(json.dumps({"_seeds": want_seeds, **entries}))
         cmd = [PY, f"eval/{slice_}/evaluate.py", "--registry", str(reg_path.relative_to(ROOT)),
                "--only", ",".join(rows), "--output", str(out.relative_to(ROOT)),
                "--details", str(details.relative_to(ROOT)), "--cache", str(cache.relative_to(ROOT))] + extra

@@ -30,7 +30,11 @@ SLICE = "test"
 EXPERIMENT = "first_order_optimizer_aggregate"
 BUDGET = 6000
 TARGET_GAP = 1e-6
-START_SEEDS = [913452, 270118, 655307, 481926, 107733, 839214, 362580, 728491, 194067, 566812, 33159, 947205]
+# Starting points of the scored solvers (paper_start(sizes, seed) per problem).  They
+# differ from the starting points the frozen comparators were run from (stored in
+# field.json), so no solver is matched start-for-start with a comparator: otherwise a
+# solver could change its ranks by using or ignoring the start it is given.
+START_SEEDS = list(range(1001, 1013))
 MESSAGE_TIMEOUT = 300.0      # one solver step
 INSTANCE_TIMEOUT = 1800.0    # one solver on one problem (12 starts in lockstep)
 METHOD_TIME_PER_PROBLEM = 45.0  # one solver on all problems: 45 s x number of problems
@@ -46,11 +50,13 @@ def log(msg: str) -> None:
 
 def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache_path=None, details_path=None,
              workers=None):
+    _set_hidden(False)  # a killed earlier evaluation may have left the hidden files unreadable
     raw = json.loads(field_path.read_text())
     if raw["budget"] != BUDGET or raw["target_gap"] != TARGET_GAP:
         raise ValueError("field was built with a different budget or threshold")
     field = build_field(raw)
     seeds = seeds or START_SEEDS
+    field_seeds = raw.get("start_seeds") or []
     registry = load_registry(registry_path, ROOT)
     methods = sorted(set(raw["families"]) | set(registry))
     if only:
@@ -58,6 +64,9 @@ def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache
     cache = {}
     if cache_path and Path(cache_path).is_file():
         cache = json.loads(Path(cache_path).read_text())
+        if cache.get("_seeds") != list(seeds):  # records from other starting points: not reused
+            cache = {}
+    cache["_seeds"] = list(seeds)
     records = {m: {} for m in methods}
     spent = {m: 0.0 for m in methods}
     # Everything a solver could tamper with on disk is read before any solver runs,
@@ -74,7 +83,7 @@ def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache
     _set_hidden(True)
     try:
         _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent,
-                 workers or default_workers())
+                 workers or default_workers(), field_seeds)
     finally:
         _set_hidden(False)
     results = {m: method_metrics(m, records[m], field, BUDGET) for m in methods}
@@ -83,7 +92,11 @@ def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache
     return results
 
 
-HIDDEN = (("instances", 0o755), ("generate_instances.py", 0o644))
+# Files that hold or regenerate the hidden problems, or reveal per-problem results of
+# the comparators (best known utilities) or their starting points: unreadable while
+# solvers run.
+HIDDEN = (("instances", 0o755), ("generate_instances.py", 0o644), ("field.json", 0o644),
+          ("field_partial.json", 0o644), ("build_field.py", 0o644))
 
 
 def _set_hidden(hidden: bool) -> None:
@@ -95,6 +108,7 @@ def _set_hidden(hidden: bool) -> None:
 
 
 _ORACLES: dict = {}  # filled before worker processes are forked
+_FIELD_SEEDS: list = []
 
 
 def _work(task):
@@ -106,9 +120,10 @@ def _work(task):
     return recs, time.monotonic() - t0
 
 
-def _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent, workers) -> None:
-    global _ORACLES
-    _ORACLES = oracles
+def _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent, workers,
+             field_seeds=()) -> None:
+    global _ORACLES, _FIELD_SEEDS
+    _ORACLES, _FIELD_SEEDS = oracles, list(field_seeds)
     limit = METHOD_TIME_PER_PROBLEM * len(field) * workers
     tasks = []
     for inst in sorted(field, key=lambda i: (-oracles[i].n, i)):  # large problems first
@@ -120,7 +135,8 @@ def _run_all(field, methods, registry, oracles, seeds, cache, cache_path, record
                 records[m][inst] = failed_records(len(seeds), "no solver registered under this name")
             else:
                 tasks.append((m, inst, registry[m], seeds))
-    log(f"[{SLICE}] {len(tasks)} solver x problem tasks on {workers} worker(s)")
+    log(f"[{SLICE}] {len(tasks)} solver x problem tasks on {workers} worker(s)"
+        + (" [starts shared with the comparator field: diagnostics only]" if set(seeds) & set(_FIELD_SEEDS) else ""))
 
     def skip(task):
         if spent[task[0]] > limit:
