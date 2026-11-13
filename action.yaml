@@ -1,4 +1,8 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
-action: done
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends.
+action: submit
+gpus: 0
+test: false
 milestone: core_claim
-notes: "Hardened: solvers run through a counted oracle on 48 hidden paper-generator problems; paper's own train instances/runs; all shortcuts closed (<= reference); better variant beats reference beyond noise; see HARDENING.md"
+notes: "Hardening: generate 128 new held-out problems (176 total), freeze their comparator field, fresh reference run of all 7 registered solvers on the enlarged test, then seed-noise / paired better-variant / shortcut cases and summary. Parallel over available CPUs; resumable."
