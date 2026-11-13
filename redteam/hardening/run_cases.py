@@ -108,9 +108,14 @@ def restore(src: Path) -> None:
         forged.unlink()
 
 
+# run only when named explicitly (budget enforcement and the fallback-200 pairing do not depend on test size)
+OPTIONAL = {"shortcut_over_budget_random", "paired_rm_plus_gd_fallback200_seeds_b",
+            "paired_rm_plus_gd_fallback200_seeds_c", "paired_rm_plus_gd_fallback200_seeds_d"}
+
+
 def main() -> None:
     import os
-    wanted = sys.argv[1:] or list(CASES)
+    wanted = sys.argv[1:] or [c for c in CASES if c not in OPTIONAL]
     tag = os.environ.get("HARDENING_TAG", "")
     field = os.environ.get("HARDENING_FIELD", "")
     scores_dir = HERE / ("scores" + (f"_{tag}" if tag else ""))

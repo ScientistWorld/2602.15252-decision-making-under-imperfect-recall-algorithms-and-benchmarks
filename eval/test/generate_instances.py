@@ -261,6 +261,22 @@ class Builder:
 
 
 # ------------------------------------------------------------------------- simulation
+def fsum12(values) -> float:
+    """Float sum exactly as Python >= 3.12's built-in sum() (Neumaier compensation), so the
+    stored instances (generated under 3.12) regenerate byte for byte under any Python 3."""
+    total = comp = 0.0
+    for x in values:
+        t = total + x
+        if abs(total) >= abs(x):
+            comp += (total - t) + x
+        else:
+            comp += (x - t) + total
+        total = t
+    if comp and math.isfinite(comp):
+        total += comp
+    return total
+
+
 def multinom(counts: list[int]) -> int:
     out = math.factorial(sum(counts))
     for c in counts:
@@ -296,7 +312,7 @@ def simulation_game(rng: random.Random, size: str, i: int, name: str) -> dict:
         return b.new(kind="player", infoset=inf_id, children=children)
 
     def real_leaf(history, mult):
-        return leaf(sum(rewards[s][a] for s, a in history) * mult)
+        return leaf(fsum12(rewards[s][a] for s, a in history) * mult)
 
     def real_chance(history, counts, mult):
         rest = scn[history[-1][0]:]
