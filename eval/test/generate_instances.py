@@ -72,6 +72,136 @@ SPECS = [
     ("simulation", "b", 2, 0xC541A96D9ED5),
     ("simulation", "b", 3, 0xBC629F22C13B),
     ("simulation", "b", 3, 0x8D5E3D4F3103),
+    # third batch (test enlarged from 48 to 176 problems, weighted toward the
+    # largest preset of each family; see HARDENING.md)
+    ("detection", "a", 1, 0x22D84E1B9111),
+    ("detection", "a", 2, 0x884FB27E4DBE),
+    ("detection", "a", 1, 0x08ECE27DD3A0),
+    ("detection", "a", 2, 0xE68C4B475FA3),
+    ("detection", "b", 1, 0x0A36238613A2),
+    ("detection", "b", 2, 0x272FAA335B70),
+    ("detection", "b", 3, 0x80EA7B663B35),
+    ("detection", "b", 1, 0xC028C3D4B3C8),
+    ("detection", "b", 2, 0x4BB6C52E3BE8),
+    ("detection", "b", 3, 0x2295D9905425),
+    ("detection", "b", 1, 0xA93E528F6673),
+    ("detection", "b", 2, 0xECE2964924FA),
+    ("detection", "b", 3, 0x763FADF7CDB6),
+    ("detection", "b", 1, 0x2326A5BDFE95),
+    ("detection", "c", 1, 0x3886FBB5F219),
+    ("detection", "c", 2, 0xB4CB9979A6B4),
+    ("detection", "c", 3, 0x1B5C12DACB50),
+    ("detection", "c", 1, 0xA2ADD64300C6),
+    ("detection", "c", 2, 0x84B32B846046),
+    ("detection", "c", 3, 0xE5FC858DF993),
+    ("detection", "c", 1, 0x05DC531DEEE7),
+    ("detection", "c", 2, 0xFA9200DEE0B8),
+    ("detection", "c", 3, 0xD5A904B5FE26),
+    ("detection", "c", 1, 0x4545AF049B61),
+    ("detection", "c", 2, 0xD92FBBF69BC9),
+    ("detection", "c", 3, 0xF2B17E314BC7),
+    ("detection", "c", 1, 0xCAC03CB9EDD2),
+    ("detection", "c", 2, 0x9A600D30D3F0),
+    ("detection", "c", 3, 0xE2BCE8528B1C),
+    ("detection", "c", 1, 0xBA340579BA80),
+    ("detection", "c", 2, 0xE7B47972A413),
+    ("detection", "c", 3, 0x2E10FDA195AC),
+    ("detection", "c", 1, 0x2632A3E3EA7F),
+    ("detection", "c", 2, 0x8CCD1C3D23A2),
+    ("detection", "c", 3, 0x8F5F9FF0EF04),
+    ("detection", "c", 1, 0x4FC233067433),
+    ("detection", "c", 2, 0xA0D056858564),
+    ("detection", "c", 3, 0x2D10B1B00167),
+    ("detection", "c", 1, 0x5C390F7B56BA),
+    ("detection", "c", 2, 0x341680521F2E),
+    ("detection", "c", 3, 0x4D4D7B472C9D),
+    ("detection", "c", 1, 0xAA2BF350D933),
+    ("detection", "c", 2, 0x700621546200),
+    ("detection", "c", 3, 0x4C8EBD0A80D5),
+    ("detection", "c", 1, 0xC2BB4051FB28),
+    ("detection", "c", 2, 0x5DFA1E6F2E59),
+    ("detection", "c", 3, 0xE57598B4F440),
+    ("detection", "c", 1, 0xCCE8C8D3CEA2),
+    ("detection", "c", 2, 0x88E9393109FA),
+    ("detection", "c", 3, 0xA6D0B5215BF4),
+    ("detection", "c", 1, 0x45B55A8FC85F),
+    ("detection", "c", 2, 0x3A4C9C610124),
+    ("detection", "c", 3, 0x4715F0CB8CB0),
+    ("detection", "c", 1, 0x66B033015855),
+    ("random", "a", 1, 0x0851D2289D89),
+    ("random", "a", 2, 0xD676D64E3A46),
+    ("random", "a", 3, 0xAD2BF7565591),
+    ("random", "a", 1, 0x7080D08989C5),
+    ("random", "a", 2, 0x2BD4051211E5),
+    ("random", "a", 3, 0xCCA95193B19B),
+    ("random", "a", 1, 0x9D79C082B481),
+    ("random", "a", 2, 0x3C94FB93E3EF),
+    ("random", "a", 3, 0x92341BEC15B3),
+    ("random", "a", 1, 0x87A2D32BFFE3),
+    ("random", "a", 2, 0x687EF7DDAA44),
+    ("random", "a", 3, 0x36B72144029E),
+    ("random", "a", 1, 0xAB39CA8B7CAC),
+    ("random", "a", 2, 0x5A6E836E3F89),
+    ("random", "a", 3, 0x57F7126C7707),
+    ("random", "a", 1, 0x23A07A012413),
+    ("random", "b", 1, 0x6D24AFFF4AC0),
+    ("random", "b", 2, 0x2DA67D505B81),
+    ("random", "b", 3, 0x5DCBD12929DA),
+    ("random", "b", 1, 0xED46B29BFBA1),
+    ("random", "b", 2, 0x6C7AE784817F),
+    ("random", "b", 3, 0xF0B2FEC568D1),
+    ("random", "b", 1, 0xA4EFEE6DCF44),
+    ("random", "b", 2, 0x886866DE51F1),
+    ("random", "b", 3, 0x1367A642869C),
+    ("random", "b", 1, 0x02DC08C30208),
+    ("random", "b", 2, 0x85BC4BDA8E4E),
+    ("random", "b", 3, 0x1F8BFF2A7C1C),
+    ("random", "b", 1, 0x04D27A00D539),
+    ("random", "b", 2, 0x56157FF1679A),
+    ("random", "b", 3, 0xD3A2D1EBAD4F),
+    ("random", "b", 1, 0x70525E3B7917),
+    ("simulation", "a", 1, 0x9CE19DF8B431),
+    ("simulation", "a", 2, 0x2267DBB3E1A0),
+    ("simulation", "b", 1, 0xE57592A905F6),
+    ("simulation", "b", 2, 0x6D3228F2A688),
+    ("simulation", "b", 3, 0xA3745376B46A),
+    ("simulation", "b", 1, 0xC8016EC829D1),
+    ("simulation", "b", 2, 0xCD7706145A35),
+    ("simulation", "b", 3, 0x682DFE520B34),
+    ("simulation", "b", 1, 0x2271EE18A4FB),
+    ("simulation", "b", 2, 0xE9E548D4C7F4),
+    ("simulation", "b", 3, 0xA0293CE13CC2),
+    ("simulation", "b", 1, 0xD8E889779C7D),
+    ("simulation", "b", 2, 0x3C69E924E2C0),
+    ("simulation", "b", 3, 0xA1495405F4AF),
+    ("simulation", "b", 1, 0xD816D6402232),
+    ("simulation", "b", 2, 0xC091A5245530),
+    ("simulation", "b", 3, 0x2A198DEFF3DB),
+    ("simulation", "b", 1, 0xBCA1F5097FCC),
+    ("simulation", "b", 2, 0x8327C38B2330),
+    ("simulation", "b", 3, 0xB196C183C841),
+    ("simulation", "b", 1, 0x5B3796CDD49D),
+    ("simulation", "b", 2, 0xCBD48BC9BF92),
+    ("simulation", "b", 3, 0xFF7E7F522A68),
+    ("simulation", "b", 1, 0xDA874446D34C),
+    ("simulation", "b", 2, 0x02537B437745),
+    ("simulation", "b", 3, 0x4686B1A35BCA),
+    ("simulation", "b", 1, 0x41B1DC2C31EE),
+    ("simulation", "b", 2, 0x32C530C0304C),
+    ("simulation", "b", 3, 0xE9803512AF0B),
+    ("simulation", "b", 1, 0x3252CB39D77B),
+    ("simulation", "b", 2, 0x709F4E87E2B0),
+    ("simulation", "b", 3, 0x1D8AB7F40B78),
+    ("simulation", "b", 1, 0xC13EEACAB04C),
+    ("simulation", "b", 2, 0x5FF4B7C0AF6B),
+    ("simulation", "b", 3, 0x11F7F39192B1),
+    ("simulation", "b", 1, 0x0C5531F42C77),
+    ("simulation", "b", 2, 0x9F42174B1F31),
+    ("simulation", "b", 3, 0x8E21C1399CFB),
+    ("simulation", "b", 1, 0xDEC51BB4BA0D),
+    ("simulation", "b", 2, 0x9BEC5F06C638),
+    ("simulation", "b", 3, 0x1F58D5513A7D),
+    ("simulation", "b", 1, 0xDB3DF84B1B3D),
 ]
 
 SIZES = {"a": 1e3, "b": 1e4, "c": 1e5}
@@ -394,16 +524,30 @@ def generate(family: str, size: str, i: int, seed: int, name: str) -> dict:
 
 
 def main() -> None:
+    """Write missing instances; existing files are regenerated in memory and must match byte for byte
+    (the frozen comparator field refers to them)."""
+    import sys
     out = HERE / "instances"
     out.mkdir(exist_ok=True)
     counts: dict = {}
+    mismatched = []
     for family, size, i, seed in SPECS:
         counts[(family, size)] = counts.get((family, size), 0) + 1
         name = f"{family}_{size}{counts[(family, size)]}"
         game = generate(family, size, i, seed, name)
-        (out / f"{name}.json").write_text(json.dumps(game, separators=(",", ":")))
-        print(name, len(game["parent"]), "nodes", len(game["infoset_sizes"]), "infosets",
-              sum(game["infoset_sizes"]), "dims")
+        text = json.dumps(game, separators=(",", ":"))
+        path = out / f"{name}.json"
+        if path.is_file():
+            status = "kept" if path.read_text() == text else "MISMATCH"
+            if status == "MISMATCH":
+                mismatched.append(name)
+        else:
+            path.write_text(text)
+            status = "written"
+        print(name, status, len(game["parent"]), "nodes", len(game["infoset_sizes"]), "infosets",
+              sum(game["infoset_sizes"]), "dims", flush=True)
+    if mismatched:
+        sys.exit(f"stored instances differ from the generator: {mismatched}")
 
 
 if __name__ == "__main__":

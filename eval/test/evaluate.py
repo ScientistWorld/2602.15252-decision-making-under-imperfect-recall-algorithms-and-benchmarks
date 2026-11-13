@@ -12,6 +12,7 @@ to disk is read.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -22,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 
-from harness import TreeOracle, load_instance, load_registry, paper_start, run_solver  # noqa: E402
+from harness import TreeOracle, default_workers, load_registry, paper_start, run_solver, run_tasks  # noqa: E402
 from metrics import METRICS, build_field, failed_records, method_metrics  # noqa: E402
 
 SLICE = "test"
@@ -30,16 +31,21 @@ EXPERIMENT = "first_order_optimizer_aggregate"
 BUDGET = 6000
 TARGET_GAP = 1e-6
 START_SEEDS = [913452, 270118, 655307, 481926, 107733, 839214, 362580, 728491, 194067, 566812, 33159, 947205]
-MESSAGE_TIMEOUT = 300.0
-INSTANCE_TIMEOUT = 1200.0
-METHOD_TIMEOUT = 5400.0
+MESSAGE_TIMEOUT = 300.0      # one solver step
+INSTANCE_TIMEOUT = 1800.0    # one solver on one problem (12 starts in lockstep)
+METHOD_TIME_PER_PROBLEM = 45.0  # one solver on all problems: 45 s x number of problems
+# These are hard failure limits for runaway solvers, not metrics.  The slowest
+# reference solver (OGD, step 0.01) needs about 24 s per problem on one CPU.
+# With W parallel workers the per-solver limit applies to wall time summed over
+# its tasks divided by W.
 
 
 def log(msg: str) -> None:
     print(msg, file=sys.stderr, flush=True)
 
 
-def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache_path=None, details_path=None):
+def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache_path=None, details_path=None,
+             workers=None):
     raw = json.loads(field_path.read_text())
     if raw["budget"] != BUDGET or raw["target_gap"] != TARGET_GAP:
         raise ValueError("field was built with a different budget or threshold")
@@ -58,10 +64,17 @@ def evaluate(registry_path: Path, field_path: Path, only=None, seeds=None, cache
     # and the files that hold or regenerate the hidden problems are made
     # unreadable while solvers run (solvers only get the counted oracle).
     _set_hidden(False)
-    oracles = {inst: TreeOracle(load_instance(HERE / "instances" / f"{inst}.json")) for inst in sorted(field)}
+    oracles = {}
+    for inst in sorted(field):
+        data = (HERE / "instances" / f"{inst}.json").read_bytes()
+        want = raw["instances"][inst].get("sha256")
+        if want and hashlib.sha256(data).hexdigest() != want:
+            raise ValueError(f"instance {inst} differs from the one the comparator field was built on")
+        oracles[inst] = TreeOracle(json.loads(data))
     _set_hidden(True)
     try:
-        _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent)
+        _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent,
+                 workers or default_workers())
     finally:
         _set_hidden(False)
     results = {m: method_metrics(m, records[m], field, BUDGET) for m in methods}
@@ -81,32 +94,53 @@ def _set_hidden(hidden: bool) -> None:
             pass  # e.g. a read-only mount
 
 
-def _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent) -> None:
-    for inst in sorted(field):
-        oracle = oracles[inst]
-        starts = [paper_start(oracle.sizes, s) for s in seeds]
+_ORACLES: dict = {}  # filled before worker processes are forked
+
+
+def _work(task):
+    method, inst, command, seeds = task
+    oracle = _ORACLES[inst]
+    starts = [paper_start(oracle.sizes, s) for s in seeds]
+    t0 = time.monotonic()
+    recs = run_solver(command, oracle, starts, BUDGET, TARGET_GAP, ROOT, MESSAGE_TIMEOUT, INSTANCE_TIMEOUT)
+    return recs, time.monotonic() - t0
+
+
+def _run_all(field, methods, registry, oracles, seeds, cache, cache_path, records, spent, workers) -> None:
+    global _ORACLES
+    _ORACLES = oracles
+    limit = METHOD_TIME_PER_PROBLEM * len(field) * workers
+    tasks = []
+    for inst in sorted(field, key=lambda i: (-oracles[i].n, i)):  # large problems first
         for m in methods:
             key = f"{m}|{inst}"
             if key in cache:
                 records[m][inst] = cache[key]
-                continue
-            if m not in registry:
-                recs = failed_records(len(starts), "no solver registered under this name")
-            elif spent[m] > METHOD_TIMEOUT:
-                recs = failed_records(len(starts), "method time limit exhausted")
+            elif m not in registry:
+                records[m][inst] = failed_records(len(seeds), "no solver registered under this name")
             else:
-                t0 = time.monotonic()
-                recs = run_solver(registry[m], oracle, starts, BUDGET, TARGET_GAP, ROOT,
-                                  MESSAGE_TIMEOUT, INSTANCE_TIMEOUT)
-                spent[m] += time.monotonic() - t0
-                log(f"[{SLICE}] {inst:16s} {m:24s} {time.monotonic() - t0:7.1f}s "
-                    f"solved {sum(r['converged'] for r in recs)}/{len(recs)} "
-                    f"failed {sum(r['failed'] for r in recs)} "
-                    f"iters {sorted(r['calls'] for r in recs)[len(recs) // 2]}")
-            records[m][inst] = recs
-            if cache_path:
-                cache[key] = recs
-                Path(cache_path).write_text(json.dumps(cache))
+                tasks.append((m, inst, registry[m], seeds))
+    log(f"[{SLICE}] {len(tasks)} solver x problem tasks on {workers} worker(s)")
+
+    def skip(task):
+        if spent[task[0]] > limit:
+            return failed_records(len(seeds), "method time limit exhausted"), 0.0
+        return None
+
+    def on_done(task, result):
+        m, inst = task[0], task[1]
+        recs, secs = result
+        spent[m] += secs
+        records[m][inst] = recs
+        log(f"[{SLICE}] {inst:16s} {m:24s} {secs:7.1f}s "
+            f"solved {sum(r['converged'] for r in recs)}/{len(recs)} "
+            f"failed {sum(r['failed'] for r in recs)} "
+            f"iters {sorted(r['calls'] for r in recs)[len(recs) // 2]}")
+        if cache_path:
+            cache[f"{m}|{inst}"] = recs
+            Path(cache_path).write_text(json.dumps(cache))
+
+    run_tasks(tasks, _work, workers, on_done, skip)
 
 
 def main() -> None:
@@ -118,10 +152,13 @@ def main() -> None:
     parser.add_argument("--start-seeds", default="", help="diagnostics: comma-separated start seeds")
     parser.add_argument("--cache", default="", help="diagnostics: resume file for per-run records")
     parser.add_argument("--details", default="", help="diagnostics: write per-run records here")
+    parser.add_argument("--workers", type=int, default=0,
+                        help="parallel solver x problem tasks (default: one per available CPU)")
     args = parser.parse_args()
     only = {m for m in args.only.split(",") if m} or None
     seeds = [int(s) for s in args.start_seeds.split(",") if s] or None
-    results = evaluate(Path(args.registry), Path(args.field), only, seeds, args.cache or None, args.details or None)
+    results = evaluate(Path(args.registry), Path(args.field), only, seeds, args.cache or None, args.details or None,
+                       args.workers or None)
     scores = {"_slice": SLICE, "experiments": {EXPERIMENT: {"results": {
         m: {k: results[m][k] for k in METRICS} for m in sorted(results)}}}}
     out = Path(args.output)

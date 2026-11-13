@@ -5,43 +5,31 @@
 #   1. oracle correctness checks (vs a pure-Python evaluator and the paper's logs)
 #   2. every registered solver on the training problems -> scoring/scores_train.json
 #      (+ run-by-run comparison with the authors' logged runs)
-#   3. the held-out comparator field (only if eval/test/field.json is missing)
+#   3. the held-out problems (written only if missing; stored ones must regenerate
+#      byte for byte) and their frozen comparator field (only missing problems run)
 #   4. every registered solver on the held-out problems -> scoring/scores_test.json
 #   5. (RUN_HARDENING=1) variant / shortcut / seed-noise cases -> redteam/hardening/
 #   6. python validate.py --compare
-# Stages resume from their outputs if the job is restarted.  MODE=smoke runs a
-# short version on three held-out problems (outputs under tmp/).
+# Stages resume from their outputs if the job is restarted.  Solver x problem
+# tasks run in parallel on the available CPUs (IRTREE_EVAL_WORKERS overrides).
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-MODE="${MODE:-$(cat tmp/run_mode 2>/dev/null || echo full)}"
-RUN_HARDENING="${RUN_HARDENING:-0}"
+RUN_HARDENING="${RUN_HARDENING:-$(cat tmp/run_hardening 2>/dev/null || echo 0)}"
 mkdir -p results eval/test/_runs tmp
 # a killed held-out evaluation can leave the hidden-problem files unreadable
 chmod 755 eval/test/instances 2>/dev/null || true
 chmod 644 eval/test/generate_instances.py 2>/dev/null || true
 python -c "import sys, numpy; print('python', sys.version.split()[0], 'numpy', numpy.__version__)"
-echo "cpus: $(nproc)  mode: $MODE  start: $(date)"
+echo "nproc: $(nproc)  cpu.max: $(cat /sys/fs/cgroup/cpu.max 2>/dev/null || echo n/a)  memory.max: $(cat /sys/fs/cgroup/memory.max 2>/dev/null || echo n/a)"
+export IRTREE_EVAL_WORKERS="${IRTREE_EVAL_WORKERS:-$(python -c "import sys; sys.path.insert(0, 'eval/test'); import harness; print(harness.default_workers())")}"
+echo "evaluator workers (measured parallelism): $IRTREE_EVAL_WORKERS"
+echo "start: $(date)"
 
 stage() { echo; echo "=== $1  ($(date +%H:%M:%S))"; }
 
 stage "1. oracle checks"
 [ -f redteam/hardening/checks.json ] || python redteam/hardening/checks.py
-
-if [ "$MODE" = smoke ]; then
-  stage "2s. train evaluation (subset)"
-  python eval/train/evaluate.py --only rm_plus,prm_plus,gd,ams --output tmp/smoke_scores_train.json \
-    --cache tmp/smoke_train_cache.json --details tmp/smoke_train_details.json > /dev/null
-  python redteam/hardening/compare_paper_runs.py tmp/smoke_train_details.json
-  stage "3s. comparator field on three held-out problems"
-  python eval/test/build_field.py --instances detection_b1,random_a2,simulation_b3 \
-    --output tmp/field_smoke.json --partial tmp/field_smoke_partial.json
-  stage "4s. held-out evaluation on the smoke field"
-  python eval/test/evaluate.py --field tmp/field_smoke.json --output tmp/smoke_scores_test.json
-  cat tmp/smoke_scores_test.json
-  echo "smoke done: $(date)"
-  exit 0
-fi
 
 stage "2. training-slice evaluation"
 if [ ! -f results/train_details.json ]; then
@@ -50,15 +38,19 @@ fi
 cp scoring/scores_train.json scoring/scores.json
 python redteam/hardening/compare_paper_runs.py results/train_details.json
 
-stage "3. held-out comparator field"
-[ -f eval/test/field.json ] || python eval/test/build_field.py
+stage "3. held-out problems and comparator field"
+python eval/test/generate_instances.py | awk '{print $2}' | sort | uniq -c
+python eval/test/build_field.py
 
-stage "4. held-out evaluation (reference)"
-if [ ! -f eval/test/_runs/reference_details.json ]; then
-  python eval/test/evaluate.py --cache tmp/reference_test_cache.json \
+stage "4. held-out evaluation (reference, fresh run of every registered solver)"
+if [ ! -f eval/test/_runs/reference_details.json ] || [ ! -f tmp/reference_176_done ]; then
+  python eval/test/evaluate.py --cache tmp/reference_test_cache_176.json \
     --details eval/test/_runs/reference_details.json > /dev/null
+  touch tmp/reference_176_done
 fi
 cat scoring/scores_test.json
+python redteam/hardening/compare_reference_runs.py tmp/old_runs_48/reference_details_48.json \
+  eval/test/_runs/reference_details.json || true
 
 if [ "$RUN_HARDENING" = 1 ]; then
   stage "5. hardening cases"

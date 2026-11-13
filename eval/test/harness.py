@@ -139,6 +139,131 @@ def paper_start(sizes: list[int], seed: int) -> np.ndarray:
     return np.concatenate(parts)
 
 
+def available_cpus() -> int:
+    """CPUs this process may use (affinity mask and cgroup CPU quota)."""
+    try:
+        n = len(os.sched_getaffinity(0))
+    except AttributeError:
+        n = os.cpu_count() or 1
+    try:  # cgroup v2
+        quota, period = Path("/sys/fs/cgroup/cpu.max").read_text().split()[:2]
+        if quota != "max":
+            n = min(n, max(1, int(quota) // int(period)))
+    except (OSError, ValueError):
+        pass
+    try:  # cgroup v1
+        quota = int(Path("/sys/fs/cgroup/cpu/cpu.cfs_quota_us").read_text())
+        period = int(Path("/sys/fs/cgroup/cpu/cpu.cfs_period_us").read_text())
+        if quota > 0:
+            n = min(n, max(1, quota // period))
+    except (OSError, ValueError):
+        pass
+    return max(1, n)
+
+
+def memory_limit_bytes() -> int | None:
+    """cgroup memory limit of this process, if any."""
+    for path in ("/sys/fs/cgroup/memory.max", "/sys/fs/cgroup/memory/memory.limit_in_bytes"):
+        try:
+            text = Path(path).read_text().strip()
+        except OSError:
+            continue
+        if text.isdigit() and int(text) < 1 << 60:
+            return int(text)
+    return None
+
+
+def _spin(k: int) -> int:
+    x = 0
+    for i in range(k):
+        x += i
+    return x
+
+
+def measured_parallelism(n: int, k: int = 3_000_000) -> int:
+    """How many of n CPU-bound processes really run at once (CPU quotas can hide behind affinity)."""
+    import multiprocessing as mp
+    ctx = mp.get_context("fork")
+    t0 = time.monotonic()
+    _spin(k)
+    single = time.monotonic() - t0
+    procs = [ctx.Process(target=_spin, args=(k,)) for _ in range(n)]
+    t0 = time.monotonic()
+    for p in procs:
+        p.start()
+    for p in procs:
+        p.join()
+    multi = time.monotonic() - t0
+    return max(1, min(n, int(n * single / max(multi, 1e-9) + 0.5)))
+
+
+def default_workers() -> int:
+    """Parallel (solver, problem) tasks: one per CPU that really runs in parallel, ~0.75 GB each
+    (12 solver processes), at most 8."""
+    env = os.environ.get("IRTREE_EVAL_WORKERS", "")
+    if env.isdigit() and int(env) > 0:
+        return int(env)
+    n = min(available_cpus(), 8)
+    mem = memory_limit_bytes()
+    if mem is not None:
+        n = min(n, max(1, int(mem / (0.75 * 2 ** 30))))
+    if n > 1:
+        n = measured_parallelism(n)
+    return max(1, n)
+
+
+def run_tasks(tasks, work, workers: int, on_done, skip=None) -> None:
+    """Run work(task) for every task, up to `workers` at a time in forked processes.
+
+    Tasks are dispatched lazily in the given order; ``skip(task)`` (checked at
+    dispatch) may return a result to use instead of running the task.
+    ``on_done(task, result)`` is called in this process as results arrive.  If
+    a worker process dies, the affected and remaining tasks run in this process.
+    """
+    pending = list(tasks)
+    if workers <= 1:
+        for task in pending:
+            res = skip(task) if skip else None
+            on_done(task, res if res is not None else work(task))
+        return
+    import concurrent.futures as cf
+    import multiprocessing as mp
+    inline = []
+    with cf.ProcessPoolExecutor(max_workers=workers, mp_context=mp.get_context("fork")) as pool:
+        running = {}
+        broken = False
+        while pending or running:
+            while pending and len(running) < workers and not broken:
+                task = pending.pop(0)
+                res = skip(task) if skip else None
+                if res is not None:
+                    on_done(task, res)
+                    continue
+                try:
+                    running[pool.submit(work, task)] = task
+                except Exception:  # noqa: BLE001  (pool broken)
+                    broken = True
+                    inline.append(task)
+            if broken:
+                inline.extend(pending)
+                pending = []
+            if not running:
+                break
+            done, _ = cf.wait(list(running), return_when=cf.FIRST_COMPLETED)
+            for fut in done:
+                task = running.pop(fut)
+                try:
+                    result = fut.result()
+                except Exception:  # noqa: BLE001  (worker died: rerun here)
+                    broken = True
+                    inline.append(task)
+                    continue
+                on_done(task, result)
+    for task in inline:
+        res = skip(task) if skip else None
+        on_done(task, res if res is not None else work(task))
+
+
 # --------------------------------------------------------------------------- registry
 def load_registry(path: Path, root: Path) -> dict[str, list[str]]:
     """Solvers on disk: {"name": {"command": [...]}}; malformed entries are kept as failures."""

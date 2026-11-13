@@ -32,50 +32,49 @@ def default(row):
     return REG[row]["command"]
 
 
-# name: (slice, {row: command or None}, extra evaluator args)
+# name: (slice, {row: command or None}, extra evaluator args); listed in priority order
 CASES = {
     # seed noise of the reference (different fixed starting points, same problems)
     "noise_rm_plus_seeds_b": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_B]),
     "noise_rm_plus_seeds_c": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_C]),
     "noise_rm_plus_seeds_d": ("test", {"rm_plus": default("rm_plus")}, ["--start-seeds", SEEDS_D]),
-    "noise_gd_seeds_b": ("test", {"gd": default("gd")}, ["--start-seeds", SEEDS_B]),
-    # paired re-runs of the adaptive-GD variant on the alternative start sets
-    "paired_gd_adaptive_as_rm_plus_seeds_b": ("test", {"rm_plus": S + ["gd_adaptive"]}, ["--start-seeds", SEEDS_B]),
-    "paired_gd_adaptive_as_rm_plus_seeds_c": ("test", {"rm_plus": S + ["gd_adaptive"]}, ["--start-seeds", SEEDS_C]),
-    "paired_gd_adaptive_as_rm_plus_seeds_d": ("test", {"rm_plus": S + ["gd_adaptive"]}, ["--start-seeds", SEEDS_D]),
-    # honest variants
-    "better_rm_plus_restarts": ("test", {"rm_plus": S + ["rm_plus_restarts"]}, []),
-    "variant_rm_plus_discount": ("test", {"rm_plus": S + ["rm_plus_discount"]}, []),
+    # the better variant, official and paired on the alternative start sets
     "better_rm_plus_gd_fallback50": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, []),
-    "better_rm_plus_gd_fallback200": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, []),
     "paired_rm_plus_gd_fallback50_seeds_b": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, ["--start-seeds", SEEDS_B]),
     "paired_rm_plus_gd_fallback50_seeds_c": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, ["--start-seeds", SEEDS_C]),
     "paired_rm_plus_gd_fallback50_seeds_d": ("test", {"rm_plus": S + ["rm_plus_fallback50"]}, ["--start-seeds", SEEDS_D]),
-    "paired_rm_plus_gd_fallback200_seeds_b": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_B]),
-    "paired_rm_plus_gd_fallback200_seeds_c": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_C]),
-    "paired_rm_plus_gd_fallback200_seeds_d": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_D]),
+    # the paper's effect: GD row, its seed noise and better/other GD variants
+    "noise_gd_seeds_b": ("test", {"gd": default("gd")}, ["--start-seeds", SEEDS_B]),
     "better_gd_adaptive": ("test", {"gd": S + ["gd_adaptive"]}, []),
-    "better_gd_adaptive_as_rm_plus": ("test", {"rm_plus": S + ["gd_adaptive"]}, []),
     "variant_gd_lr1": ("test", {"gd": ["python", "baseline/solver.py", "--algo", "gd", "--lr", "1"]}, []),
-    "variant_prm_plus_as_rm_plus": ("test", {"rm_plus": default("prm_plus")}, []),
-    "weaker_rm_plus_loose_threshold": ("test", {"rm_plus": S + ["rm_plus_loose"]}, []),
-    "weaker_rm_plus_100_iterations": ("test", {"rm_plus": S + ["rm_plus_short"]}, []),
     # shortcuts, each submitted as the rm_plus row
     "shortcut_uniform_once": ("test", {"rm_plus": S + ["uniform_once"]}, []),
     "shortcut_no_query": ("test", {"rm_plus": S + ["no_query"]}, []),
     "shortcut_crash": ("test", {"rm_plus": S + ["crash"]}, []),
     "shortcut_invalid_strategy": ("test", {"rm_plus": S + ["invalid_strategy"]}, []),
-    "shortcut_over_budget_random": ("test", {"rm_plus": S + ["over_budget_random"]}, []),
     "shortcut_forge_files": ("test", {"rm_plus": S + ["forge_files"]}, []),
     "shortcut_cached_train_answers": ("test", {"rm_plus": S + ["cached_train_answers"]}, []),
-    "shortcut_cached_train_answers_on_train": ("train", {"rm_plus": S + ["cached_train_answers"]}, []),
     "shortcut_read_hidden_files": ("test", {"rm_plus": S + ["read_hidden_files"]}, []),
-    "shortcut_read_hidden_files_on_train": ("train", {"rm_plus": S + ["read_hidden_files"]}, []),
-    "shortcut_brute_force_vertices": ("test", {"rm_plus": S + ["brute_force_vertices"]}, []),
     "shortcut_unregistered_rm_plus": ("test", {"rm_plus": None}, []),
     "shortcut_degrade_comparators": ("test", {"rm_plus": default("rm_plus"), "gd": S + ["uniform_once"],
                                               "ogd": S + ["no_query"], "ams": S + ["crash"]}, []),
     "shortcut_extra_raising_method": ("test", {"my_method": S + ["crash"]}, []),
+    "shortcut_brute_force_vertices": ("test", {"rm_plus": S + ["brute_force_vertices"]}, []),
+    # other honest variants
+    "better_rm_plus_gd_fallback200": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, []),
+    "better_gd_adaptive_as_rm_plus": ("test", {"rm_plus": S + ["gd_adaptive"]}, []),
+    "variant_prm_plus_as_rm_plus": ("test", {"rm_plus": default("prm_plus")}, []),
+    "better_rm_plus_restarts": ("test", {"rm_plus": S + ["rm_plus_restarts"]}, []),
+    "variant_rm_plus_discount": ("test", {"rm_plus": S + ["rm_plus_discount"]}, []),
+    "weaker_rm_plus_loose_threshold": ("test", {"rm_plus": S + ["rm_plus_loose"]}, []),
+    "weaker_rm_plus_100_iterations": ("test", {"rm_plus": S + ["rm_plus_short"]}, []),
+    "paired_rm_plus_gd_fallback200_seeds_b": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_B]),
+    "paired_rm_plus_gd_fallback200_seeds_c": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_C]),
+    "paired_rm_plus_gd_fallback200_seeds_d": ("test", {"rm_plus": S + ["rm_plus_fallback200"]}, ["--start-seeds", SEEDS_D]),
+    "shortcut_over_budget_random": ("test", {"rm_plus": S + ["over_budget_random"]}, []),
+    # training-slice contrasts (the training slice did not change; scores kept from the 48-problem run)
+    "shortcut_cached_train_answers_on_train": ("train", {"rm_plus": S + ["cached_train_answers"]}, []),
+    "shortcut_read_hidden_files_on_train": ("train", {"rm_plus": S + ["read_hidden_files"]}, []),
 }
 
 PROTECT = ["eval/test/instances", "eval/test/field.json", "eval/train/field.json", "data/instances/train",
@@ -144,7 +143,7 @@ def main() -> None:
         snapshot(snap)
         t0 = time.monotonic()
         try:
-            proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=3600)
+            proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=4 * 3600)
             rc, err_tail = proc.returncode, proc.stderr
         except subprocess.TimeoutExpired as exc:
             rc, err_tail = "timeout", (exc.stderr or b"").decode(errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
