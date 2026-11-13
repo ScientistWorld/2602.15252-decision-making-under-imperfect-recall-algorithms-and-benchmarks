@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Hardening: generate 128 new held-out problems (176 total), freeze their comparator field, fresh reference run of all 7 registered solvers on the enlarged test, then seed-noise / paired better-variant / shortcut cases and summary. Parallel over available CPUs; resumable."
+notes: "Hardening: scored solvers now start from points different from the frozen comparators' (fixes a pairing artifact/shortcut). Fresh train rows (seeds 45-56), fresh reference run of all 7 solvers on the 176 held-out problems (seeds 1001-1012), then seed-noise (C/D/E), paired better variant, field-start diagnostic, shortcuts incl. own-start and read-field-targets; summary + validate. Parallel; resumable."
