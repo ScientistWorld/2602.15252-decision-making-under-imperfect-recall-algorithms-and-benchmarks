@@ -1,0 +1,19 @@
+{
+  "_slice": "test",
+  "experiments": {
+    "first_order_optimizer_aggregate": {
+      "results": {
+        "rm_plus": {
+          "value_percent_best": 81.81818181818183,
+          "value_avg_rank": 3.534090909090909,
+          "utility_gain_mean": 0.9662114949965098,
+          "convergence_percent_reached": 100.0,
+          "convergence_percent_best": 52.84090909090909,
+          "convergence_avg_rank": 2.6448863636363638,
+          "log10_iterations_mean": 1.3347160388835413,
+          "restart_convergence_percent": 99.28977272727273
+        }
+      }
+    }
+  }
+}
