@@ -1,8 +1,6 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: submit
-gpus: 0
-test: false
+action: done
 milestone: core_claim
-notes: "Hardening: scored solvers now start from points different from the frozen comparators' (fixes a pairing artifact/shortcut). Fresh train rows (seeds 45-56), fresh reference run of all 7 solvers on the 176 held-out problems (seeds 1001-1012), then seed-noise (C/D/E), paired better variant, field-start diagnostic, shortcuts incl. own-start and read-field-targets; summary + validate. Parallel; resumable."
+notes: "Hardened per REVIEW.md: held-out test enlarged 48->176 problems; solvers now start from points different from the frozen comparators' (closes an own-start shortcut worth ~+0.25); comparator field hidden during solver runs. Better solver beats reference on all 4 start sets (+0.16..+0.30 vs noise range 0.105); GD -4.3; all shortcuts <= reference. See HARDENING.md."
