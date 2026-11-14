@@ -7,7 +7,7 @@ Scalable first-order optimization for tabular imperfect-recall decision problems
 Optimizers over products of probability simplices that use utility/gradient queries: improved local update rules, adaptive or parameter-free step sizes, predictive/optimistic updates, momentum, line searches, restart schemes within the budget, better initialisation, hybrid schedules.
 
 ## What Must Stay Comparable
-Same problems, starting points, oracle, 6000-evaluation budget and 1e-6 threshold for every solver; the solution concept (first-order optimality) and the utility objective.
+Same problems, starting points, oracle, 6000-evaluation budget and 1e-6 threshold for every solver (a solver may still use its own initialisation; it is not rewarded for doing so); the solution concept (first-order optimality) and the utility objective.
 
 ## Out of Scope
 - Changing the decision problem, its information structure, or the solution concept.

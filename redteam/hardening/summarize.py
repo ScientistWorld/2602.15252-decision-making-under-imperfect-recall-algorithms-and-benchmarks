@@ -103,6 +103,8 @@ def paired_per_problem(cases, sds):
                 continue
             if tag != "official" and base_row != "rm_plus":
                 continue
+            if set(v[row]) != set(b[base_row]):  # incomplete record set (e.g. an older, smaller test)
+                continue
             per_set[tag] = per_problem_delta(row, v[row], b[base_row], sds)
         if not per_set:
             continue

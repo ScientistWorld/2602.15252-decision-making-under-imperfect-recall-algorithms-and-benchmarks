@@ -31,5 +31,10 @@
 - Ported the authors' RM/RM+/PRM/PRM+/GD/OGD/AMSGrad code; it retraces the authors' logged runs (1678/1680 identical iteration counts).
 - The paper's claim reproduces in its direction on the held-out problems (RM+ vs GD: convergence rank 3.15 vs 5.69, log10 iterations 1.22 vs 1.91, 75% vs 54% best utility). All red-team shortcuts score at most the reference; a better variant beats the reference beyond seed noise. See HARDENING.md.
 
+### [2026-11-14] - core_claim (hardening follow-up to REVIEW.md)
+- Enlarged the held-out test from 48 to 176 problems (paper's generators and presets, weighted toward the largest preset of each family); froze comparators for the new problems; generator made interpreter-independent (byte-identical regeneration under Python 3.11 and 3.12).
+- Found and closed a pairing shortcut: solvers were given the comparators' own starting points, so ignoring the given start raised RM+'s score by about as much as an honest improvement. Solvers now start elsewhere (test 1001-1012, train 45-56). Hid the comparator field (per-problem best utilities) during solver runs.
+- Fresh reference run of all 7 solvers on train and test. Seed-noise range 0.105 (Δ ALL) vs paired gains of a better solver of +0.16 to +0.30 on four start sets (pooled bootstrap CI [0.06, 0.44]); GD sits 4.3 below RM+. All shortcuts score at or below the reference (own start +0.06, within noise).
+
 ## Stop Justification
 - Completed at milestone `core_claim`.
